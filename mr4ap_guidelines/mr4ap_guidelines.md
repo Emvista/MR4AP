@@ -48,6 +48,7 @@ Authors: *Bastien Giordano, Cédric Lopez*
       4. [Suggestion](#suggestion)
       5. [Uncertain](#uncertainty)
       6. [Temporal](#temporality)
+   6. [Degree](#degree)
 6. [Coreference and anaphora](#coreference-and-anaphora)
    1. [Event coreference](#event-coreference)
    2. [Entity coreference](#entity-coreference)
@@ -835,7 +836,8 @@ John owns around three cars.
 <[back to the table of contents](#table-of-contents)>
 ### Polarity (and scope)
 
-Polarity can receive one of two values: `negative` and `positive`.
+Polarity can receive one of two values: `negative` or `positive`. However, to reduce the number of annotations needed,
+`positive` polarity can be considered the default annotation and not be annotated.
 The scope of the negation must be taken into account, especially when interacting with modality.
 
 ```console
@@ -933,6 +935,24 @@ The `temporality` modal value is used to denote frequency.
 ```console
 John cooks for us sometimes.
 cooking-45.3 @Modality: temporality
+```
+
+<[back to the table of contents](#table-of-contents)>
+### Degree
+
+The `degree` attribute is used to scale a property that is modified.
+It can take one of two values: `intensifier` or `downtoner`.
+
+```console
+John is very fast.
+
+fast-04 @Degree: intensifier
+
+---
+
+John is a little slow.
+
+fast-04 @Degree: downtoner
 ```
 
 <[back to the table of contents](#table-of-contents)>
