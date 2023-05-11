@@ -5,7 +5,7 @@ This repository hosts everything related to the Meaning Representation for Appli
 
 ## Corpus
 
-The MR4AP corpus (v0.1) [here](mr4ap_corpus).
+The MR4AP corpus (v0.1) can be found [here](mr4ap_corpus).
 
 ## Annotation guidelines
 
