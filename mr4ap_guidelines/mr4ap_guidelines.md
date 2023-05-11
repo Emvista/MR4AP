@@ -1,10 +1,9 @@
 Meaning Representation for Application Purposes - Annotation Guidelines
 =======================================================================
----
 
 **May 11, 2023**
 
-Authors: *Bastien Giordano*
+Authors: *Bastien Giordano, Cédric Lopez*
 
 ## Table of contents
 1. [Introduction to MR4AP](#introduction-to-mr4ap)
@@ -30,7 +29,7 @@ Authors: *Bastien Giordano*
    3. [Variable questions](#variable-questions)
 5. [MR4AP attributes](#mr4ap-attributes)
    1. [Semantic typing](#semantic-typing)
-      1. [Named Entities (NE)](#named-entities-and-word-senses)
+      1. [Named Entities and Word Senses](#named-entities-and-word-senses)
       2. [Gender](#gender)
       3. [Question types](#questions)
    2. [Aspect](#aspect)
@@ -389,6 +388,7 @@ illustrates its literal meaning (i.e., "John hit the bucket with his foot").
 
 MR4AP splits questions into three types: polar questions, alternative questions, and variable questions.
 
+<[back to the table of contents](#table-of-contents)>
 ### Polar questions
 
 Polar questions are questions whose possible answers are either affirmative, negative, or doubtful. 
@@ -402,6 +402,7 @@ want-32.1-1-1  @Unknown: unknown
 unknown        @Type:    question-closed
 ```
 
+<[back to the table of contents](#table-of-contents)>
 ### Alternative questions
 
 Alternative questions are questions whose possible answers are offered within the question. 
@@ -424,6 +425,7 @@ alternative   @Alternative:  "tea"
 alternative   @Alternative:  "coffee"
 ```
 
+<[back to the table of contents](#table-of-contents)>
 ### Variable questions
 
 Variable questions are questions whose answers are the most open-ended. In English, they are typically WH-questions.
@@ -933,6 +935,7 @@ John cooks for us sometimes.
 cooking-45.3 @Modality: temporality
 ```
 
+<[back to the table of contents](#table-of-contents)>
 ### Named
 
 The `named` relation is used to link nouns and related proper nouns.

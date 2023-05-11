@@ -1,7 +1,3 @@
-img[alt$="Roles in corpus"] {
-  float: right;
-}
-
 # Meaning Representation for Application Purposes (MR4AP) corpus (v0.1)
 
 ## Disclaimer

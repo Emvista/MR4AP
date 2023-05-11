@@ -9,4 +9,4 @@ The MR4AP corpus (v0.1) [here](mr4ap_corpus).
 
 ## Annotation guidelines
 
-The annotation guidelines can be found [here](mr4ap_guidelines).
+The annotation guidelines can be found [here](mr4ap_guidelines/mr4ap_guidelines.md).
