@@ -1,7 +1,7 @@
 Meaning Representation for Application Purposes - Annotation Guidelines
 =======================================================================
 
-**May 11, 2023**
+**May 12, 2023**
 
 Authors: *Bastien Giordano, Cédric Lopez*
 
@@ -13,11 +13,16 @@ Authors: *Bastien Giordano, Cédric Lopez*
       2. [Stative events](#stative-events)
       3. [Adjectives: predicates?](#adjectives-predicates)
       4. [Reified predicates](#reified-predicates)
+      5. [Implicit predicates and arguments](#implicit-predicates-and-arguments)
    2. [Relation types](#relation-types)
       1. [Core and non-core relations](#core-and-non-core-relations)
       2. [Temporal relations](#temporal-relations)
       3. [Discourse relations](#discourse-relations)
-      4. [Coreference relations](#coreference-relations)
+      4. [`Comparison`: a special case](#comparison-a-special-case)
+         1. [Comparatives](#Comparatives)
+         2. [Superlatives](#Superlatives)
+         3. [Other constructions](#other-constructions)
+      5. [Coreference relations](#coreference-relations)
 3. [Multiword expressions (MWEs)](#multiword-expressions-mwes)
    1. [Entities](#entities)
    2. [Light-verb constructions (LVCs)](#light-verb-constructions-lvcs)
@@ -40,15 +45,20 @@ Authors: *Bastien Giordano, Cédric Lopez*
       5. [Endeavor](#endeavor)
       6. [Performance](#performance)
    3. [Quantification](#quantification)
+      1. [Usual cases](#usual-cases)
+      2. [Quantification in comparisons](#quantification-in-comparisons)
+      3. [Quantification and superlatives](#quantification-and-superlatives)
    4. [Polarity (and scope)](#polarity-and-scope)
    5. [Modality (and scope)](#modality-and-scope)
       1. [Obligation](#obligation)
       2. [Capacity](#capacity)
       3. [Wish](#wish)
       4. [Suggestion](#suggestion)
-      5. [Uncertain](#uncertainty)
-      6. [Temporal](#temporality)
+      5. [Uncertainty](#uncertainty)
+      6. [Temporality](#temporality)
    6. [Degree](#degree)
+      1. [Intensifiers and downtoners](#intensifiers-and-downtoners)
+      2. [Degree-consequence constructions](#degree-consequence-constructions)
 6. [Coreference and anaphora](#coreference-and-anaphora)
    1. [Event coreference](#event-coreference)
    2. [Entity coreference](#entity-coreference)
@@ -81,7 +91,7 @@ MR4AP follows a predicate-argument structure. As such, the core of its design re
 of predicates and their arguments.
 
 Note: MR4AP does not cling to any resource in particular. The vocabulary used to denote predicate classes may come from 
-diverse resources, such as VerbNet, FrameNet, or PropBank.
+diverse resources, such as VerbNet (Schuler, 2005), FrameNet (Baker et al., 1998), or PropBank (Palmer et al., 2005).
 
 <[back to the table of contents](#table-of-contents)>
 ### Events and entities
@@ -95,7 +105,7 @@ Events are split into two categories:
 #### Dynamic events
 
 Dynamic events denote processes or actions. Such events are typically denoted by verbs and nouns.
-The following sentence all express the logical expression `arrest(police,John)`:
+The following sentences all express the logical expression `arrest(police,John)`:
 
 ```console
 The police arrested John.
@@ -106,7 +116,7 @@ John's arrestation by the police (...).
 ```
 
 MR4AP transposes these logical representations into graph representations using named relations to link events and their
-relative entities (see [Relation types](#relation-types) section).
+relative entities (see the [Relation types](#relation-types) section).
 
 <[back to the table of contents](#table-of-contents)>
 #### Stative events
@@ -122,6 +132,8 @@ Stative events include the following:
 | Predicational property    | John's cats are black.        |
 | State and change of state | John became a doctor.         |
 | Existential predication   | There were cats on the table. |
+
+<!-- TODO: Préciser les relations ici ? Notamment pour les state (Type ?) -->
 
 <[back to the table of contents](#table-of-contents)>
 #### Adjectives: predicates?
@@ -139,11 +151,29 @@ element might or might not appear depending on the aspect:
 القط هادئ
 (al-qiṭṭu hādiʾ, lit. "the cat quiet", transl. "the cat is quiet")
 
+quiet-04 @Theme: "قط"
+
 ---
 
 كان القط هادئ
 (kāna al-qiṭṭu hādiʾ, lit. "was the cat quiet", transl. "the cat was quiet")
+
+"قط" @Property: "quiet"
 ```
+
+However, adjectives denoting temporal information must receive additional information.
+
+```console
+The company's former CEO created new ones.
+
+CEO @Property: former
+```
+
+<!-- TODO: parler des réentrances quelque part (retrouver le papier qui parlait des réentrances avec les différentes configurations syntaxiques prototypiques des réentrances -->
+<!-- TODO: fix les affaires de property et time -->
+<!-- TODO: parler de l'attribut :frequency vs. la modality :temporality -->
+<!-- TODO: valider les comparisonMinMax -->
+<!-- TODO: fix les relations Type pour copule + nom, i.e. Lacrimosa est un groupe allemand -->
 
 <[back to the table of contents](#table-of-contents)>
 #### Reified predicates
@@ -181,9 +211,18 @@ addition @Addition: "running shoes"
 ```
 
 <[back to the table of contents](#table-of-contents)>
+#### Implicit predicates and arguments
+
+In a number of cases, predicates and arguments can be implicit, i.e. the linguistic form does not convey what an 
+utterance's meaning does.
+
+<!-- Work in progress... À mettre dans le papier en tant que limites et perspectives, tant le chantier est vaste.
+Référence : les travaux de O'Gorman, notamment sa thèse (2019) sous la direction de M. Palmer -->
+
+<[back to the table of contents](#table-of-contents)>
 ### Relation types
 
-In its search of explicitness, MR4AP requires every relation to be named. There are different types of relations.
+In its search for explicitness, MR4AP requires every relation to be named. There are different types of relations.
 
 <[back to the table of contents](#table-of-contents)>
 #### Core and non-core relations
@@ -240,18 +279,19 @@ Those must be read from the underlined token to the bold one with the relation
 | `Unknown`       | \**                                                                         |
 
 \* `LocationSpan` includes at least two elements. As specified earlier, conjunctions are modelized using `addition` nodes 
-(see [Reified predicates](#reified-predicates) section), hence the bold "and".  
-\** `Unknown` is only used to mark polar and alternative questions (see [Questions](#questions) section).
+(see the [Reified predicates](#reified-predicates) section), hence the bold "and".  
+\** `Unknown` is only used to mark polar and alternative questions (see the [Questions](#questions) section).
 
 <[back to the table of contents](#table-of-contents)>
 #### Temporal relations
 
 Temporal relations are relations symbolizing temporality.
+They occur both at the sentence and the document level.
 
 ```console
 John left before Mary entered the room.
 
-leave @TimeMax: "enter"
+leave-51.2-1 @TimeMax: escape-51.1-1-2 ("entered")
 ```
 
 Temporality can also be an attribute when it does not connect two predicates.
@@ -259,9 +299,32 @@ Temporality can also be an attribute when it does not connect two predicates.
 ```console
 John worked yesterday.
 
-work @TimeMin: 2023-05-04@00:00
-work @TimeMax: 2023-05-04@23:59
+work-73.2 @TimeMin: 2023-05-04@00:00
+work-73.2 @TimeMax: 2023-05-04@23:59
 ```
+
+Temporality can also be linked to the document creation time (DCT). 
+This link should be instantiated when no explicit temporal mentions is present:
+
+```console
+John agreed with Mary.
+
+correspond-36.1-1 @TimeMax: DCT
+
+---
+
+Before leaving, John waved to Mary.
+
+wink-40.3.1  @TimeMax: leave-51.2-1
+leave-51.2-1 @TimeMax: DCT
+```
+
+In the latter example, the annotator can certify that the waving event happened before the leaving event. However,
+if the leaving event isn't relatively linked to any other, temporal information is lost. Anchoring the leaving event
+before the DCT allows to deduce a chronology:
+* `wink-40.3.1` happened before `leave-51.2-1`,
+* `leave-51.2-1` happened before the DCT,
+* therefore the chronology is: `wink-40.3.1` > `leave-51.2-1` > DCT.
 
 Here is an exhaustive list of temporal relations with examples.  
 Those must be read from the underlined token to the bold one with the relation 
@@ -313,6 +376,111 @@ Bidirectional relations are read... in both directions
 |                      | `Purpose`                 | John wants to <ins>leave</ins> to **attend** his medical appointment.                             |
 |                      | `Restriction`             | John <ins>left</ins> even though he didn't **ask** first.                                         |
 |                      | `Whatever`                | No matter that John **asked**, he can't <ins>leave</ins>.                                         |
+
+<[back to the table of contents](#table-of-contents)>
+#### `Comparison`: a special case
+
+<!-- Compte tenu du chantier qui semble s'imposer pour les différentes expressions de la comparaison, i.e. 
+en-dehors des cas classiques et faciles, cette partie pourrait faire l'objet de limites et de perspectives,
+en se basant notamment sur le travail de Bonial et al. (2018) -->
+
+Just like quantification (see the [Quantification](#quantification) section) and temporal relations 
+(see the [Temporal relations](#temporal-relations) section), the `Comparison` relation has several derivative labels.
+Those derivative labels are introduced in order to represent comparatives and superlatives.
+
+<[back to the table of contents](#table-of-contents)>
+##### Comparatives
+
+As far as comparatives are concerned, there are three possible relations: `ComparisonMore`, `ComparisonLess`, and 
+`ComparisonEqual`.
+
+```console
+John is wealthier than Mary.
+
+wealthy.01 @Theme:          "John"
+wealthy.01 @Theme:          "Mary"
+wealthy.01 @ComparisonMore: "John"
+wealthy.01 @ComparisonLess: "Mary"
+
+---
+
+John is less smart than Mary.
+
+smart.06 @Theme:          "John"
+smart.06 @Theme:          "Mary"
+smart.06 @ComparisonLess: "John"
+smart.06 @ComparisonMore: "Mary"
+
+---
+
+John is as kind as Mary.
+
+kind.01 @Theme:          "John"
+kind.01 @Theme:          "Mary"
+kind.01 @ComparisonLess: "John"
+kind.01 @ComparisonMore: "Mary"
+```
+
+<[back to the table of contents](#table-of-contents)>
+##### Superlatives
+
+As for superlatives, there are two possible relations: `ComparisonMost` and `ComparisonLeast`.
+Superlatives remain an expression of comparison, whether the compared element be explicit (1) or implicit (2).
+
+```console
+(1) John is the smartest of his siblings. (= John is smarter than his siblings)
+
+smart.06 @Theme:           "John"
+smart.06 @Theme:           "siblings"
+smart.06 @ComparisonMost:  "John"
+smart.06 @ComparisonLeast: "siblings"
+
+---
+
+(2) John is the smartest ø. (= John is smarter than {everyone else, his siblings, his football team members, ...})
+
+smart.06 @Theme:           "John"
+smart.06 @Theme:           implicit_argument
+smart.06 @ComparisonMost:  "John"
+smart.06 @ComparisonLeast: implicit_argument
+```
+
+<[back to the table of contents](#table-of-contents)>
+##### Other constructions
+
+As demonstrated by Bonial et al. (2018) and illustrated in their paper's title, other constructions such as _The X-er, 
+the Y-er_ or degree-consequence constructions exist (see the [Degree](#degree) section). The former construction is 
+annotated like the following example:
+
+```console
+The more (ø) we include, the better the representation.
+
+admit-64.3-1      @Agent:       "we"
+admit-64.3-1      @Theme:       implicit_argument
+implicit_argument @Measure:     +
+admit-64.3-1      @Consequence: good.15
+good.15           @Theme:       "representation"
+good.15           @Degree:      +
+
+---
+
+The faster, the better.
+
+fast.02 @Degree:      +
+good.15 @Degree:      +
+fast.02 @Consequence: good.15
+```
+
+Degree-consequence constructions are annotated like the following example (borrowed from Bonial et al. (2018)):
+
+```console
+The smell is so terrible, you want to throw up.
+
+terrible.01    @Theme:       "smell"
+terrible.01    @Degree:      intensifier
+terrible.01    @Consequence: breathe-40.1.2
+breathe-40.1.2 @Agent:       "you"
+```
 
 <[back to the table of contents](#table-of-contents)>
 #### Coreference relations
@@ -394,7 +562,7 @@ MR4AP splits questions into three types: polar questions, alternative questions,
 
 Polar questions are questions whose possible answers are either affirmative, negative, or doubtful. 
 To mark the interrogativeness linked to a predicate, we link the latter to an `unknown` node with an `Unknown` relation.
-This node is then typed `question-closed` (see [Question types](#question-types) section).
+This node is then typed `question-closed` (see the [Question types](#question-types) section).
 
 ```console
 Do you want some tea?
@@ -408,7 +576,7 @@ unknown        @Type:    question-closed
 
 Alternative questions are questions whose possible answers are offered within the question. 
 Once again, to mark the interrogativeness linked to a predicate, we link the latter to an `unknown` node with an `Unknown` relation.
-This node is then typed `question-choice` (see [Question types](#question-types) section).
+This node is then typed `question-choice` (see the [Question types](#question-types) section).
 
 However, more parameters are to be taken into account. First, the alternative offered in the question must give way to a 
 reified `alternative` node. This node is then linked to the different elements contained in the alternative with the 
@@ -432,7 +600,7 @@ alternative   @Alternative:  "coffee"
 Variable questions are questions whose answers are the most open-ended. In English, they are typically WH-questions.
 Since these questions are targeted, the unknown element is in fact an argument of the question's predicate. Therefore, 
 the `unknown` node must be the endpoint of the appropriate relation in respect with the predicate.
-Then, this `unknown` node must be typed `question-open` (see [Question types](#question-types) section).
+Then, this `unknown` node must be typed `question-open` (see the [Question types](#question-types) section).
 
 ```console
 Who ate the apple?
@@ -478,161 +646,163 @@ MR4AP exploits Emvista's ontology to semantically type every entity. These types
 <!-- Insert link to Emvista's ontology? Just like UMR did here: 
 https://github.com/umr4nlp/umr-guidelines/blob/master/guidelines.md#part-3-1-2-named-entities --> 
 
-| Level 0 | Level 1  | Level 2            | Level 3                       | Level 4           | Level 5              | Level 6               | 
-|---------|----------|--------------------|-------------------------------|-------------------|----------------------|-----------------------|
-| Thing   | Concrete | Inanimate          | Material                      |                   |                      |                       |
-|         |          |                    | Ingredient                    |                   |                      |                       |
-|         |          |                    | Product                       | DrinkProduct      |                      |                       |
-|         |          |                    |                               | FoodProduct       |                      |                       |
-|         |          |                    |                               | Clothing          |                      |                       |
-|         |          |                    |                               | ChemicalAndDrugs  | MedicationAndVaccine |                       |
-|         |          |                    |                               | Equipment         | MedicalEquipment     |                       |
-|         |          |                    |                               |                   | MusicalEquipment     | MusicalInstrument     |
-|         |          |                    |                               |                   | MilitaryEquipment    | Ammunition            |
-|         |          |                    |                               |                   |                      | Weapon                |
-|         |          |                    |                               | Machine           | Vehicle              | Aircraft              |
-|         |          |                    |                               |                   |                      | RailwayRollingVehicle |
-|         |          |                    |                               |                   |                      | Car                   |
-|         |          |                    |                               |                   |                      | Boat                  |
-|         |          |                    |                               | Archive           |                      |                       |
-|         |          |                    |                               | Facility          | BusinessFacility     |                       |
-|         |          |                    |                               |                   | CultureFacility      |                       |
-|         |          |                    |                               |                   | EducationFacility    |                       |
-|         |          |                    |                               |                   | HealthFacility       |                       |
-|         |          |                    |                               |                   | MilitaryFacility     |                       |
-|         |          |                    |                               |                   | PoliticsFacility     |                       |
-|         |          |                    |                               |                   | ReligionFacility     |                       |
-|         |          |                    |                               |                   | SportsFacility       |                       |
-|         |          |                    |                               | Artwork           | Sculpture            |                       |
-|         |          |                    |                               |                   | Book                 |                       |
-|         |          |                    |                               |                   | Painting             |                       |
-|         |          |                    |                               |                   | Jewel                |                       |
-|         |          | Product            | Machine                       | ???               |                      |                       |
-|         |          | Animate            | AnatomicalStructure           |                   |                      |                       |
-|         |          |                    | Product                       | Machine           |                      |                       |
-|         |          |                    | Livingbeing                   | Vegetal           |                      |                       |
-|         |          |                    |                               | Animal            |                      |                       |
-|         |          |                    |                               | Human             | Engineer             |                       |
-|         |          |                    |                               |                   | Scientist            |                       |
-|         |          |                    |                               |                   | Cleric               |                       |
-|         |          |                    |                               |                   | Artist               | Musician              |
-|         |          |                    |                               |                   | Politician           | HeadOfGov             |
-|         |          |                    |                               |                   |                      | HeadOfState           |
-|         |          |                    |                               |                   | SportsActor          | SportsManager         |
-|         |          |                    |                               |                   |                      | Footballer            |
-|         | Abstract | Symptom            |                               |                   |                      |                       |
-|         |          | Deity              |                               |                   |                      |                       |
-|         |          | Technology         |                               |                   |                      |                       |
-|         |          | MedicalDisorder    |                               |                   |                      |                       |
-|         |          | Location           | TransportLine                 |                   |                      |                       |
-|         |          |                    | Place                         |                   |                      |                       |
-|         |          |                    | City                          |                   |                      |                       |
-|         |          |                    | Continent                     |                   |                      |                       |
-|         |          |                    | Country                       |                   |                      |                       |
-|         |          |                    | Region                        |                   |                      |                       |
-|         |          |                    | Street                        |                   |                      |                       |
-|         |          |                    | CelestialLoc                  |                   |                      |                       |
-|         |          |                    | District                      |                   |                      |                       |
-|         |          |                    | WaterBody                     |                   |                      |                       |
-|         |          |                    | StateOrProvince               |                   |                      |                       |
-|         |          |                    | Island                        |                   |                      |                       |
-|         |          |                    | Mountain                      |                   |                      |                       |
-|         |          | Organization       | Company                       | CarManufacturer   |                      |                       |
-|         |          |                    | Media                         |                   |                      |                       |
-|         |          |                    | MusicBand                     |                   |                      |                       |
-|         |          |                    | CriminalOrganization          |                   |                      |                       |
-|         |          |                    | EducationalOrganization       |                   |                      |                       |
-|         |          |                    | GovernmentalOrganization      |                   |                      |                       |
-|         |          |                    | HealthOrganization            |                   |                      |                       |
-|         |          |                    | IntergovernmentalOrganization |                   |                      |                       |
-|         |          |                    | JusticeOrganization           |                   |                      |                       |
-|         |          |                    | NonGovernmentalOrganization   |                   |                      |                       |
-|         |          |                    | OrganizedArmedGroup           |                   |                      |                       |
-|         |          |                    | Ethnicity                     |                   |                      |                       |
-|         |          |                    | PoliticalParty                |                   |                      |                       |
-|         |          |                    | ReligionOrganization          |                   |                      |                       |
-|         |          |                    | SportsOrganization            | SportsTeam        |                      |                       |
-|         |          | Brand              |                               |                   |                      |                       |
-|         |          | Shape              | Elongated                     |                   |                      |                       |
-|         |          |                    | Pointed                       |                   |                      |                       |
-|         |          | URL                |                               |                   |                      |                       |
-|         |          | Email              |                               |                   |                      |                       |
-|         |          | Format             |                               |                   |                      |                       |
-|         |          | Disease            |                               |                   |                      |                       |
-|         |          | Unit               | Money                         |                   |                      |                       |
-|         |          |                    | Volume                        |                   |                      |                       |
-|         |          |                    | Length                        |                   |                      |                       |
-|         |          |                    | Geometry                      |                   |                      |                       |
-|         |          |                    | Mass                          |                   |                      |                       |
-|         |          |                    | Area                          |                   |                      |                       |
-|         |          |                    | Speed                         |                   |                      |                       |
-|         |          |                    | Acceleration                  |                   |                      |                       |
-|         |          |                    | Energy                        |                   |                      |                       |
-|         |          |                    | Power                         |                   |                      |                       |
-|         |          |                    | Frequency                     |                   |                      |                       |
-|         |          |                    | Temperature                   |                   |                      |                       |
-|         |          |                    | Score                         |                   |                      |                       |
-|         |          |                    | Liquid                        |                   |                      |                       |
-|         |          |                    | Astronomy                     |                   |                      |                       |
-|         |          |                    | TimeUnit                      | Century           |                      |                       |
-|         |          |                    |                               | Hour              |                      |                       |
-|         |          |                    |                               | Day               |                      |                       |
-|         |          |                    |                               | Minute            |                      |                       |
-|         |          |                    |                               | Second            |                      |                       |
-|         |          |                    |                               | Week (et Month ?) |                      |                       |
-|         |          | FictionalCharacter |                               |                   |                      |                       |
-|         |          | Function           |                               |                   |                      |                       |
-|         |          | Sport              |                               |                   |                      |                       |
-|         |          | Event              | PoliticsEvent                 |                   |                      |                       |
-|         |          |                    | ReligiousEvent                |                   |                      |                       |
-|         |          |                    | NaturalEvent                  |                   |                      |                       |
-|         |          |                    | SportEvent                    |                   |                      |                       |
-|         |          |                    | HistoricalEvent               |                   |                      |                       |
-|         |          |                    | Communication                 |                   |                      |                       |
-|         |          | Idea               |                               |                   |                      |                       |
-|         |          | Measure            | MeasureMin                    |                   |                      |                       |
-|         |          |                    | MeasureMax                    |                   |                      |                       |
-|         |          |                    | MeasureExact                  |                   |                      |                       |
-|         |          |                    | MeasureFuzzy                  |                   |                      |                       |
-|         |          |                    | TimeDuration                  |                   |                      |                       |
-|         |          | Orientation        |                               |                   |                      |                       |
-|         |          | PhoneNumber        |                               |                   |                      |                       |
-|         |          | State              |                               |                   |                      |                       |
-|         |          | Method             | MedicalMethod                 |                   |                      |                       |
-|         |          | Reward             |                               |                   |                      |                       |
-|         |          | DocumentElement    |                               |                   |                      |                       |
-|         |          | Reference          | ReferenceAlphanumeric         |                   |                      |                       |
-|         |          |                    | ReferenceDocument             |                   |                      |                       |
-|         |          |                    | ReferenceVehicle              |                   |                      |                       |
-|         |          |                    | ReferencePostal               |                   |                      |                       |
-|         |          |                    | Cedex                         |                   |                      |                       |
-|         |          |                    | CS                            |                   |                      |                       |
-|         |          |                    | PostalCode                    |                   |                      |                       |
-|         |          |                    | ReferenceUser                 |                   |                      |                       |
-|         |          |                    | ReferenceDocumentElement      |                   |                      |                       |
-|         |          | Color              |                               |                   |                      |                       |
-|         |          | Product            | Archive                       |                   |                      |                       |
-|         |          |                    | TVShow                        |                   |                      |                       |
-|         |          |                    | Software                      |                   |                      |                       |
-|         |          |                    | Artwork                       | Theatre           |                      |                       |
-|         |          |                    |                               | Movie             |                      |                       |
-|         |          |                    |                               | Music             |                      |                       |
-|         |          |                    |                               | Poem              |                      |                       |
-|         |          | Time               | Urgency                       |                   |                      |                       |
-|         |          |                    | TimeMin                       |                   |                      |                       |
-|         |          |                    | TimeMax                       |                   |                      |                       |
-|         |          |                    | TimeExact                     |                   |                      |                       |
-|         |          |                    | TimeFuzzy                     |                   |                      |                       |
-|         |          | Language           |                               |                   |                      |                       |
-|         |          | Religion           |                               |                   |                      |                       |
-|         |          | Nationality        |                               |                   |                      |                       |
-|         | Archive  |                    |                               |                   |                      |                       |
-|         | Product  |                    |                               |                   |                      |                       |
+| Level 0 | Level 1  | Level 2            | Level 3                       | Level 4          | Level 5              | Level 6               | 
+|---------|----------|--------------------|-------------------------------|------------------|----------------------|-----------------------|
+| Thing   | Concrete | Inanimate          | Material                      |                  |                      |                       |
+|         |          |                    | Ingredient                    |                  |                      |                       |
+|         |          |                    | Product                       | DrinkProduct     |                      |                       |
+|         |          |                    |                               | FoodProduct      |                      |                       |
+|         |          |                    |                               | Clothing         |                      |                       |
+|         |          |                    |                               | ChemicalAndDrugs | MedicationAndVaccine |                       |
+|         |          |                    |                               | Equipment        | MedicalEquipment     |                       |
+|         |          |                    |                               |                  | MusicalEquipment     | MusicalInstrument     |
+|         |          |                    |                               |                  | MilitaryEquipment    | Ammunition            |
+|         |          |                    |                               |                  |                      | Weapon                |
+|         |          |                    |                               | Machine          | Vehicle              | Aircraft              |
+|         |          |                    |                               |                  |                      | RailwayRollingVehicle |
+|         |          |                    |                               |                  |                      | Car                   |
+|         |          |                    |                               |                  |                      | Boat                  |
+|         |          |                    |                               | Archive          |                      |                       |
+|         |          |                    |                               | Facility         | BusinessFacility     |                       |
+|         |          |                    |                               |                  | CultureFacility      |                       |
+|         |          |                    |                               |                  | EducationFacility    |                       |
+|         |          |                    |                               |                  | HealthFacility       |                       |
+|         |          |                    |                               |                  | MilitaryFacility     |                       |
+|         |          |                    |                               |                  | PoliticsFacility     |                       |
+|         |          |                    |                               |                  | ReligionFacility     |                       |
+|         |          |                    |                               |                  | SportsFacility       |                       |
+|         |          |                    |                               | Artwork          | Sculpture            |                       |
+|         |          |                    |                               |                  | Book                 |                       |
+|         |          |                    |                               |                  | Painting             |                       |
+|         |          |                    |                               |                  | Jewel                |                       |
+|         |          | Product            | Machine                       |                  |                      |                       |
+|         |          | Animate            | AnatomicalStructure           |                  |                      |                       |
+|         |          |                    | Product                       | Machine          |                      |                       |
+|         |          |                    | Livingbeing                   | Vegetal          |                      |                       |
+|         |          |                    |                               | Animal           |                      |                       |
+|         |          |                    |                               | Human            | Engineer             |                       |
+|         |          |                    |                               |                  | Scientist            |                       |
+|         |          |                    |                               |                  | Cleric               |                       |
+|         |          |                    |                               |                  | Artist               | Musician              |
+|         |          |                    |                               |                  | Politician           | HeadOfGov             |
+|         |          |                    |                               |                  |                      | HeadOfState           |
+|         |          |                    |                               |                  | SportsActor          | SportsManager         |
+|         |          |                    |                               |                  |                      | Footballer            |
+|         | Abstract | Symptom            |                               |                  |                      |                       |
+|         |          | Deity              |                               |                  |                      |                       |
+|         |          | Technology         |                               |                  |                      |                       |
+|         |          | MedicalDisorder    |                               |                  |                      |                       |
+|         |          | Location           | TransportLine                 |                  |                      |                       |
+|         |          |                    | Place                         |                  |                      |                       |
+|         |          |                    | City                          |                  |                      |                       |
+|         |          |                    | Continent                     |                  |                      |                       |
+|         |          |                    | Country                       |                  |                      |                       |
+|         |          |                    | Region                        |                  |                      |                       |
+|         |          |                    | Street                        |                  |                      |                       |
+|         |          |                    | CelestialLoc                  |                  |                      |                       |
+|         |          |                    | District                      |                  |                      |                       |
+|         |          |                    | WaterBody                     |                  |                      |                       |
+|         |          |                    | StateOrProvince               |                  |                      |                       |
+|         |          |                    | Island                        |                  |                      |                       |
+|         |          |                    | Mountain                      |                  |                      |                       |
+|         |          | Organization       | Company                       | CarManufacturer  |                      |                       |
+|         |          |                    | Media                         |                  |                      |                       |
+|         |          |                    | MusicBand                     |                  |                      |                       |
+|         |          |                    | CriminalOrganization          |                  |                      |                       |
+|         |          |                    | EducationalOrganization       |                  |                      |                       |
+|         |          |                    | GovernmentalOrganization      |                  |                      |                       |
+|         |          |                    | HealthOrganization            |                  |                      |                       |
+|         |          |                    | IntergovernmentalOrganization |                  |                      |                       |
+|         |          |                    | JusticeOrganization           |                  |                      |                       |
+|         |          |                    | NonGovernmentalOrganization   |                  |                      |                       |
+|         |          |                    | OrganizedArmedGroup           |                  |                      |                       |
+|         |          |                    | Ethnicity                     |                  |                      |                       |
+|         |          |                    | PoliticalParty                |                  |                      |                       |
+|         |          |                    | ReligionOrganization          |                  |                      |                       |
+|         |          |                    | SportsOrganization            | SportsTeam       |                      |                       |
+|         |          | Brand              |                               |                  |                      |                       |
+|         |          | Shape              | Elongated                     |                  |                      |                       |
+|         |          |                    | Pointed                       |                  |                      |                       |
+|         |          | URL                |                               |                  |                      |                       |
+|         |          | Email              |                               |                  |                      |                       |
+|         |          | Format             |                               |                  |                      |                       |
+|         |          | Disease            |                               |                  |                      |                       |
+|         |          | Unit               | Money                         |                  |                      |                       |
+|         |          |                    | Volume                        |                  |                      |                       |
+|         |          |                    | Length                        |                  |                      |                       |
+|         |          |                    | Geometry                      |                  |                      |                       |
+|         |          |                    | Mass                          |                  |                      |                       |
+|         |          |                    | Area                          |                  |                      |                       |
+|         |          |                    | Speed                         |                  |                      |                       |
+|         |          |                    | Acceleration                  |                  |                      |                       |
+|         |          |                    | Energy                        |                  |                      |                       |
+|         |          |                    | Power                         |                  |                      |                       |
+|         |          |                    | Frequency                     |                  |                      |                       |
+|         |          |                    | Temperature                   |                  |                      |                       |
+|         |          |                    | Score                         |                  |                      |                       |
+|         |          |                    | Liquid                        |                  |                      |                       |
+|         |          |                    | Astronomy                     |                  |                      |                       |
+|         |          |                    | TimeUnit                      | Century          |                      |                       |
+|         |          |                    |                               | Hour             |                      |                       |
+|         |          |                    |                               | Day              |                      |                       |
+|         |          |                    |                               | Minute           |                      |                       |
+|         |          |                    |                               | Second           |                      |                       |
+|         |          |                    |                               | Week             |                      |                       |
+|         |          |                    |                               | Month            |                      |                       |
+|         |          |                    |                               | Year             |                      |                       |
+|         |          | FictionalCharacter |                               |                  |                      |                       |
+|         |          | Function           |                               |                  |                      |                       |
+|         |          | Sport              |                               |                  |                      |                       |
+|         |          | Event              | PoliticsEvent                 |                  |                      |                       |
+|         |          |                    | ReligiousEvent                |                  |                      |                       |
+|         |          |                    | NaturalEvent                  |                  |                      |                       |
+|         |          |                    | SportEvent                    |                  |                      |                       |
+|         |          |                    | HistoricalEvent               |                  |                      |                       |
+|         |          |                    | Communication                 |                  |                      |                       |
+|         |          | Idea               |                               |                  |                      |                       |
+|         |          | Measure            | MeasureMin                    |                  |                      |                       |
+|         |          |                    | MeasureMax                    |                  |                      |                       |
+|         |          |                    | MeasureExact                  |                  |                      |                       |
+|         |          |                    | MeasureFuzzy                  |                  |                      |                       |
+|         |          |                    | TimeDuration                  |                  |                      |                       |
+|         |          | Orientation        |                               |                  |                      |                       |
+|         |          | PhoneNumber        |                               |                  |                      |                       |
+|         |          | State              |                               |                  |                      |                       |
+|         |          | Method             | MedicalMethod                 |                  |                      |                       |
+|         |          | Reward             |                               |                  |                      |                       |
+|         |          | DocumentElement    |                               |                  |                      |                       |
+|         |          | Reference          | ReferenceAlphanumeric         |                  |                      |                       |
+|         |          |                    | ReferenceDocument             |                  |                      |                       |
+|         |          |                    | ReferenceVehicle              |                  |                      |                       |
+|         |          |                    | ReferencePostal               |                  |                      |                       |
+|         |          |                    | Cedex                         |                  |                      |                       |
+|         |          |                    | CS                            |                  |                      |                       |
+|         |          |                    | PostalCode                    |                  |                      |                       |
+|         |          |                    | ReferenceUser                 |                  |                      |                       |
+|         |          |                    | ReferenceDocumentElement      |                  |                      |                       |
+|         |          | Color              |                               |                  |                      |                       |
+|         |          | Product            | Archive                       |                  |                      |                       |
+|         |          |                    | TVShow                        |                  |                      |                       |
+|         |          |                    | Software                      |                  |                      |                       |
+|         |          |                    | Artwork                       | Theatre          |                      |                       |
+|         |          |                    |                               | Movie            |                      |                       |
+|         |          |                    |                               | Music            |                      |                       |
+|         |          |                    |                               | Poem             |                      |                       |
+|         |          | Time               | Urgency                       |                  |                      |                       |
+|         |          |                    | TimeMin                       |                  |                      |                       |
+|         |          |                    | TimeMax                       |                  |                      |                       |
+|         |          |                    | TimeExact                     |                  |                      |                       |
+|         |          |                    | TimeFuzzy                     |                  |                      |                       |
+|         |          | Language           |                               |                  |                      |                       |
+|         |          | Religion           |                               |                  |                      |                       |
+|         |          | Nationality        |                               |                  |                      |                       |
+|         | Archive  |                    |                               |                  |                      |                       |
+|         | Product  |                    |                               |                  |                      |                       |
 
 <[back to the table of contents](#table-of-contents)>
 #### Named Entities and Word Senses
 
-As mentioned earlier, in its search of explicitness, MR4AP aims at semantically type every entity. 
+As mentioned earlier, in its search for explicitness, MR4AP aims at semantically type every entity. 
 Entities can either be named or not. In both cases, MR4AP attaches a tag from Emvista's ontology. 
 As mentioned earlier, entities that are in fact MWEs must be treated and tagged as single units.
 
@@ -648,10 +818,11 @@ John read "Le Petit prince" in the train to Nancy.
 <[back to the table of contents](#table-of-contents)>
 #### Gender
 
-Entities that have been typed `Thing/Concrete/Animate/Livingbeing` may also receive a gender.
+Entities that have been typed `Thing/Concrete/Animate/Livingbeing` may also receive a gender whenever possible.
 
 ```console
 Swimming is one of John's passions.
+
 "John" @Type: Thing/Concrete/Animate/Livingbeing/Human
 "John" @Type: masculine
 ```
@@ -661,7 +832,7 @@ Swimming is one of John's passions.
 
 Predicates in questions also receive a `Type` attribute. 
 Three values are possible: `question-closed`, `question-choice`, and `question-open`. 
-See [Questions](#questions) section.
+See the [Questions](#questions) section.
 
 <[back to the table of contents](#table-of-contents)>
 ### Aspect
@@ -681,6 +852,7 @@ As event nominals lack morphosyntactic clues to determine their aspectual values
 
 ```console
 The bombing killed more than 25 people.
+
 attack-60.1 @Aspect: process
 ```
 
@@ -691,18 +863,20 @@ Aspectual value `habitual` is used for recurring events.
 
 ```console
 John runs every Wednesday.
+
 run-51.3.2-2-1 @Aspect: habitual
 ```
 
 <[back to the table of contents](#table-of-contents)>
 #### State
 
-Aspectual value `state` is used for stative events (see [Stative events](#stative-events) section). 
+Aspectual value `state` is used for stative events (see the [Stative events](#stative-events) section). 
 
 These include state verbs:
 
 ```console
 John is a doctor.
+
 state @Aspect: state
 ```
 
@@ -710,6 +884,7 @@ Verbs modified by an ability modal:
 
 ```console
 John can cook.
+
 cooking-45.3 @Aspect: state
 ```
 
@@ -717,9 +892,13 @@ Thetic/predicative possession:
 
 ```console
 John owns a car.
+
 own-100.1 @Aspect: state
+
+---
      
 This car belongs to John.
+
 own-100.1 @Aspect: state
 ```
 
@@ -732,6 +911,7 @@ These include the canonical progressive aspect:
 
 ```console
 John is cooking.
+
 cooking-45.3 @Aspect: activity
 ```
 
@@ -739,6 +919,7 @@ The imperfect:
 
 ```console
 John has cooked.
+
 cooking-45.3 @Aspect: activity
 ```
 
@@ -746,6 +927,7 @@ The periphrastic progressive aspect, such as "être en train de" in French:
 
 ```console
 Luc est en train de cuisiner.
+
 cooking-45.3 @Aspect: activity
 ```
 
@@ -753,6 +935,7 @@ The progressive aspect signified by adverbials:
 
 ```console
 Luc cuisine en ce moment.
+
 cooking-45.3 @Aspect: activity
 ```
 
@@ -760,6 +943,7 @@ The inchoative aspect:
 
 ```console
 John began cooking.
+
 cooking-45.3 @Aspect: activity
 ```
 
@@ -767,6 +951,7 @@ The prospective aspect:
 
 ```console
 John is about to cook.
+
 cooking-45.3 @Aspect: activity
 ```
 
@@ -774,6 +959,7 @@ The continuative aspect:
 
 ```console
 John continued cooking.
+
 cooking-45.3 @Aspect: activity
 ```
 
@@ -790,6 +976,7 @@ The only markers to look for are durative adverbials modifying the verb:
 
 ```console
 John cooked for hours.
+
 cooking-45.3 @Aspect: endeavor
 ```
 
@@ -797,6 +984,7 @@ Or the terminative aspect without proof of any event completion:
 
 ```console
 John stopped cooking.
+
 cooking-45.3 @Aspect: endeavor
 ```
 
@@ -807,30 +995,86 @@ Having gone thus far in the lattice, every event must receive the `performance` 
 
 ```console
 John cooked a wonderful meal.
+
 cooking-45.3 @Aspect: performance
 ```
 
 <[back to the table of contents](#table-of-contents)>
 ### Quantification
 
-Just like temporal relations, quantification can be symbolized with a number of derivative labels.  
+Quantification is used to assign a normalized numeric value to an entity.
+
+<[back to the table of contents](#table-of-contents)>
+#### Usual cases
+
+Just like temporal relations, quantification can be symbolized with a number of derivative labels, namely 
+`Measure{Exact,Min,Max,Fuzzy}`.  
 Quantification can either be explicit or implicit.
 
 ```console
 John owns a car.
+
 "car" @Measure:      1
 
 John owns three cars.
+
 "car" @MeasureExact: 3
 
 John owns cars.
+
 "car" @MeasureMin:   2
 
 John owns fewer than three cars.
+
 "car" @MeasureMax:   3
                            
 John owns around three cars.
+
 "car" @MeasureFuzzy: 3
+```
+
+<[back to the table of contents](#table-of-contents)>
+#### Quantification in comparisons
+
+Whenever quantification is expressed in comparative constructions, there are different derivative labels that need
+to be introduced, namely `Measure{More,Less,Equal}`. With those constructions, implicit predicates and/or arguments
+are common. Those implicit elements must be represented (see 
+the [Implicit predicates and arguments](#implicit-predicates-and-arguments) section). When
+these implicit arguments are different instantiations of events/entities, they are distinct nodes from the explicit 
+ones. <!-- une réification semble nécessaire pour ce cas précis, non ? pour pouvoir joindre les mentions implicites 
+et explicites qui sont comparées -->
+
+```console
+John bought more flowers than Mary did. (=John bought more flowers than Mary did buy flowers.)
+
+get-13.5.1          @Agent:       "John"
+get-13.5.1          @Theme:       "flower"
+"flower"            @MeasureMin:  2
+get-13.5.1_implicit @Agent:       "Mary"
+get-13.5.1_implicit @Theme:       "flower"_implicit
+"flower"_implicit   @MeasureMin:  2
+"flower"            @MeasureMore: "flower"_implicit
+"flower"_implicit   @MeasureLess: "flower"
+```
+
+<[back to the table of contents](#table-of-contents)>
+#### Quantification and superlatives
+
+On the other hand, whenever quantification is expressed in superlative constructions, the two possible derivate 
+`Measure` relations are `MeasureMost` and `MeasureLeast`.
+
+<!-- Cette représentation n'est pas satisfaisante -->
+
+```console
+John bought the most flowers (=out of everybody else).
+
+get-13.5.1          @Agent:       "John"
+get-13.5.1          @Theme:       "flower"
+"flower"            @MeasureMin:  2
+get-13.5.1_implicit @Agent:       implicit_argument
+get-13.5.1_implicit @Theme:       "flower"_implicit
+"flower"_implicit   @MeasureMin:  2
+"flower"            @MeasureMost: "flower"_implicit
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -842,20 +1086,33 @@ The scope of the negation must be taken into account, especially when interactin
 
 ```console
 John is cooking.
+
 cooking-45.3 @Polarity: positive
 
+---
+
 John is not cooking.
+
 cooking-45.3 @Polarity: negative
 
+---
+
 John has to cook.
+
 cooking-45.3 @Modality: obligation
 obligation   @Polarity: positive
 
+---
+
 John does not have to cook.
+
 cooking-45.3 @Modality: obligation
 obligation   @Polarity: negative
 
+---
+
 John has to not cook.
+
 cooking-45.3 @Modality: obligation
 cooking-45.3 @Polarity: negative
 ```
@@ -864,9 +1121,13 @@ Polarity concerns adjectives as well.
 
 ```console
 What John did was not right.
+
 right-02 @Polarity: negative
+
+---
                       
 What John did was unfair.
+
 fair-01  @Polarity: negative
 ```
 
@@ -883,6 +1144,7 @@ The `obligation` modal value is used for deontic modality.
 
 ```console
 John must attend his classes.
+
 attend-107.4-1 @Modality: obligation
 ```
 
@@ -893,6 +1155,7 @@ The `capacity` modal value is used when expressing ability.
 
 ```console
 John can cook.
+
 cooking-45.3 @Modality: capacity
 ```
 
@@ -903,6 +1166,7 @@ The `wish` modal value is used when expressing volition.
 
 ```console
 John wants to cook.
+
 cooking-45.3 @Modality: wish
 ```
 
@@ -913,6 +1177,7 @@ The `suggestion` modal value is used when expressing desirability.
 
 ```console
 John should cook more often.
+
 cooking-45.3 @Modality: suggestion
 ```
 
@@ -923,6 +1188,7 @@ The `uncertainty` modal value is used when expressing epistemic modality.
 
 ```console
 John might be cooking.
+
 cooking-45.3 @Modality: uncertainty
 ```
 
@@ -934,14 +1200,19 @@ The `temporality` modal value is used to denote frequency.
 
 ```console
 John cooks for us sometimes.
+
 cooking-45.3 @Modality: temporality
 ```
 
 <[back to the table of contents](#table-of-contents)>
 ### Degree
 
-The `degree` attribute is used to scale a property that is modified.
-It can take one of two values: `intensifier` or `downtoner`.
+The `Degree` attribute is used to scale a property that is modified.
+
+<[back to the table of contents](#table-of-contents)>
+#### Intensifiers and downtoners
+
+Usually, `Degree` can take one of two values: `intensifier` or `downtoner`.
 
 ```console
 John is very fast.
@@ -956,12 +1227,52 @@ fast-04 @Degree: downtoner
 ```
 
 <[back to the table of contents](#table-of-contents)>
+#### Degree-consequence constructions
+
+As mentioned in the [Other constructions](#other-constructions) section, whenever `Degree` is involved in comparative 
+constructions (e.g., degree-consequence constructions), two additional values are possible: `+` and `-`.
+
+```console
+The less stubborn he is, the happier she is.
+
+obstinate.01 @Theme:       "he"
+obstinate.01 @Degree:      -
+happy.01     @Experiencer: "she"
+happy.01     @Degree:      +
+obstinate.01 @Consequence: happy.01
+```
+
+<[back to the table of contents](#table-of-contents)>
+### Property
+
+<!-- Relation ou attribut ? -->
+
+Whenever an adjective is used attributively (see the [Adjectives: predicates?](#adjectives-predicates) section), the 
+entity that is modified by said adjective must be linked to it with a `Property` relation/attribute.
+
+```console
+Mary knows a nice lady.
+
+"lady" @Property: "nice"
+```
+
+Moreover, adjectives can be linked to adverbials that in turn modify them.
+
+```console
+Mary knows an almost nice lady.
+
+"lady" @Property: "nice"
+"lady" @Property: "almost"
+```
+
+<[back to the table of contents](#table-of-contents)>
 ### Named
 
-The `named` relation is used to link nouns and related proper nouns.
+The `Named` relation is used to link nouns and related proper nouns.
 
 ```console
 The chef John Smith cooks wonderful meals.
+
 cooking-45.3 @Agent:  "chef"
 "chef"       @Type:   Thing/Concrete/Animate/Livingbeing/Human
 "John Smith" @Type:   Thing/Concrete/Animate/Livingbeing/Human
@@ -1014,7 +1325,7 @@ own-100.1 @Theme: "bike"
 
 In the former case (when the noun is an event), the antecedent must be linked to said event with the appropriate relation.
 Moreover, if the event nominal co-refers with a preceding mention, a `SameAs` relation must also be annotated 
-(see [Event coreference](#event-coreference) section).
+(see the [Event coreference](#event-coreference) section).
 
 ```console
 John was apprehended by the police yesterday. His arrest lasted only a few minutes.
@@ -1032,87 +1343,96 @@ The following cheatsheet is provided in order to ease the annotation process.
 <[back to the table of contents](#table-of-contents)>
 ### Relations and values
 
-| Relation type         | Relation        | Value                                                                                       |
-|-----------------------|-----------------|---------------------------------------------------------------------------------------------|
-| **Core and non-core** | `Agent`         | Entity                                                                                      |
-|                       | `Cause`         | Predicate or entity                                                                         |
-|                       | `Theme`         | Entity                                                                                      |
-|                       | `Patient`       | Entity                                                                                      |
-|                       | `Topic`         | Predicate or entity                                                                         |
-|                       | `Recipient`     | Entity                                                                                      |
-|                       | `Beneficiary`   | Entity                                                                                      |
-|                       | `Experiencer`   | Entity                                                                                      |
-|                       | `Stimulus`      | Predicate or entity                                                                         |
-|                       | `Attribute`     | Entity                                                                                      |
-|                       | `Product`       | Predicate or entity                                                                         |
-|                       | `Instrument`    | Entity                                                                                      |
-|                       | `Location`      | Entity                                                                                      |
-|                       | `LocationExact` | Entity                                                                                      |
-|                       | `LocationSpan`  | Entity                                                                                      |
-|                       | `LocationFuzzy` | Entity                                                                                      |
-|                       | `Source`        | Predicate or entity                                                                         |
-|                       | `Destination`   | Predicate or entity                                                                         |
-|                       | `Manner`        | Adverbial                                                                                   |
-|                       | `Material`      | Entity                                                                                      |
-|                       | `Value`         | Entity                                                                                      |
-|                       | `Asset`         | Entity                                                                                      |
-|                       | `Event`         | Predicate                                                                                   |
-|                       | `Unknown`       | `unknown` (used to mark polar and alternative questions)                                    |
-| **Temporal**          | `Time`          | Predicate or timestamp                                                                      |
-|                       | `TimeExact`     | Predicate or timestamp                                                                      |
-|                       | `TimeMin`       | Predicate or timestamp                                                                      |
-|                       | `TimeMax`       | Predicate or timestamp                                                                      |
-|                       | `TimeFuzzy`     | Predicate or timestamp                                                                      |
-|                       | `TimeDuration`  | Predicate or timestamp                                                                      |
-| **Discourse**         | `Cause`         | Predicate or entity                                                                         |
-|                       | `Consequence`   | Predicate                                                                                   |
-|                       | `Opposition`    | Predicate                                                                                   |
-|                       | `Conclusion`    | Predicate                                                                                   |
-|                       | `Comparison`    | Predicate or entity                                                                         |
-|                       | `Condition`     | Predicate                                                                                   |
-|                       | `Illustration`  | Predicate                                                                                   |
-|                       | `Explanation`   | Predicate                                                                                   |
-|                       | `Purpose`       | Predicate or entity                                                                         |
-|                       | `Restriction`   | Predicate                                                                                   |
-|                       | `Whatever`      | Predicate                                                                                   |
-| **Coreference**       | `SameAs`        | Predicate or entity                                                                         |
-| **Logic**             | `Addition`      | Between coordinated elements (conjunction)                                                  |
-|                       | `Alternative`   | Between coordinated elements (disjunction)                                                  |
-| **Attributes**        | `Type`          | Any semantic type from Emvista's ontology (see [Semantic typing](#semantic-typing) section) |
-|                       |                 | `feminine` (for `Thing/Concrete/Animate/Livingbeing` semantic type only)                    |
-|                       |                 | `masculine` (for `Thing/Concrete/Animate/Livingbeing` semantic type only)                   |
-|                       |                 | `question-closed` (for polar questions)                                                     |
-|                       |                 | `question-choice` (for alternative questions)                                               |
-|                       |                 | `question-open` (for variable questions)                                                    |
-|                       | `Polarity`      | `negative`                                                                                  |
-|                       |                 | `positive`                                                                                  |
-|                       | `Aspect`        | `process`                                                                                   |
-|                       |                 | `habitual`                                                                                  |
-|                       |                 | `state`                                                                                     |
-|                       |                 | `activity`                                                                                  |
-|                       |                 | `atelic_process`                                                                            |
-|                       |                 | `endeavor`                                                                                  |
-|                       |                 | `performance`                                                                               |
-|                       | `Modality`      | `obligation`                                                                                |
-|                       |                 | `capacity`                                                                                  |
-|                       |                 | `wish`                                                                                      |
-|                       |                 | `suggestion`                                                                                |
-|                       |                 | `uncertainty`                                                                               |
-|                       |                 | `temporality`                                                                               |
-|                       | `Measure`       | Literal value                                                                               |
-|                       | `MeasureExact`  | Literal value                                                                               |
-|                       | `MeasureMin`    | Literal value                                                                               |
-|                       | `MeasureMax`    | Literal value                                                                               |
-|                       | `MeasureFuzzy`  | Literal value                                                                               |
-|                       | `Property`      | Literal value                                                                               |
-|                       | `Named`         | Literal value                                                                               |
+| Relation type         | Relation          | Value                                                                                           |
+|-----------------------|-------------------|-------------------------------------------------------------------------------------------------|
+| **Core and non-core** | `Agent`           | Entity                                                                                          |
+|                       | `Pivot`           | Entity                                                                                          |
+|                       | `Cause`           | Predicate or entity                                                                             |
+|                       | `Theme`           | Entity                                                                                          |
+|                       | `Patient`         | Entity                                                                                          |
+|                       | `Topic`           | Predicate or entity                                                                             |
+|                       | `Recipient`       | Entity                                                                                          |
+|                       | `Beneficiary`     | Entity                                                                                          |
+|                       | `Experiencer`     | Entity                                                                                          |
+|                       | `Stimulus`        | Predicate or entity                                                                             |
+|                       | `Attribute`       | Entity                                                                                          |
+|                       | `Product`         | Predicate or entity                                                                             |
+|                       | `Instrument`      | Entity                                                                                          |
+|                       | `Location`        | Entity                                                                                          |
+|                       | `LocationExact`   | Entity                                                                                          |
+|                       | `LocationSpan`    | Entity                                                                                          |
+|                       | `LocationFuzzy`   | Entity                                                                                          |
+|                       | `Source`          | Predicate or entity                                                                             |
+|                       | `Destination`     | Predicate or entity                                                                             |
+|                       | `Manner`          | Adverbial                                                                                       |
+|                       | `Material`        | Entity                                                                                          |
+|                       | `Value`           | Entity                                                                                          |
+|                       | `Asset`           | Entity                                                                                          |
+|                       | `Event`           | Predicate                                                                                       |
+|                       | `Unknown`         | `unknown` (used to mark polar and alternative questions)                                        |
+| **Temporal**          | `Time`            | Predicate or DCT                                                                                |
+|                       | `TimeExact`       | Predicate or DCT                                                                                |
+|                       | `TimeMin`         | Predicate or DCT                                                                                |
+|                       | `TimeMax`         | Predicate or DCT                                                                                |
+|                       | `TimeFuzzy`       | Predicate or DCT                                                                                |
+|                       | `TimeDuration`    | Predicate or DCT                                                                                |
+| **Discourse**         | `Cause`           | Predicate or entity                                                                             |
+|                       | `Consequence`     | Predicate                                                                                       |
+|                       | `Opposition`      | Predicate                                                                                       |
+|                       | `Conclusion`      | Predicate                                                                                       |
+|                       | `Comparison`      | Predicate or entity                                                                             |
+|                       | `ComparisonMore`  | Predicate or entity                                                                             |
+|                       | `ComparisonLess`  | Predicate or entity                                                                             |
+|                       | `ComparisonEqual` | Predicate or entity                                                                             |
+|                       | `ComparisonMost`  | Predicate or entity                                                                             |
+|                       | `ComparisonLeast` | Predicate or entity                                                                             |
+|                       | `Condition`       | Predicate                                                                                       |
+|                       | `Illustration`    | Predicate                                                                                       |
+|                       | `Explanation`     | Predicate                                                                                       |
+|                       | `Purpose`         | Predicate or entity                                                                             |
+|                       | `Restriction`     | Predicate                                                                                       |
+|                       | `Whatever`        | Predicate                                                                                       |
+| **Coreference**       | `SameAs`          | Predicate or entity                                                                             |
+| **Logic**             | `Addition`        | Between coordinated elements (conjunction)                                                      |
+|                       | `Alternative`     | Between coordinated elements (disjunction)                                                      |
+| **Attributes**        | `Type`            | Any semantic type from Emvista's ontology (see the [Semantic typing](#semantic-typing) section) |
+|                       |                   | `feminine` (for `Thing/Concrete/Animate/Livingbeing` semantic type only)                        |
+|                       |                   | `masculine` (for `Thing/Concrete/Animate/Livingbeing` semantic type only)                       |
+|                       |                   | `question-closed` (for polar questions)                                                         |
+|                       |                   | `question-choice` (for alternative questions)                                                   |
+|                       |                   | `question-open` (for variable questions)                                                        |
+|                       | `Polarity`        | `negative`                                                                                      |
+|                       |                   | `positive`                                                                                      |
+|                       | `Aspect`          | `process`                                                                                       |
+|                       |                   | `habitual`                                                                                      |
+|                       |                   | `state`                                                                                         |
+|                       |                   | `activity`                                                                                      |
+|                       |                   | `atelic_process`                                                                                |
+|                       |                   | `endeavor`                                                                                      |
+|                       |                   | `performance`                                                                                   |
+|                       | `Modality`        | `obligation`                                                                                    |
+|                       |                   | `capacity`                                                                                      |
+|                       |                   | `wish`                                                                                          |
+|                       |                   | `suggestion`                                                                                    |
+|                       |                   | `uncertainty`                                                                                   |
+|                       |                   | `temporality`                                                                                   |
+|                       | `Measure`         | Literal value                                                                                   |
+|                       | `MeasureExact`    | Literal value                                                                                   |
+|                       | `MeasureMin`      | Literal value                                                                                   |
+|                       | `MeasureMax`      | Literal value                                                                                   |
+|                       | `MeasureFuzzy`    | Literal value                                                                                   |
+|                       | `MeasureMore`     | Literal value                                                                                   |
+|                       | `MeasureLess`     | Literal value                                                                                   |
+|                       | `MeasureEqual`    | Literal value                                                                                   |
+|                       | `MeasureMost`     | Literal value                                                                                   |
+|                       | `MeasureLeast`    | Literal value                                                                                   |
+|                       | `Property`        | Literal value                                                                                   |
+|                       | `Named`           | Literal value                                                                                   |
 
 <[back to the table of contents](#table-of-contents)>
 ### Complete example
 
 In this section, we put forward a fully annotated example exhibiting most phenomena described in these guidelines.
-
-<!-- Insert the main example of DMR's paper -->
 
 ```console
 Luke and John are singing songs. As a result, Mary cannot sleep. She will reprimand them tomorrow morning.
@@ -1150,6 +1470,6 @@ judgment-33      @Aspect:      performance
 addition         @SameAs:      "them"
 ```
 
-The corresponding visual graph from [DMR's paper citation]():
+The corresponding visual graph from [DMR's paper citation](): <!-- Insert link to final version of paper (to upload to Git) -->
 
 ![Example from DMR's paper)](img/fig1_final.png)
