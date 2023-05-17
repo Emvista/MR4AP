@@ -91,7 +91,10 @@ MR4AP follows a predicate-argument structure. As such, the core of its design re
 of predicates and their arguments.
 
 Note: MR4AP does not cling to any resource in particular. The vocabulary used to denote predicate classes may come from 
-diverse resources, such as VerbNet (Schuler, 2005), FrameNet (Baker et al., 1998), or PropBank (Palmer et al., 2005).
+diverse resources, such 
+as VerbNet ([Schuler, 2005](https://www.proquest.com/openview/7ca4b1b9093522a7d8089ff2e987e74e/1?pq-origsite=gscholar&cbl=18750&diss=y)), 
+FrameNet ([Baker et al., 1998](https://aclanthology.org/P98-1013.pdf)), 
+or PropBank ([Palmer et al., 2005](https://aclanthology.org/J05-1004.pdf)).
 
 <[back to the table of contents](#table-of-contents)>
 ### Events and entities
@@ -124,16 +127,16 @@ relative entities (see the [Relation types](#relation-types) section).
 Even though stative events are considered as events as well, they do not denote actions. 
 Stative events include the following:
 
-| Stative event type        | Example                       |
-|---------------------------|-------------------------------|
-| Thetic possession         | John has two cats.            |
-| Predicational possession  | These cats are John's.        |
-| Predicational location    | John's cats are on the table. |
-| Predicational property    | John's cats are black.        |
-| State and change of state | John became a doctor.         |
-| Existential predication   | There were cats on the table. |
+| Stative event type        | Example                       | Predicate/Relations                                                                |
+|---------------------------|-------------------------------|------------------------------------------------------------------------------------|
+| Thetic possession         | John has two cats.            | `own @Pivot: Possessor`<br/>`own @Theme: Possessum`                                |
+| Predicational possession  | These cats are John's.        | `own @Pivot: Possessor`<br/>`own @Theme: Possessum`                                |
+| Predicational location    | John's cats are on the table. | `is_located @Theme: entity`<br/>`is_located @Location{Exact,Fuzzy,Span}: location` |
+| State and change of state | John is a doctor.             | `type @Pivot: entity`<br/>`type @Theme: category`                                  |
+| Predicational property    | John's cats are black.        | `property @Theme: entity`                                                          |
+| Existential predication   | There was a cat.              | `exist @Experiencer: entity`                                                       |
 
-<!-- TODO: Préciser les relations ici ? Notamment pour les state (Type ?) -->
+Creating such nodes is mandatory in order to specify potential attributes regarding temporality, modality, polarity, etc.
 
 <[back to the table of contents](#table-of-contents)>
 #### Adjectives: predicates?
@@ -143,22 +146,22 @@ treated as a property of the noun it modifies (i.e., `"cat" @Property: "quiet"`)
 "the cat is quiet"), the noun must be treated as an argument of the predicate adjective (i.e., `quiet-04 @Theme: "cat"`).
 
 This difference in treatment is useful because the predicate adjective can later receive modal or aspectual modifications.
-In languages like English or French, linking verbs / copulas are used. Thus, the said verbal element can be modified 
+In languages like English or French, the linking verbs / copulas are used can be modified 
 ("the cat {is,was,might have been,should be,will be} gentle"). However in other languages such as Arabic, this verbal 
 element might or might not appear depending on the aspect:
 
 ```console
 القط هادئ
-(al-qiṭṭu hādiʾ, lit. "the cat quiet", transl. "the cat is quiet")
+(al-qiṭṭu hādiʾ, lit. "the-cat quiet", transl. "the cat is quiet")
 
 quiet-04 @Theme: "قط"
 
 ---
 
 كان القط هادئ
-(kāna al-qiṭṭu hādiʾ, lit. "was the cat quiet", transl. "the cat was quiet")
+(kāna al-qiṭṭu hādiʾ, lit. "was the-cat quiet", transl. "the cat was quiet")
 
-"قط" @Property: "quiet"
+quiet-04 @Theme: "قط"
 ```
 
 However, adjectives denoting temporal information must receive additional information.
@@ -166,7 +169,7 @@ However, adjectives denoting temporal information must receive additional inform
 ```console
 The company's former CEO created new ones.
 
-CEO @Property: former
+"CEO" @Property: "former"
 ```
 
 <!-- TODO: parler des réentrances quelque part (retrouver le papier qui parlait des réentrances avec les différentes configurations syntaxiques prototypiques des réentrances -->
@@ -184,12 +187,14 @@ Reified predicates are used for coordination:
 
 ```console
 John loves swimming and running.
+
 addition @Addition: run-51.3.2-1 ("swimming")
 addition @Addition: run-51.3.2-2-1 ("running")
 
 ---
                     
 On Monday, John either swims or runs.
+
 alternative @Alternative: run-51.3.2-1 ("swims")
 alternative @Alternative: run-51.3.2-2-1 ("runs")
 ```
@@ -198,6 +203,7 @@ More than two elements can be coordinated. Coordinated elements can be anything.
 
 ```console
 John loves swimming, cycling and running.
+
 addition @Addition: run-51.3.2-1 ("swimming")
 addition @Addition: drive-11.5 ("cycling")
 addition @Addition: run-51.3.2-2-1 ("running")
@@ -205,6 +211,7 @@ addition @Addition: run-51.3.2-2-1 ("running")
 ---
                              
 John loves the lake, his bike and his running shoes.
+
 addition @Addition: "lake"
 addition @Addition: "bike"
 addition @Addition: "running shoes"
@@ -324,7 +331,7 @@ if the leaving event isn't relatively linked to any other, temporal information 
 before the DCT allows to deduce a chronology:
 * `wink-40.3.1` happened before `leave-51.2-1`,
 * `leave-51.2-1` happened before the DCT,
-* therefore the chronology is: `wink-40.3.1` > `leave-51.2-1` > DCT.
+* Therefore the chronology is: `wink-40.3.1` > `leave-51.2-1` > DCT.
 
 Here is an exhaustive list of temporal relations with examples.  
 Those must be read from the underlined token to the bold one with the relation 
@@ -354,8 +361,8 @@ help-72.1-1 @Condition: work-73.2
 
 John was not working yesterday. As a consequence, he could not help Mary.
 
+work-73.2   @Cause:       help-72.1-1
 help-72.1-1 @Consequence: work-73.2
-work-73.2 @Cause: help-72.1-1
 ```
 
 Here is an exhaustive list of discourse relations with examples.  
@@ -893,13 +900,13 @@ Thetic/predicative possession:
 ```console
 John owns a car.
 
-own-100.1 @Aspect: state
+own @Aspect: state
 
 ---
      
 This car belongs to John.
 
-own-100.1 @Aspect: state
+own @Aspect: state
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1314,13 +1321,13 @@ An expression is anaphoric when it has an antecedent. However, contrary to coref
 antecedent do not share the same referent. This is the case for possessive anaphora, as in "John broke his bike", where
 "his" refers indirectly to the bike's owner, i.e. "John". In such cases, there are two scenarios: either the noun 
 determined by the possessive determiner is an event or it is an object. In the latter case, the object and its 
-possessor must be linked with an `own-100.1` node, just like thetic/predicational possession:
+possessor must be linked with an `own` node, just like thetic/predicational possession:
 
 ```console
 John broke his bike.
 
-own-100.1 @Pivot: "John" 
-own-100.1 @Theme: "bike"
+own @Pivot: "John" 
+own @Theme: "bike"
 ```
 
 In the former case (when the noun is an event), the antecedent must be linked to said event with the appropriate relation.
