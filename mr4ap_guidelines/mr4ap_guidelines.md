@@ -223,19 +223,56 @@ addition @Addition: "running shoes"
 In a number of cases, predicates and arguments can be implicit, i.e. the linguistic form does not convey what an 
 utterance's meaning does.
 
-<!-- Work in progress... À mettre dans le papier en tant que limites et perspectives, tant le chantier est vaste.
+<!-- Work in progress... À mettre dans le papier en tant que limites et perspectives, tant le chantier semble vaste.
 Référence : les travaux de O'Gorman, notamment sa thèse (2019) sous la direction de M. Palmer -->
+
+Temporary list of examples, to be checked and validated:
+
+```console
+John arrived before Mary.
+(=John arrived before Mary arrived.)
+
+escape-51.1-1$1 @Agent:   "John"
+escape-51.1-1$2 @Agent:   "Mary"
+escape-51.1-1$1 @TimeMax: escape-51.1-1$2
+```
+
+```console
+John bought three green apples whereas Mary two red.
+(=John bought three green apples whereas Mary bought two red apples.)
+
+get-13.5.1$1 @Agent:        "John"
+get-13.5.1$1 @Theme:        "apples"$1
+"apples"$1   @MeasureExact: 3
+"apples"$1   @Property:     "green"
+get-13.5.1$1 @Opposition:   get-13.5.1$2
+get-13.5.1$2 @Opposition:   get-13.5.1$1
+get-13.5.1$2 @Agent:        "Mary"
+get-13.5.1$2 @Theme:        "apples"$2
+"apples"$2   @MeasureExact: 2
+"apples"$2   @Property:     "red"
+```
+
+```console
+John is sick as well as Mary.
+(=John is sick. Mary is sick.)
+
+sick$1   @Patient:  "John"
+sick$2   @Patient:  "Mary"
+addition @Addition: sick$1
+addition @Addition: sick$2
+```
 
 <[back to the table of contents](#table-of-contents)>
 ### Relation types
 
-In its search for explicitness, MR4AP requires every relation to be named. There are different types of relations.
+In its search for explicitness, MR4AP requires every relation to be named.  
+The different types of relations are described in the following sections.
 
 <[back to the table of contents](#table-of-contents)>
 #### Core and non-core relations
 
-Core relations symbolize mandatory/prototypical predicate arguments relations, as can be detailed in some 
-resources like VerbNet.
+Core relations symbolize prototypical predicate arguments relations, as can be detailed in some resources like VerbNet.
 
 ```console
 John ate the apple.
@@ -246,7 +283,7 @@ eat-39.1 @Patient: "apple"
 eat-39.1 @ Agent [+animate] V Patient [+comestible]
 ```
 
-Non-core relations symbolize optional predicate arguments relations.
+Non-core relations symbolize optional predicate-argument relations.
 
 ```console
 John ate the apple with a fork.
@@ -254,7 +291,7 @@ John ate the apple with a fork.
 eat-39.1 @Instrument: "fork"
 ```
 
-Here is an exhaustive list of core and non-core relations along with examples.  
+Here is an exhaustive list of the core and non-core relations along with examples.  
 Those must be read from the underlined token to the bold one with the relation 
 (e.g., **John** <ins>ate</ins> an apple -> `"eat" @Agent: "John"`).
 
@@ -279,7 +316,7 @@ Those must be read from the underlined token to the bold one with the relation
 | `Destination`   | John <ins>emptied</ins> the trash from the trash can into the **dumpster**. |
 | `Instrument`    | John <ins>traveled</ins> on his **bike**.                                   |
 | `Manner`        | John **quickly** <ins>built</ins> a house.                                  |
-| `Material`      | John <ins>built</ins> a house in **bricks**.                                |
+| `Material`      | John <ins>built</ins> a **brick** house.                                    |
 | `Value`         | John <ins>estimated</ins> the probability at **20%**.                       |
 | `Asset`         | John <ins>billed</ins> Mary for 100 **euros**.                              |
 | `Event`         | John <ins>attended</ins> the **meeting**.                                   |
@@ -292,7 +329,7 @@ Those must be read from the underlined token to the bold one with the relation
 <[back to the table of contents](#table-of-contents)>
 #### Temporal relations
 
-Temporal relations are relations symbolizing temporality.
+Temporal relations are relations symbolizing temporality between two predicates.
 They occur both at the sentence and the document level.
 
 ```console
@@ -456,11 +493,13 @@ smart.06 @ComparisonLeast: implicit_argument
 ##### Other constructions
 
 As demonstrated by Bonial et al. (2018) and illustrated in their paper's title, other constructions such as _The X-er, 
-the Y-er_ or degree-consequence constructions exist (see the [Degree](#degree) section). The former construction is 
-annotated like the following example:
+the Y-er_ or degree-consequence constructions exist and should be incorporated in meaning representations 
+(see the [Degree](#degree) section). The former construction _(The X-er, the Y-er)_ is annotated like the following 
+example:
 
 ```console
-The more (ø) we include, the better the representation.
+The more we include, the better the representation.
+(=The more {things,elements,items} we include, the better the representation is.)
 
 admit-64.3-1      @Agent:       "we"
 admit-64.3-1      @Theme:       implicit_argument
