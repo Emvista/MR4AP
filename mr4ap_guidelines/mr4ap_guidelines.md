@@ -8,64 +8,64 @@ Authors: *Bastien Giordano, Cédric Lopez*
 ## Table of contents
 1. [Introduction to MR4AP](#introduction-to-mr4ap)
 2. [Predicate-argument structure](#predicate-argument-structure)
-   1. [Events and entities](#events-and-entities)
-      1. [Dynamic events](#dynamic-events)
-      2. [Stative events](#stative-events)
-      3. [Adjectives: predicates?](#adjectives-predicates)
-      4. [Reified predicates](#reified-predicates)
-      5. [Implicit predicates and arguments](#implicit-predicates-and-arguments)
-   2. [Relation types](#relation-types)
-      1. [Core and non-core relations](#core-and-non-core-relations)
-      2. [Temporal relations](#temporal-relations)
-      3. [Discourse relations](#discourse-relations)
-      4. [`Comparison`: a special case](#comparison-a-special-case)
-         1. [Comparatives](#Comparatives)
-         2. [Superlatives](#Superlatives)
-         3. [Other constructions](#other-constructions)
-      5. [Coreference relations](#coreference-relations)
+1. [Events and entities](#events-and-entities)
+1. [Dynamic events](#dynamic-events)
+2. [Stative events](#stative-events)
+3. [Adjectives: predicates?](#adjectives-predicates)
+4. [Reified predicates](#reified-predicates)
+5. [Implicit predicates and arguments](#implicit-predicates-and-arguments)
+2. [Relation types](#relation-types)
+1. [Core and non-core relations](#core-and-non-core-relations)
+2. [Temporal relations](#temporal-relations)
+3. [Discourse relations](#discourse-relations)
+4. [`Comparison`: a special case](#comparison-a-special-case)
+1. [Comparatives](#Comparatives)
+2. [Superlatives](#Superlatives)
+3. [Other constructions](#other-constructions)
+5. [Coreference relations](#coreference-relations)
 3. [Multiword expressions (MWEs)](#multiword-expressions-mwes)
-   1. [Entities](#entities)
-   2. [Light-verb constructions (LVCs)](#light-verb-constructions-lvcs)
-   3. [Verb-particle constructions (VPCs)](#verb-particle-constructions-vpcs)
-   4. [Idioms](#idioms)
+1. [Entities](#entities)
+2. [Light-verb constructions (LVCs)](#light-verb-constructions-lvcs)
+3. [Verb-particle constructions (VPCs)](#verb-particle-constructions-vpcs)
+4. [Idioms](#idioms)
 4. [Questions](#questions)
-   1. [Polar questions](#polar-questions)
-   2. [Alternative questions](#alternative-questions)
-   3. [Variable questions](#variable-questions)
+1. [Polar questions](#polar-questions)
+2. [Alternative questions](#alternative-questions)
+3. [Variable questions](#variable-questions)
 5. [MR4AP attributes](#mr4ap-attributes)
-   1. [Semantic typing](#semantic-typing)
-      1. [Named Entities and Word Senses](#named-entities-and-word-senses)
-      2. [Gender](#gender)
-      3. [Question types](#questions)
-   2. [Aspect](#aspect)
-      1. [Event nominals](#event-nominals)
-      2. [Habitual](#habitual)
-      3. [State](#state)
-      4. [Activity](#activity)
-      5. [Endeavor](#endeavor)
-      6. [Performance](#performance)
-   3. [Quantification](#quantification)
-      1. [Usual cases](#usual-cases)
-      2. [Quantification in comparisons](#quantification-in-comparisons)
-      3. [Quantification and superlatives](#quantification-and-superlatives)
-   4. [Polarity (and scope)](#polarity-and-scope)
-   5. [Modality (and scope)](#modality-and-scope)
-      1. [Obligation](#obligation)
-      2. [Capacity](#capacity)
-      3. [Wish](#wish)
-      4. [Suggestion](#suggestion)
-      5. [Uncertainty](#uncertainty)
-      6. [Temporality](#temporality)
-   6. [Degree](#degree)
-      1. [Intensifiers and downtoners](#intensifiers-and-downtoners)
-      2. [Degree-consequence constructions](#degree-consequence-constructions)
+1. [Semantic typing](#semantic-typing)
+1. [Named Entities and Word Senses](#named-entities-and-word-senses)
+2. [Gender](#gender)
+3. [Question types](#questions)
+2. [Aspect](#aspect)
+1. [Event nominals](#event-nominals)
+2. [Habitual](#habitual)
+3. [State](#state)
+4. [Activity](#activity)
+5. [Endeavor](#endeavor)
+6. [Performance](#performance)
+3. [Quantification](#quantification)
+1. [Usual cases](#usual-cases)
+2. [Quantification in comparisons](#quantification-in-comparisons)
+3. [Quantification and superlatives](#quantification-and-superlatives)
+4. [Polarity (and scope)](#polarity-and-scope)
+5. [Modality (and scope)](#modality-and-scope)
+1. [Obligation](#obligation)
+2. [Capacity](#capacity)
+3. [Wish](#wish)
+4. [Suggestion](#suggestion)
+5. [Uncertainty](#uncertainty)
+6. [Temporality](#temporality)
+6. [Degree](#degree)
+1. [Intensifiers and downtoners](#intensifiers-and-downtoners)
+2. [Degree-consequence constructions](#degree-consequence-constructions)
 6. [Coreference and anaphora](#coreference-and-anaphora)
-   1. [Event coreference](#event-coreference)
-   2. [Entity coreference](#entity-coreference)
-   3. [Possessive anaphora](#possessive-anaphora)
+1. [Event coreference](#event-coreference)
+2. [Entity coreference](#entity-coreference)
+3. [Possessive anaphora](#possessive-anaphora)
 7. [Annotation cheatsheet](#annotation-cheatsheet)
-   1. [Relations and values](#relations-and-values)
-   2. [Complete example](#complete-example)
+1. [Relations and values](#relations-and-values)
+2. [Complete example](#complete-example)
 
 --- 
 
@@ -95,6 +95,10 @@ diverse resources, such
 as VerbNet ([Schuler, 2005](https://www.proquest.com/openview/7ca4b1b9093522a7d8089ff2e987e74e/1?pq-origsite=gscholar&cbl=18750&diss=y)), 
 FrameNet ([Baker et al., 1998](https://aclanthology.org/P98-1013.pdf)), 
 or PropBank ([Palmer et al., 2005](https://aclanthology.org/J05-1004.pdf)).
+In the examples provided throughout these guidelines, every frame goes with a prefix to indicate its source 
+(`vn:`, `fn:`, `pb:` for the aforementioned resources, `em:` for Emvista's). Every example represents meaning using RDF
+triples following the Turtle syntax. The annotations provided always target a specific element and never exhaustive 
+unless specified.
 
 <[back to the table of contents](#table-of-contents)>
 ### Events and entities
@@ -127,14 +131,14 @@ relative entities (see the [Relation types](#relation-types) section).
 Even though stative events are considered as events as well, they do not denote actions. 
 Stative events include the following:
 
-| Stative event type        | Example                       | Predicate/Relations                                                                |
-|---------------------------|-------------------------------|------------------------------------------------------------------------------------|
-| Thetic possession         | John has two cats.            | `own @Pivot: Possessor`<br/>`own @Theme: Possessum`                                |
-| Predicational possession  | These cats are John's.        | `own @Pivot: Possessor`<br/>`own @Theme: Possessum`                                |
-| Predicational location    | John's cats are on the table. | `is_located @Theme: entity`<br/>`is_located @Location{Exact,Fuzzy,Span}: location` |
-| State and change of state | John is a doctor.             | `type @Pivot: entity`<br/>`type @Theme: category`                                  |
-| Predicational property    | John's cats are black.        | `property @Theme: entity`                                                          |
-| Existential predication   | There was a cat.              | `exist @Experiencer: entity`                                                       |
+| Stative event type        | Example                       | Predicate/Relations                                                                                |
+|---------------------------|-------------------------------|----------------------------------------------------------------------------------------------------|
+| Thetic possession         | John has two cats.            | `<em:own> <has_pivot> "possessor"`<br/>`<em:own> <has_theme> "possessum"`                             |
+| Predicational possession  | These cats are John's.        | `<em:own> <has_pivot> "possessor"`<br/>`<em:own> <has_theme> "possessum"`                                |
+| Predicational location    | John's cats are on the table. | `<em:is_located> <has_theme> "entity"`<br/>`<em:is_located> <has_location{exact,fuzzy,span}: "location"` |
+| State and change of state | John is a doctor.             | `<em:type> <has_pivot> "entity"`<br/>`<em:type> <has_theme> "category"`                                  |
+| Predicational property    | John's cats are black.        | `<em:property> <has_theme> "entity"`                                                                  |
+| Existential predication   | There was a cat.              | `<em:exist> <has_experiencer> "entity"`                                                               |
 
 Creating such nodes is mandatory in order to specify potential attributes regarding temporality, modality, polarity, etc.
 
@@ -154,14 +158,14 @@ element might or might not appear depending on the aspect:
 القط هادئ
 (al-qiṭṭu hādiʾ, lit. "the-cat quiet", transl. "the cat is quiet")
 
-quiet-04 @Theme: "قط"
+<quiet-04> <has_theme> "قط" .
 
 ---
 
 كان القط هادئ
 (kāna al-qiṭṭu hādiʾ, lit. "was the-cat quiet", transl. "the cat was quiet")
 
-quiet-04 @Theme: "قط"
+<quiet-04> <has_theme> "قط" .
 ```
 
 However, adjectives denoting temporal information must receive additional information.
@@ -169,7 +173,7 @@ However, adjectives denoting temporal information must receive additional inform
 ```console
 The company's former CEO created new ones.
 
-"CEO" @Property: "former"
+"CEO" <has_property> "former" .
 ```
 
 <!-- TODO: parler des réentrances quelque part (retrouver le papier qui parlait des réentrances avec les différentes configurations syntaxiques prototypiques des réentrances -->
@@ -188,15 +192,15 @@ Reified predicates are used for coordination:
 ```console
 John loves swimming and running.
 
-addition @Addition: run-51.3.2-1 ("swimming")
-addition @Addition: run-51.3.2-2-1 ("running")
+<em:addition> <has_addition> <vn:run-51.3.2-1> .
+<em:addition> <has_addition> <vn:run-51.3.2-2-1> .
 
 ---
-                    
+ 
 On Monday, John either swims or runs.
 
-alternative @Alternative: run-51.3.2-1 ("swims")
-alternative @Alternative: run-51.3.2-2-1 ("runs")
+<em:alternative> <has_alternative> <vn:run-51.3.2-1> .
+<em:alternative> <has_alternative> <vn:run-51.3.2-2-1> .
 ```
 
 More than two elements can be coordinated. Coordinated elements can be anything.
@@ -204,17 +208,17 @@ More than two elements can be coordinated. Coordinated elements can be anything.
 ```console
 John loves swimming, cycling and running.
 
-addition @Addition: run-51.3.2-1 ("swimming")
-addition @Addition: drive-11.5 ("cycling")
-addition @Addition: run-51.3.2-2-1 ("running")
+<em:addition> <has_addition> <vn:run-51.3.2-1> .
+<em:addition> <has_addition> <vn:drive-11.5> .
+<em:addition> <has_addition> <vn:run-51.3.2-2-1> .
 
 ---
-                             
+ 
 John loves the lake, his bike and his running shoes.
 
-addition @Addition: "lake"
-addition @Addition: "bike"
-addition @Addition: "running shoes"
+<em:addition> <has_addition> "lake" .
+<em:addition> <has_addition> "bike" .
+<em:addition> <has_addition> "running shoes" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -232,35 +236,35 @@ Temporary list of examples, to be checked and validated:
 John arrived before Mary.
 (=John arrived before Mary arrived.)
 
-escape-51.1-1$1 @Agent:   "John"
-escape-51.1-1$2 @Agent:   "Mary"
-escape-51.1-1$1 @TimeMax: escape-51.1-1$2
+<escape-51.1-1$1> <has_agent> "John" .
+<escape-51.1-1$2> <has_agent> "Mary" .
+<escape-51.1-1$1> <has_timemax> <escape-51.1-1$2> .
 ```
 
 ```console
 John bought three green apples whereas Mary two red.
 (=John bought three green apples whereas Mary bought two red apples.)
 
-get-13.5.1$1 @Agent:        "John"
-get-13.5.1$1 @Theme:        "apples"$1
-"apples"$1   @MeasureExact: 3
-"apples"$1   @Property:     "green"
-get-13.5.1$1 @Opposition:   get-13.5.1$2
-get-13.5.1$2 @Opposition:   get-13.5.1$1
-get-13.5.1$2 @Agent:        "Mary"
-get-13.5.1$2 @Theme:        "apples"$2
-"apples"$2   @MeasureExact: 2
-"apples"$2   @Property:     "red"
+<em:get-13.5.1$1> <has_agent> "John" .
+<em:get-13.5.1$1> <has_theme> "apples"$1 .
+"apples"$1 <has_measureexact> "3" .
+"apples"$1 <has_property> <pb:green.02> .
+<em:get-13.5.1$1 <has_opposition> <em:get-13.5.1$2> .
+<em:get-13.5.1$2 <has_opposition> <em:get-13.5.1$1> .
+<em:get-13.5.1$2 <has_agent> "Mary" .
+<em:get-13.5.1$2 <has_theme> "apples"$2 .
+"apples"$2> <has_measureexact> "2" .
+"apples"$2> <has_property> <pb:red.02> .
 ```
 
 ```console
 John is sick as well as Mary.
 (=John is sick. Mary is sick.)
 
-sick$1   @Patient:  "John"
-sick$2   @Patient:  "Mary"
-addition @Addition: sick$1
-addition @Addition: sick$2
+<pb:sick.04$1> <has_patient> "John" .
+<pb:sick.04$2> <has_patient> "Mary" .
+<em:addition> <has_addition> <pb:sick.04$1> .
+<em:addition> <has_addition> <pb:sick.04$2> .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -272,15 +276,14 @@ The different types of relations are described in the following sections.
 <[back to the table of contents](#table-of-contents)>
 #### Core and non-core relations
 
-Core relations symbolize prototypical predicate arguments relations, as can be detailed in some resources like VerbNet.
+Core relations symbolize prototypical predicate arguments relations, as can be detailed in some resources like VerbNet.  
+For instance, the `vn:eat-39.1` frame is described as follows: `Agent [+animate] V Patient [+comestible]`
 
 ```console
 John ate the apple.
 
-eat-39.1 @Agent:   "John"
-eat-39.1 @Patient: "apple"
-
-eat-39.1 @ Agent [+animate] V Patient [+comestible]
+<vn:eat-39.1> <has_agent> "John" .
+<vn:eat-39.1> <has_patient> "apple" .
 ```
 
 Non-core relations symbolize optional predicate-argument relations.
@@ -288,12 +291,12 @@ Non-core relations symbolize optional predicate-argument relations.
 ```console
 John ate the apple with a fork.
 
-eat-39.1 @Instrument: "fork"
+<vn:eat-39.1> <has_instrument> "fork" .
 ```
 
 Here is an exhaustive list of the core and non-core relations along with examples.  
 Those must be read from the underlined token to the bold one with the relation 
-(e.g., **John** <ins>ate</ins> an apple -> `"eat" @Agent: "John"`).
+(e.g., **John** <ins>ate</ins> an apple -> `<vn:eat-39.1> <has_agent> "John"`).
 
 | Relation        | Example                                                                     |
 |-----------------|-----------------------------------------------------------------------------|
@@ -335,7 +338,7 @@ They occur both at the sentence and the document level.
 ```console
 John left before Mary entered the room.
 
-leave-51.2-1 @TimeMax: escape-51.1-1-2 ("entered")
+<vn:leave-51.2-1> <has_timemax> <vn:escape-51.1-1-2> .
 ```
 
 Temporality can also be an attribute when it does not connect two predicates.
@@ -343,8 +346,8 @@ Temporality can also be an attribute when it does not connect two predicates.
 ```console
 John worked yesterday.
 
-work-73.2 @TimeMin: 2023-05-04@00:00
-work-73.2 @TimeMax: 2023-05-04@23:59
+<vn:work-73.2> <has_timemin> "2023-05-04@00:00" .
+<vn:work-73.2> <has_timemax> "2023-05-04@23:59" .
 ```
 
 Temporality can also be linked to the document creation time (DCT). 
@@ -353,35 +356,35 @@ This link should be instantiated when no explicit temporal mentions is present:
 ```console
 John agreed with Mary.
 
-correspond-36.1-1 @TimeMax: DCT
+<vn:correspond-36.1-1> <has_timemax> "DCT" .
 
 ---
 
 Before leaving, John waved to Mary.
 
-wink-40.3.1  @TimeMax: leave-51.2-1
-leave-51.2-1 @TimeMax: DCT
+<vn:wink-40.3.1> <has_timemax> <vn:leave-51.2-1> .
+<vn:leave-51.2-1> <has_timemax> "DCT" .
 ```
 
 In the latter example, the annotator can certify that the waving event happened before the leaving event. However,
 if the leaving event isn't relatively linked to any other, temporal information is lost. Anchoring the leaving event
 before the DCT allows to deduce a chronology:
-* `wink-40.3.1` happened before `leave-51.2-1`,
-* `leave-51.2-1` happened before the DCT,
-* Therefore the chronology is: `wink-40.3.1` > `leave-51.2-1` > DCT.
+* `vn:wink-40.3.1` happened before `vn:leave-51.2-1`,
+* `vn:leave-51.2-1` happened before the DCT,
+* Therefore the chronology is: `vn:wink-40.3.1`> `vn:leave-51.2-1`> DCT.
 
 Here is an exhaustive list of temporal relations with examples.  
 Those must be read from the underlined token to the bold one with the relation 
-(e.g., Before Mary **entered** the room, John <ins>left</ins> -> `"leave" @TimeMax: "enter"`).
+(e.g., Before Mary **entered** the room, John <ins>left</ins> -> `<vn:leave-51.2-1> <has_timemax> <vn:escape-51.1-1-2>`).
 
-| Relation         | Example                                                          |
-|------------------|------------------------------------------------------------------|
-| `Time`           | When Mary **entered** the room, John <ins>left</ins>.            |
-| `TimeExact`      | As soon as Mary **entered** the room, John <ins>left</ins>.      |
-| `TimeMin`        | After Mary **entered** the room, John <ins>left</ins>.           |
-| `TimeMax`        | Before Mary **entered** the room, John <ins>left</ins>.          |
-| `TimeFuzzy`      | Around the time Mary **entered** the room, John <ins>left</ins>. |
-| `TimeDuration`   | As Mary **entered** the room, John <ins>left</ins>.              |
+| Relation       | Example                                                          |
+|----------------|------------------------------------------------------------------|
+| `Time`         | When Mary **entered** the room, John <ins>left</ins>.            |
+| `TimeExact`    | As soon as Mary **entered** the room, John <ins>left</ins>.      |
+| `TimeMin`      | After Mary **entered** the room, John <ins>left</ins>.           |
+| `TimeMax`      | Before Mary **entered** the room, John <ins>left</ins>.          |
+| `TimeFuzzy`    | Around the time Mary **entered** the room, John <ins>left</ins>. |
+| `TimeDuration` | As Mary **entered** the room, John <ins>left</ins>.              |
 
 <[back to the table of contents](#table-of-contents)>
 #### Discourse relations
@@ -392,34 +395,36 @@ They occur both at the sentence and the document level.
 ```console
 If John was working, he would have helped Mary.
 
-help-72.1-1 @Condition: work-73.2
+<vn:help-72.1-1> <has_condition> <vn:work-73.2> .
 
 ---
 
 John was not working yesterday. As a consequence, he could not help Mary.
 
-work-73.2   @Cause:       help-72.1-1
-help-72.1-1 @Consequence: work-73.2
+<vn:work-73.2> <has_cause> <vn:help-72.1-1> .
+<vn:help-72.1-1> <has_consequence> <vn:work-73.2> .
 ```
 
 Here is an exhaustive list of discourse relations with examples.  
 Those must be read from the underlined token to the bold one with the relation 
-(e.g., If John wants to **leave**, he has to <ins>ask</ins> first -> `"ask" @Condition: "leave"`).  
+(e.g., If John wants to **leave**, he has to <ins>ask</ins> first 
+-> `<vn:inquire-37.1.2> <has_condition> <vn:leave-51.2-1>`).  
 Bidirectional relations are read... in both directions 
-(e.g., John <ins>**asked**</ins> first, so he <ins>**left**</ins> -> `"leave" @Cause: "ask"` & `"ask" @Consequence: "leave"`).
+(e.g., John <ins>**asked**</ins> first, so he <ins>**left**</ins> 
+-> `<vn:leave-51.2-1> <has_cause> <vn:inquire-37.1.2>` & `<vn:inquire-37.1.2> <has_consequence> <vn:leave-51.2-1>`).
 
-| Bi- / Unidirectional | Relation                  | Example                                                                                           |
-|----------------------|---------------------------|---------------------------------------------------------------------------------------------------|
-| Bidirectional        | `Cause`/`Consequence`     | John <ins>**asked**</ins> first, so he <ins>**left**</ins>.                                       |
-|                      | `Opposition`/`Opposition` | John <ins>**asked**</ins> first, but he didn't <ins>**leave**</ins>.                              |
-| Unidirectional       | `Conclusion`              | John has been <ins>working</ins> with precision for years. In short, he **deserves** a promotion. |
-|                      | `Comparison`              | John always <ins>works</ins> with precision. Conversely, Mary doesn't **do** much.                |
-|                      | `Condition`               | If John wants to **leave**, he has to <ins>ask</ins> first.                                       |
-|                      | `Explanation`             | Writing this report will <ins>take</ins> time, especially since John is not **working**.          |
-|                      | `Illustration`            | John <ins>works</ins> with precision. For example, he **wrote** this excellent report.            |
-|                      | `Purpose`                 | John wants to <ins>leave</ins> to **attend** his medical appointment.                             |
-|                      | `Restriction`             | John <ins>left</ins> even though he didn't **ask** first.                                         |
-|                      | `Whatever`                | No matter that John **asked**, he can't <ins>leave</ins>.                                         |
+| Bi- / Unidirectional      | Relation                                                                                 | Example                                                                                           |
+|---------------------------|------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| Bidirectional             | `Cause`/`Consequence`                                                                    | John <ins>**asked**</ins> first, so he <ins>**left**</ins>.                                       |
+|| `Opposition`/`Opposition` | John <ins>**asked**</ins> first, but he didn't <ins>**leave**</ins>.                     |
+| Unidirectional            | `Conclusion`                                                                             | John has been <ins>working</ins> with precision for years. In short, he **deserves** a promotion. |
+|| `Comparison`              | John always <ins>works</ins> with precision. Conversely, Mary doesn't **do** much.       |
+|| `Condition`               | If John wants to **leave**, he has to <ins>ask</ins> first.                              |
+|| `Explanation`             | Writing this report will <ins>take</ins> time, especially since John is not **working**. |
+|| `Illustration`            | John <ins>works</ins> with precision. For example, he **wrote** this excellent report.   |
+|| `Purpose`                 | John wants to <ins>leave</ins> to **attend** his medical appointment.                    |
+|| `Restriction`             | John <ins>left</ins> even though he didn't **ask** first.                                |
+|| `Whatever`                | No matter that John **asked**, he can't <ins>leave</ins>.                                |
 
 <[back to the table of contents](#table-of-contents)>
 #### `Comparison`: a special case
@@ -441,28 +446,28 @@ As far as comparatives are concerned, there are three possible relations: `Compa
 ```console
 John is wealthier than Mary.
 
-wealthy.01 @Theme:          "John"
-wealthy.01 @Theme:          "Mary"
-wealthy.01 @ComparisonMore: "John"
-wealthy.01 @ComparisonLess: "Mary"
+<pb:wealthy.01> <has_theme> "John" .
+<pb:wealthy.01> <has_theme> "Mary" .
+<pb:wealthy.01> <has_comparisonmore> "John" .
+<pb:wealthy.01> <has_comparisonless> "Mary" .
 
 ---
 
 John is less smart than Mary.
 
-smart.06 @Theme:          "John"
-smart.06 @Theme:          "Mary"
-smart.06 @ComparisonLess: "John"
-smart.06 @ComparisonMore: "Mary"
+<pb:smart.06> <has_theme> "John" .
+<pb:smart.06> <has_theme> "Mary" .
+<pb:smart.06> <has_comparisonless> "John" .
+<pb:smart.06> <has_comparisonmore> "Mary" .
 
 ---
 
 John is as kind as Mary.
 
-kind.01 @Theme:          "John"
-kind.01 @Theme:          "Mary"
-kind.01 @ComparisonLess: "John"
-kind.01 @ComparisonMore: "Mary"
+<pb:kind.01> <has_theme> "John" .
+<pb:kind.01> <has_theme> "Mary" .
+<pb:kind.01> <has_comparisonless> "John" .
+<pb:kind.01> <has_comparisonmore> "Mary" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -474,19 +479,19 @@ Superlatives remain an expression of comparison, whether the compared element be
 ```console
 (1) John is the smartest of his siblings. (= John is smarter than his siblings)
 
-smart.06 @Theme:           "John"
-smart.06 @Theme:           "siblings"
-smart.06 @ComparisonMost:  "John"
-smart.06 @ComparisonLeast: "siblings"
+<pb:smart.06> <has_theme> "John" .
+<pb:smart.06> <has_theme> "siblings" .
+<pb:smart.06> <has_comparisonmost> "John" .
+<pb:smart.06> <has_comparisonleast> "siblings" .
 
 ---
 
 (2) John is the smartest ø. (= John is smarter than {everyone else, his siblings, his football team members, ...})
 
-smart.06 @Theme:           "John"
-smart.06 @Theme:           implicit_argument
-smart.06 @ComparisonMost:  "John"
-smart.06 @ComparisonLeast: implicit_argument
+<pb:smart.06> <has_theme> "John" .
+<pb:smart.06> <has_theme> "implicit_argument" .
+<pb:smart.06> <has_comparisonmost> "John" .
+<pb:smart.06> <has_comparisonleast> "implicit_argument" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -501,20 +506,20 @@ example:
 The more we include, the better the representation.
 (=The more {things,elements,items} we include, the better the representation is.)
 
-admit-64.3-1      @Agent:       "we"
-admit-64.3-1      @Theme:       implicit_argument
-implicit_argument @Measure:     +
-admit-64.3-1      @Consequence: good.15
-good.15           @Theme:       "representation"
-good.15           @Degree:      +
+<vn:admit-64.3-1> <has_agent> "we" .
+<vn:admit-64.3-1> <has_theme> "implicit_argument" .
+"implicit_argument" <has_measure> "+" .
+<vn:admit-64.3-1> <has_consequence> <pb:good.15> .
+<pb:good.15> <has_theme> "representation" .
+<pb:good.15> <has_degree> "+" .
 
 ---
 
 The faster, the better.
 
-fast.02 @Degree:      +
-good.15 @Degree:      +
-fast.02 @Consequence: good.15
+<fast.02> <has_degree> "+" .
+<pb:good.15> <has_degree> "+" .
+<fast.02> <has_consequence> <pb:good.15> .
 ```
 
 Degree-consequence constructions are annotated like the following example (borrowed from Bonial et al. (2018)):
@@ -522,10 +527,10 @@ Degree-consequence constructions are annotated like the following example (borro
 ```console
 The smell is so terrible, you want to throw up.
 
-terrible.01    @Theme:       "smell"
-terrible.01    @Degree:      intensifier
-terrible.01    @Consequence: breathe-40.1.2
-breathe-40.1.2 @Agent:       "you"
+<pb:terrible.01> <has_theme> "smell" .
+<pb:terrible.01> <has_degree> "intensifier" .
+<pb:terrible.01> <has_consequence> <vn:breathe-40.1.2> .
+<vn:breathe-40.1.2> <has_agent> "you" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -548,7 +553,7 @@ Entities may be MWEs: "police officer", "Prime Minister", etc. Those entities mu
 ```console
 John never buys peanut butter.
 
-get-13.5.1 @Theme: "peanut butter"
+<em:get-13.5.1> <has_theme> "peanut butter" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -560,7 +565,7 @@ or "commit a crime". In those cases, MR4AP simply drops the verb from the repres
 ```console
 John gave an emotional speech.
 
-transfer_mesg-37.1.1 @Agent: "John"
+<vn:transfer_mesg-37.1.1> <has_agent> "John" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -572,7 +577,7 @@ VPCs must as well be considered as a single units, even when the verb and its pa
 ```console
 John ate it all up.
 
-eat-39.1 @Agent: "John"
+<vn:eat-39.1> <has_agent> "John" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -587,12 +592,14 @@ literal or idiomatic (passivization, changing determiners, etc.). Compare:
 ```console
 Unfortunately, John recently kicked the bucket.
 
-die-42.4   @Patient: "John"
+<vn:die-42.4> <has_patient> "John" .
+
+---
 
 John kicked the bucket because he was angry.
 
-hit-18.1-1 @Agent:   "John"
-hit-18.1-1 @Patient: "bucket"
+<vn:hit-18.1-1> <has_agent> "John" .
+<vn:hit-18.1-1> <has_patient> "bucket" .
 ```
 
 The first example illustrates the idiomatic meaning of "John kicked the bucket" (i.e., "John died"), whereas the second 
@@ -613,8 +620,8 @@ This node is then typed `question-closed` (see the [Question types](#question-ty
 ```console
 Do you want some tea?
 
-want-32.1-1-1  @Unknown: unknown
-unknown        @Type:    question-closed
+<vn:want-32.1-1-1> <has_unknown> <em:unknown> .
+<em:unknown> <has_type> "question-closed" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -632,12 +639,12 @@ the alternative is an argument of a predicate), the predicate must be linked to 
 ```console
 Do you want tea or coffee?
 
-want-32.1-1-1 @Unknown:      unknown
-unknown       @Type:         question-choice
-want-32.1-1-1 @Pivot:        "you"
-want-32.1-1-1 @Theme:        alternative
-alternative   @Alternative:  "tea"
-alternative   @Alternative:  "coffee"
+<vn:want-32.1-1-1> <has_unknown> <em:unknown> .
+<em:unknown> <has_type> "question-choice" .
+<vn:want-32.1-1-1> <has_pivot> "you" .
+<vn:want-32.1-1-1> <has_theme> <em:alternative> .
+<em:alternative> <has_alternative> "tea" .
+<em:alternative> <has_alternative> "coffee" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -651,22 +658,22 @@ Then, this `unknown` node must be typed `question-open` (see the [Question types
 ```console
 Who ate the apple?
 
-eat-39.1-1  @Agent: unknown
-unknown     @Type:  question-open
+<vn:eat-39.1-1> <has_agent> <em:unknown> .
+<em:unknown> <has_type> "question-open" .
 
 ---
 
 What did John eat?
 
-eat-39.1-1 @Patient: unknown
-unknown    @Type:    question-open
+<vn:eat-39.1-1> <has_patient> <em:unknown> .
+<em:unknown> <has_type> "question-open" .
 
 ---
 
 How did John eat the apple?
 
-eat-39.1-1 @Manner: unknown
-unknown    @Type:   question-open
+<vn:eat-39.1-1> <has_manner> <em:unknown> .
+<em:unknown> <has_type> "question-open" .
 ```
 
 There is a special case with variable questions asking about a specific instance of a given concept. In this case,
@@ -675,9 +682,9 @@ we must make use of an `InstanceOf` relation as well.
 ```console
 Which book did John borrow?
 
-obtain-13.5.2  @Theme:      "book"
-"book"         @InstanceOf: unknown
-unknown        @Type:       question-open
+<vn:obtain-13.5.2> <has_theme> "book" .
+"book" <is_instanceof> <em:unknown> .
+<em:unknown> <has_type> "question-open" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -692,158 +699,158 @@ MR4AP exploits Emvista's ontology to semantically type every entity. These types
 <!-- Insert link to Emvista's ontology? Just like UMR did here: 
 https://github.com/umr4nlp/umr-guidelines/blob/master/guidelines.md#part-3-1-2-named-entities --> 
 
-| Level 0 | Level 1  | Level 2            | Level 3                       | Level 4          | Level 5              | Level 6               | 
-|---------|----------|--------------------|-------------------------------|------------------|----------------------|-----------------------|
-| Thing   | Concrete | Inanimate          | Material                      |                  |                      |                       |
-|         |          |                    | Ingredient                    |                  |                      |                       |
-|         |          |                    | Product                       | DrinkProduct     |                      |                       |
-|         |          |                    |                               | FoodProduct      |                      |                       |
-|         |          |                    |                               | Clothing         |                      |                       |
-|         |          |                    |                               | ChemicalAndDrugs | MedicationAndVaccine |                       |
-|         |          |                    |                               | Equipment        | MedicalEquipment     |                       |
-|         |          |                    |                               |                  | MusicalEquipment     | MusicalInstrument     |
-|         |          |                    |                               |                  | MilitaryEquipment    | Ammunition            |
-|         |          |                    |                               |                  |                      | Weapon                |
-|         |          |                    |                               | Machine          | Vehicle              | Aircraft              |
-|         |          |                    |                               |                  |                      | RailwayRollingVehicle |
-|         |          |                    |                               |                  |                      | Car                   |
-|         |          |                    |                               |                  |                      | Boat                  |
-|         |          |                    |                               | Archive          |                      |                       |
-|         |          |                    |                               | Facility         | BusinessFacility     |                       |
-|         |          |                    |                               |                  | CultureFacility      |                       |
-|         |          |                    |                               |                  | EducationFacility    |                       |
-|         |          |                    |                               |                  | HealthFacility       |                       |
-|         |          |                    |                               |                  | MilitaryFacility     |                       |
-|         |          |                    |                               |                  | PoliticsFacility     |                       |
-|         |          |                    |                               |                  | ReligionFacility     |                       |
-|         |          |                    |                               |                  | SportsFacility       |                       |
-|         |          |                    |                               | Artwork          | Sculpture            |                       |
-|         |          |                    |                               |                  | Book                 |                       |
-|         |          |                    |                               |                  | Painting             |                       |
-|         |          |                    |                               |                  | Jewel                |                       |
-|         |          | Product            | Machine                       |                  |                      |                       |
-|         |          | Animate            | AnatomicalStructure           |                  |                      |                       |
-|         |          |                    | Product                       | Machine          |                      |                       |
-|         |          |                    | Livingbeing                   | Vegetal          |                      |                       |
-|         |          |                    |                               | Animal           |                      |                       |
-|         |          |                    |                               | Human            | Engineer             |                       |
-|         |          |                    |                               |                  | Scientist            |                       |
-|         |          |                    |                               |                  | Cleric               |                       |
-|         |          |                    |                               |                  | Artist               | Musician              |
-|         |          |                    |                               |                  | Politician           | HeadOfGov             |
-|         |          |                    |                               |                  |                      | HeadOfState           |
-|         |          |                    |                               |                  | SportsActor          | SportsManager         |
-|         |          |                    |                               |                  |                      | Footballer            |
-|         | Abstract | Symptom            |                               |                  |                      |                       |
-|         |          | Deity              |                               |                  |                      |                       |
-|         |          | Technology         |                               |                  |                      |                       |
-|         |          | MedicalDisorder    |                               |                  |                      |                       |
-|         |          | Location           | TransportLine                 |                  |                      |                       |
-|         |          |                    | Place                         |                  |                      |                       |
-|         |          |                    | City                          |                  |                      |                       |
-|         |          |                    | Continent                     |                  |                      |                       |
-|         |          |                    | Country                       |                  |                      |                       |
-|         |          |                    | Region                        |                  |                      |                       |
-|         |          |                    | Street                        |                  |                      |                       |
-|         |          |                    | CelestialLoc                  |                  |                      |                       |
-|         |          |                    | District                      |                  |                      |                       |
-|         |          |                    | WaterBody                     |                  |                      |                       |
-|         |          |                    | StateOrProvince               |                  |                      |                       |
-|         |          |                    | Island                        |                  |                      |                       |
-|         |          |                    | Mountain                      |                  |                      |                       |
-|         |          | Organization       | Company                       | CarManufacturer  |                      |                       |
-|         |          |                    | Media                         |                  |                      |                       |
-|         |          |                    | MusicBand                     |                  |                      |                       |
-|         |          |                    | CriminalOrganization          |                  |                      |                       |
-|         |          |                    | EducationalOrganization       |                  |                      |                       |
-|         |          |                    | GovernmentalOrganization      |                  |                      |                       |
-|         |          |                    | HealthOrganization            |                  |                      |                       |
-|         |          |                    | IntergovernmentalOrganization |                  |                      |                       |
-|         |          |                    | JusticeOrganization           |                  |                      |                       |
-|         |          |                    | NonGovernmentalOrganization   |                  |                      |                       |
-|         |          |                    | OrganizedArmedGroup           |                  |                      |                       |
-|         |          |                    | Ethnicity                     |                  |                      |                       |
-|         |          |                    | PoliticalParty                |                  |                      |                       |
-|         |          |                    | ReligionOrganization          |                  |                      |                       |
-|         |          |                    | SportsOrganization            | SportsTeam       |                      |                       |
-|         |          | Brand              |                               |                  |                      |                       |
-|         |          | Shape              | Elongated                     |                  |                      |                       |
-|         |          |                    | Pointed                       |                  |                      |                       |
-|         |          | URL                |                               |                  |                      |                       |
-|         |          | Email              |                               |                  |                      |                       |
-|         |          | Format             |                               |                  |                      |                       |
-|         |          | Disease            |                               |                  |                      |                       |
-|         |          | Unit               | Money                         |                  |                      |                       |
-|         |          |                    | Volume                        |                  |                      |                       |
-|         |          |                    | Length                        |                  |                      |                       |
-|         |          |                    | Geometry                      |                  |                      |                       |
-|         |          |                    | Mass                          |                  |                      |                       |
-|         |          |                    | Area                          |                  |                      |                       |
-|         |          |                    | Speed                         |                  |                      |                       |
-|         |          |                    | Acceleration                  |                  |                      |                       |
-|         |          |                    | Energy                        |                  |                      |                       |
-|         |          |                    | Power                         |                  |                      |                       |
-|         |          |                    | Frequency                     |                  |                      |                       |
-|         |          |                    | Temperature                   |                  |                      |                       |
-|         |          |                    | Score                         |                  |                      |                       |
-|         |          |                    | Liquid                        |                  |                      |                       |
-|         |          |                    | Astronomy                     |                  |                      |                       |
-|         |          |                    | TimeUnit                      | Century          |                      |                       |
-|         |          |                    |                               | Hour             |                      |                       |
-|         |          |                    |                               | Day              |                      |                       |
-|         |          |                    |                               | Minute           |                      |                       |
-|         |          |                    |                               | Second           |                      |                       |
-|         |          |                    |                               | Week             |                      |                       |
-|         |          |                    |                               | Month            |                      |                       |
-|         |          |                    |                               | Year             |                      |                       |
-|         |          | FictionalCharacter |                               |                  |                      |                       |
-|         |          | Function           |                               |                  |                      |                       |
-|         |          | Sport              |                               |                  |                      |                       |
-|         |          | Event              | PoliticsEvent                 |                  |                      |                       |
-|         |          |                    | ReligiousEvent                |                  |                      |                       |
-|         |          |                    | NaturalEvent                  |                  |                      |                       |
-|         |          |                    | SportEvent                    |                  |                      |                       |
-|         |          |                    | HistoricalEvent               |                  |                      |                       |
-|         |          |                    | Communication                 |                  |                      |                       |
-|         |          | Idea               |                               |                  |                      |                       |
-|         |          | Measure            | MeasureMin                    |                  |                      |                       |
-|         |          |                    | MeasureMax                    |                  |                      |                       |
-|         |          |                    | MeasureExact                  |                  |                      |                       |
-|         |          |                    | MeasureFuzzy                  |                  |                      |                       |
-|         |          |                    | TimeDuration                  |                  |                      |                       |
-|         |          | Orientation        |                               |                  |                      |                       |
-|         |          | PhoneNumber        |                               |                  |                      |                       |
-|         |          | State              |                               |                  |                      |                       |
-|         |          | Method             | MedicalMethod                 |                  |                      |                       |
-|         |          | Reward             |                               |                  |                      |                       |
-|         |          | DocumentElement    |                               |                  |                      |                       |
-|         |          | Reference          | ReferenceAlphanumeric         |                  |                      |                       |
-|         |          |                    | ReferenceDocument             |                  |                      |                       |
-|         |          |                    | ReferenceVehicle              |                  |                      |                       |
-|         |          |                    | ReferencePostal               |                  |                      |                       |
-|         |          |                    | Cedex                         |                  |                      |                       |
-|         |          |                    | CS                            |                  |                      |                       |
-|         |          |                    | PostalCode                    |                  |                      |                       |
-|         |          |                    | ReferenceUser                 |                  |                      |                       |
-|         |          |                    | ReferenceDocumentElement      |                  |                      |                       |
-|         |          | Color              |                               |                  |                      |                       |
-|         |          | Product            | Archive                       |                  |                      |                       |
-|         |          |                    | TVShow                        |                  |                      |                       |
-|         |          |                    | Software                      |                  |                      |                       |
-|         |          |                    | Artwork                       | Theatre          |                      |                       |
-|         |          |                    |                               | Movie            |                      |                       |
-|         |          |                    |                               | Music            |                      |                       |
-|         |          |                    |                               | Poem             |                      |                       |
-|         |          | Time               | Urgency                       |                  |                      |                       |
-|         |          |                    | TimeMin                       |                  |                      |                       |
-|         |          |                    | TimeMax                       |                  |                      |                       |
-|         |          |                    | TimeExact                     |                  |                      |                       |
-|         |          |                    | TimeFuzzy                     |                  |                      |                       |
-|         |          | Language           |                               |                  |                      |                       |
-|         |          | Religion           |                               |                  |                      |                       |
-|         |          | Nationality        |                               |                  |                      |                       |
-|         | Archive  |                    |                               |                  |                      |                       |
-|         | Product  |                    |                               |                  |                      |                       |
+| Level 0                       | Level 1               | Level 2         | Level 3  | Level 4 | Level 5 | Level 6 | 
+|-------------------------------|-----------------------|-----------------|----------|---------|---------|---------|
+| Thing                         | Concrete              | Inanimate       | Material ||||
+|||                               | Ingredient            ||||
+|||| Product                       | DrinkProduct          |||
+||||| FoodProduct                   |||
+||||| Clothing                      |||
+||||| ChemicalAndDrugs              | MedicationAndVaccine  ||
+||||| Equipment                     | MedicalEquipment      ||
+|||||| MusicalEquipment              | MusicalInstrument     |
+|||||| MilitaryEquipment             | Ammunition            |
+||||||| Weapon                        |
+||||| Machine                       | Vehicle               | Aircraft        |
+||||||| RailwayRollingVehicle         |
+||||||| Car                           |
+||||||| Boat                          |
+||||| Archive                       |||
+||||| Facility                      | BusinessFacility      ||
+|||||| CultureFacility               ||
+|||||| EducationFacility             ||
+|||||| HealthFacility                ||
+|||||| MilitaryFacility              ||
+|||||| PoliticsFacility              ||
+|||||| ReligionFacility              ||
+|||||| SportsFacility                ||
+||||| Artwork                       | Sculpture             ||
+|||||| Book                          ||
+|||||| Painting                      ||
+|||||| Jewel                         ||
+||| Product                       | Machine               ||||
+||| Animate                       | AnatomicalStructure   ||||
+|||| Product                       | Machine               |||
+|||| Livingbeing                   | Vegetal               |||
+||||| Animal                        |||
+||||| Human                         | Engineer              ||
+|||||| Scientist                     ||
+|||||| Cleric                        ||
+|||||| Artist                        | Musician              |
+|||||| Politician                    | HeadOfGov             |
+||||||| HeadOfState                   |
+|||||| SportsActor                   | SportsManager         |
+||||||| Footballer                    |
+|| Abstract                      | Symptom               |||||
+||| Deity                         |||||
+||| Technology                    |||||
+||| MedicalDisorder               |||||
+||| Location                      | TransportLine         ||||
+|||| Place                         ||||
+|||| City                          ||||
+|||| Continent                     ||||
+|||| Country                       ||||
+|||| Region                        ||||
+|||| Street                        ||||
+|||| CelestialLoc                  ||||
+|||| District                      ||||
+|||| WaterBody                     ||||
+|||| StateOrProvince               ||||
+|||| Island                        ||||
+|||| Mountain                      ||||
+||| Organization                  | Company               | CarManufacturer |||
+|||| Media                         ||||
+|||| MusicBand                     ||||
+|||| CriminalOrganization          ||||
+|||| EducationalOrganization       ||||
+|||| GovernmentalOrganization      ||||
+|||| HealthOrganization            ||||
+|||| IntergovernmentalOrganization ||||
+|||| JusticeOrganization           ||||
+|||| NonGovernmentalOrganization   ||||
+|||| OrganizedArmedGroup           ||||
+|||| Ethnicity                     ||||
+|||| PoliticalParty                ||||
+|||| ReligionOrganization          ||||
+|||| SportsOrganization            | SportsTeam            |||
+||| Brand                         |||||
+||| Shape                         | Elongated             ||||
+|||| Pointed                       ||||
+||| URL                           |||||
+||| Email                         |||||
+||| Format                        |||||
+||| Disease                       |||||
+||| Unit                          | Money                 ||||
+|||| Volume                        ||||
+|||| Length                        ||||
+|||| Geometry                      ||||
+|||| Mass                          ||||
+|||| Area                          ||||
+|||| Speed                         ||||
+|||| Acceleration                  ||||
+|||| Energy                        ||||
+|||| Power                         ||||
+|||| Frequency                     ||||
+|||| Temperature                   ||||
+|||| Score                         ||||
+|||| Liquid                        ||||
+|||| Astronomy                     ||||
+|||| TimeUnit                      | Century               |||
+||||| Hour                          |||
+||||| Day                           |||
+||||| Minute                        |||
+||||| Second                        |||
+||||| Week                          |||
+||||| Month                         |||
+||||| Year                          |||
+||| FictionalCharacter            |||||
+||| Function                      |||||
+||| Sport                         |||||
+||| Event                         | PoliticsEvent         ||||
+|||| ReligiousEvent                ||||
+|||| NaturalEvent                  ||||
+|||| SportEvent                    ||||
+|||| HistoricalEvent               ||||
+|||| Communication                 ||||
+||| Idea                          |||||
+||| Measure                       | MeasureMin            ||||
+|||| MeasureMax                    ||||
+|||| MeasureExact                  ||||
+|||| MeasureFuzzy                  ||||
+|||| TimeDuration                  ||||
+||| Orientation                   |||||
+||| PhoneNumber                   |||||
+||| State                         |||||
+||| Method                        | MedicalMethod         ||||
+||| Reward                        |||||
+||| DocumentElement               |||||
+||| Reference                     | ReferenceAlphanumeric ||||
+|||| ReferenceDocument             ||||
+|||| ReferenceVehicle              ||||
+|||| ReferencePostal               ||||
+|||| Cedex                         ||||
+|||| CS                            ||||
+|||| PostalCode                    ||||
+|||| ReferenceUser                 ||||
+|||| ReferenceDocumentElement      ||||
+||| Color                         |||||
+||| Product                       | Archive               ||||
+|||| TVShow                        ||||
+|||| Software                      ||||
+|||| Artwork                       | Theatre               |||
+||||| Movie                         |||
+||||| Music                         |||
+||||| Poem                          |||
+||| Time                          | Urgency               ||||
+|||| TimeMin                       ||||
+|||| TimeMax                       ||||
+|||| TimeExact                     ||||
+|||| TimeFuzzy                     ||||
+||| Language                      |||||
+||| Religion                      |||||
+||| Nationality                   |||||
+|| Archive                       ||||||
+|| Product                       ||||||
 
 <[back to the table of contents](#table-of-contents)>
 #### Named Entities and Word Senses
@@ -855,10 +862,10 @@ As mentioned earlier, entities that are in fact MWEs must be treated and tagged 
 ```console
 John read "Le Petit prince" in the train to Nancy.
 
-"John"            @Type: Thing/Concrete/Animate/Livingbeing/Human   
-"Le Petit prince" @Type: Thing/Concrete/Inanimate/Product/Artwork/Book           
-"train"           @Type: Thing/Concrete/Inanimate/Product/Machine/Vehicle/RailwayRollingVehicle
-"Nancy"           @Type: Thing/Abstract/Location/City
+"John" <has_type> "Thing/Concrete/Animate/Livingbeing/Human" .
+"Le Petit prince" <has_type> "Thing/Concrete/Inanimate/Product/Artwork/book" .
+"train" <has_type> "Thing/Concrete/Inanimate/Product/Machine/Vehicle/RailwayRollingVehicle" .
+"Nancy" <has_type> "Thing/Abstract/Location/City" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -869,8 +876,8 @@ Entities that have been typed `Thing/Concrete/Animate/Livingbeing` may also rece
 ```console
 Swimming is one of John's passions.
 
-"John" @Type: Thing/Concrete/Animate/Livingbeing/Human
-"John" @Type: masculine
+"John" <has_type> "Thing/Concrete/Animate/Livingbeing/Human" .
+"John" <has_type> "masculine" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -899,7 +906,7 @@ As event nominals lack morphosyntactic clues to determine their aspectual values
 ```console
 The bombing killed more than 25 people.
 
-attack-60.1 @Aspect: process
+<vn:attack-60.1> <has_aspect> "process" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -910,7 +917,7 @@ Aspectual value `habitual` is used for recurring events.
 ```console
 John runs every Wednesday.
 
-run-51.3.2-2-1 @Aspect: habitual
+<vn:run-51.3.2-2-1> <has_aspect> "habitual" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -923,7 +930,9 @@ These include state verbs:
 ```console
 John is a doctor.
 
-state @Aspect: state
+<em:type> <has_experiencer> "John" .
+<em:type> <has_attribute> "doctor" .
+<em:type> <has_aspect> "state" .
 ```
 
 Verbs modified by an ability modal:
@@ -931,7 +940,7 @@ Verbs modified by an ability modal:
 ```console
 John can cook.
 
-cooking-45.3 @Aspect: state
+<vn:cooking-45.3> <has_aspect> "state" .
 ```
 
 Thetic/predicative possession:
@@ -939,13 +948,13 @@ Thetic/predicative possession:
 ```console
 John owns a car.
 
-own @Aspect: state
+<em:own> <has_aspect> "state" .
 
 ---
-     
+ 
 This car belongs to John.
 
-own @Aspect: state
+<em:own> <has_aspect> "state" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -958,7 +967,7 @@ These include the canonical progressive aspect:
 ```console
 John is cooking.
 
-cooking-45.3 @Aspect: activity
+<vn:cooking-45.3> <has_aspect> "activity" .
 ```
 
 The imperfect:
@@ -966,7 +975,7 @@ The imperfect:
 ```console
 John has cooked.
 
-cooking-45.3 @Aspect: activity
+<vn:cooking-45.3> <has_aspect> "activity" .
 ```
 
 The periphrastic progressive aspect, such as "être en train de" in French:
@@ -974,7 +983,7 @@ The periphrastic progressive aspect, such as "être en train de" in French:
 ```console
 Luc est en train de cuisiner.
 
-cooking-45.3 @Aspect: activity
+<vn:cooking-45.3> <has_aspect> "activity" .
 ```
 
 The progressive aspect signified by adverbials:
@@ -982,7 +991,7 @@ The progressive aspect signified by adverbials:
 ```console
 Luc cuisine en ce moment.
 
-cooking-45.3 @Aspect: activity
+<vn:cooking-45.3> <has_aspect> "activity" .
 ```
 
 The inchoative aspect:
@@ -990,7 +999,7 @@ The inchoative aspect:
 ```console
 John began cooking.
 
-cooking-45.3 @Aspect: activity
+<vn:cooking-45.3> <has_aspect> "activity" .
 ```
 
 The prospective aspect:
@@ -998,7 +1007,7 @@ The prospective aspect:
 ```console
 John is about to cook.
 
-cooking-45.3 @Aspect: activity
+<vn:cooking-45.3> <has_aspect> "activity" .
 ```
 
 The continuative aspect:
@@ -1006,7 +1015,7 @@ The continuative aspect:
 ```console
 John continued cooking.
 
-cooking-45.3 @Aspect: activity
+<vn:cooking-45.3> <has_aspect> "activity" .
 ```
 
 In some cases, it is impossible to decide whether the `activity` aspect must be assigned or if the event can be a 
@@ -1023,7 +1032,7 @@ The only markers to look for are durative adverbials modifying the verb:
 ```console
 John cooked for hours.
 
-cooking-45.3 @Aspect: endeavor
+<vn:cooking-45.3> <has_aspect> "endeavor" .
 ```
 
 Or the terminative aspect without proof of any event completion:
@@ -1031,7 +1040,7 @@ Or the terminative aspect without proof of any event completion:
 ```console
 John stopped cooking.
 
-cooking-45.3 @Aspect: endeavor
+<vn:cooking-45.3> <has_aspect> "endeavor" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1042,7 +1051,7 @@ Having gone thus far in the lattice, every event must receive the `performance` 
 ```console
 John cooked a wonderful meal.
 
-cooking-45.3 @Aspect: performance
+<vn:cooking-45.3> <has_aspect> "performance" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1060,23 +1069,23 @@ Quantification can either be explicit or implicit.
 ```console
 John owns a car.
 
-"car" @Measure:      1
+"car" <has_measure> "1" .
 
 John owns three cars.
 
-"car" @MeasureExact: 3
+"car" <has_measureexact> "3" .
 
 John owns cars.
 
-"car" @MeasureMin:   2
+"car" <has_measuremin> "2" .
 
 John owns fewer than three cars.
 
-"car" @MeasureMax:   3
-                           
+"car" <has_measuremax> "3" .
+ 
 John owns around three cars.
 
-"car" @MeasureFuzzy: 3
+"car" <has_measurefuzzy> "3" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1093,14 +1102,14 @@ et explicites qui sont comparées -->
 ```console
 John bought more flowers than Mary did. (=John bought more flowers than Mary did buy flowers.)
 
-get-13.5.1          @Agent:       "John"
-get-13.5.1          @Theme:       "flower"
-"flower"            @MeasureMin:  2
-get-13.5.1_implicit @Agent:       "Mary"
-get-13.5.1_implicit @Theme:       "flower"_implicit
-"flower"_implicit   @MeasureMin:  2
-"flower"            @MeasureMore: "flower"_implicit
-"flower"_implicit   @MeasureLess: "flower"
+<em:get-13.5.1> <has_agent> "John" .
+<em:get-13.5.1> <has_theme> "flower" .
+"flower" <has_measuremin> "2" .
+<em:get-13.5.1$implicit> <has_agent> "Mary" .
+<em:get-13.5.1$implicit> <has_theme> "flower$implicit" .
+"flower$implicit"> <has_measuremin> "2" .
+"flower" <has_measuremore> "flower$implicit" .
+"flower$implicit" <has_measureless> "flower" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1114,13 +1123,13 @@ On the other hand, whenever quantification is expressed in superlative construct
 ```console
 John bought the most flowers (=out of everybody else).
 
-get-13.5.1          @Agent:       "John"
-get-13.5.1          @Theme:       "flower"
-"flower"            @MeasureMin:  2
-get-13.5.1_implicit @Agent:       implicit_argument
-get-13.5.1_implicit @Theme:       "flower"_implicit
-"flower"_implicit   @MeasureMin:  2
-"flower"            @MeasureMost: "flower"_implicit
+<em:get-13.5.1> <has_agent> "John" .
+<em:get-13.5.1> <has_theme> "flower" .
+"flower" <has_measuremin> "2" .
+<em:get-13.5.1$implicit> <has_agent> "implicit_argument" .
+<em:get-13.5.1$implicit> <has_theme> "flower$implicit" .
+"flower$implicit" <has_measuremin> "2" .
+"flower" <has_measuremost> "flower$implicit" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1133,34 +1142,34 @@ The scope of the negation must be taken into account, especially when interactin
 ```console
 John is cooking.
 
-cooking-45.3 @Polarity: positive
+<vn:cooking-45.3> <has_polarity> "positive" .
 
 ---
 
 John is not cooking.
 
-cooking-45.3 @Polarity: negative
+<vn:cooking-45.3> <has_polarity> "negative" .
 
 ---
 
 John has to cook.
 
-cooking-45.3 @Modality: obligation
-obligation   @Polarity: positive
+<vn:cooking-45.3> <has_modality> "obligation" .
+"obligation" <has_polarity> "positive" .
 
 ---
 
 John does not have to cook.
 
-cooking-45.3 @Modality: obligation
-obligation   @Polarity: negative
+<vn:cooking-45.3> <has_modality> "obligation" .
+"obligation" <has_polarity> "negative" .
 
 ---
 
 John has to not cook.
 
-cooking-45.3 @Modality: obligation
-cooking-45.3 @Polarity: negative
+<vn:cooking-45.3> <has_modality> "obligation" .
+<vn:cooking-45.3> <has_polarity> "negative" .
 ```
 
 Polarity concerns adjectives as well.
@@ -1168,13 +1177,13 @@ Polarity concerns adjectives as well.
 ```console
 What John did was not right.
 
-right-02 @Polarity: negative
+<pb:right.02> <has_polarity> "negative" .
 
 ---
-                      
+ 
 What John did was unfair.
 
-fair-01  @Polarity: negative
+<pb:fair.01> <has_polarity> "negative" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1191,7 +1200,7 @@ The `obligation` modal value is used for deontic modality.
 ```console
 John must attend his classes.
 
-attend-107.4-1 @Modality: obligation
+<vn:attend-107.4-1> <has_modality> "obligation" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1202,7 +1211,7 @@ The `capacity` modal value is used when expressing ability.
 ```console
 John can cook.
 
-cooking-45.3 @Modality: capacity
+<vn:cooking-45.3> <has_modality> "capacity" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1213,7 +1222,7 @@ The `wish` modal value is used when expressing volition.
 ```console
 John wants to cook.
 
-cooking-45.3 @Modality: wish
+<vn:cooking-45.3> <has_modality> "wish" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1224,7 +1233,7 @@ The `suggestion` modal value is used when expressing desirability.
 ```console
 John should cook more often.
 
-cooking-45.3 @Modality: suggestion
+<vn:cooking-45.3> <has_modality> "suggestion" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1235,7 +1244,7 @@ The `uncertainty` modal value is used when expressing epistemic modality.
 ```console
 John might be cooking.
 
-cooking-45.3 @Modality: uncertainty
+<vn:cooking-45.3> <has_modality> "uncertainty" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1247,7 +1256,7 @@ The `temporality` modal value is used to denote frequency.
 ```console
 John cooks for us sometimes.
 
-cooking-45.3 @Modality: temporality
+<vn:cooking-45.3> <has_modality> "temporality" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1263,13 +1272,13 @@ Usually, `Degree` can take one of two values: `intensifier` or `downtoner`.
 ```console
 John is very fast.
 
-fast-04 @Degree: intensifier
+<pb:fast.04> <has_degree> "intensifier" .
 
 ---
 
 John is a little slow.
 
-fast-04 @Degree: downtoner
+<pb:fast.04> <has_degree> "downtoner" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1281,11 +1290,11 @@ constructions (e.g., degree-consequence constructions), two additional values ar
 ```console
 The less stubborn he is, the happier she is.
 
-obstinate.01 @Theme:       "he"
-obstinate.01 @Degree:      -
-happy.01     @Experiencer: "she"
-happy.01     @Degree:      +
-obstinate.01 @Consequence: happy.01
+<pb:obstinate.01> <has_theme> "he" .
+<pb:obstinate.01> <has_degree> "-" .
+<pb:happy.01> <has_experiencer> "she" .
+<pb:happy.01> <has_degree> "+" .
+<pb:obstinate.01> <has_consequence> <pb:happy.01> .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1296,10 +1305,12 @@ obstinate.01 @Consequence: happy.01
 Whenever an adjective is used attributively (see the [Adjectives: predicates?](#adjectives-predicates) section), the 
 entity that is modified by said adjective must be linked to it with a `Property` relation/attribute.
 
+// TODO => amender tout ce qui est relatif aux adjectifs, toujours en prédicats
+
 ```console
 Mary knows a nice lady.
 
-"lady" @Property: "nice"
+"lady" <has_property> "nice" .
 ```
 
 Moreover, adjectives can be linked to adverbials that in turn modify them.
@@ -1307,8 +1318,8 @@ Moreover, adjectives can be linked to adverbials that in turn modify them.
 ```console
 Mary knows an almost nice lady.
 
-"lady" @Property: "nice"
-"lady" @Property: "almost"
+"lady" <has_property> "nice" .
+"lady" <has_property> "almost" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1319,10 +1330,10 @@ The `Named` relation is used to link nouns and related proper nouns.
 ```console
 The chef John Smith cooks wonderful meals.
 
-cooking-45.3 @Agent:  "chef"
-"chef"       @Type:   Thing/Concrete/Animate/Livingbeing/Human
-"John Smith" @Type:   Thing/Concrete/Animate/Livingbeing/Human
-"chef"       @Named:  "John Smith"
+<vn:cooking-45.3> <has_agent> "chef" .
+"chef" <has_type> "Thing/Concrete/Animate/Livingbeing/Human" .
+"John Smith" <has_type> "Thing/Concrete/Animate/Livingbeing/Human" .
+"chef" <is_named> "John Smith" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1338,7 +1349,7 @@ Coreference can occur between events.
 ```console
 The bombing killed more than 25 people. It occurred in broad daylight.
 
-attack-60.1 ("bombing") @SameAs: attack-60.1 ("It")
+<vn:attack-60.1$1> <is_sameas> <vn:attack-60.1$2> .
 ```
 
 Whenever there is a coreference, every mention of the chain must bear the same class.
@@ -1351,7 +1362,7 @@ Coreference can occur between entities.
 ```console
 John swam for hours. Then, he went straight back home.
 
-"John" @SameAs: "he"
+"John" <is_sameas> "he" .
 ```
 <[back to the table of contents](#table-of-contents)>
 ### Possessive anaphora
@@ -1365,8 +1376,8 @@ possessor must be linked with an `own` node, just like thetic/predicational poss
 ```console
 John broke his bike.
 
-own @Pivot: "John" 
-own @Theme: "bike"
+<em:own> <has_pivot> "John" .
+<em:own> <has_theme> "bike" .
 ```
 
 In the former case (when the noun is an event), the antecedent must be linked to said event with the appropriate relation.
@@ -1376,9 +1387,9 @@ Moreover, if the event nominal co-refers with a preceding mention, a `SameAs` re
 ```console
 John was apprehended by the police yesterday. His arrest lasted only a few minutes.
 
-prosecute-33.2 ("apprehended") @Patient: "John"
-prosecute-33.2 ("arrest")      @Patient: "John" (from "His")
-prosecute-33.2 ("apprehended") @SameAs:  prosecute-33.2 ("arrest")
+<vn:prosecute-33.2$1> <has_patient> "John" .
+<vn:prosecute-33.2$2> <has_patient> "John" (from "his")> .
+<vn:prosecute-33.2$1> <is_sameas> <vn:prosecute-33.2$2> .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1403,6 +1414,7 @@ The following cheatsheet is provided in order to ease the annotation process.
 |                       | `Stimulus`        | Predicate or entity                                                                             |
 |                       | `Attribute`       | Entity                                                                                          |
 |                       | `Product`         | Predicate or entity                                                                             |
+|                       | `Result`          | Predicate or entity                                                                             |
 |                       | `Instrument`      | Entity                                                                                          |
 |                       | `Location`        | Entity                                                                                          |
 |                       | `LocationExact`   | Entity                                                                                          |
@@ -1475,6 +1487,8 @@ The following cheatsheet is provided in order to ease the annotation process.
 |                       | `Property`        | Literal value                                                                                   |
 |                       | `Named`           | Literal value                                                                                   |
 
+// TODO: ajouter RESULT
+
 <[back to the table of contents](#table-of-contents)>
 ### Complete example
 
@@ -1483,37 +1497,37 @@ In this section, we put forward a fully annotated example exhibiting most phenom
 ```console
 Luke and John are singing songs. As a result, Mary cannot sleep. She will reprimand them tomorrow morning.
 
-performance-26.7 @Theme:       "song"
-performance-26.7 @Agent:       addition
-addition         @Addition:    "Luke"
-"Luke"           @Type:        Thing/Concrete/Animate/Livingbeing/Human
-"Luke"           @Type:        masculine
-"John"           @Type:        Thing/Concrete/Animate/Livingbeing/Human
-"John"           @Type:        masculine
-addition         @Addition:    "John"
-"song"           @MeasureMin:  1
-"song"           @Type:        Thing/Abstract/Product/Artwork/Music
-performance-26.7 @Polarity:    positive
-performance-26.7 @Aspect:      activity
-performance-26.7 @TimeExact:   DCT
-performance-26.7 @Consequence: snooze-40.4
-snooze-40.4      @Cause:       performance-26.7
-snooze-40.4      @Agent:       "Mary"
-"Mary"           @Type:        Thing/Concrete/Animate/Livingbeing/Human
-"Mary"           @Type:        feminine
-snooze-40.4      @Aspect:      state
-snooze-40.4      @Modality:    capacity
-capacity         @Polarity:    negative
-snooze-40.4      @TimeExact:   DCT
-snooze-40.4      @TimeMax:     judgment-33
-judgment-33      @Agent:       "She"  --> à tagger Human/feminine aussi ? si oui revoir la figure DMR
-judgment-33      @Theme:       "them" --> à tagger Human/masculine aussi ? si oui revoir la figure DMR
-judgment-33      @TimeMin:     DCT+1dayT06:00:00
-judgment-33      @TimeMax:     DCT+1dayT12:00:00
-judgment-33      @Polarity:    positive
-judgment-33      @Aspect:      performance
-"Mary"           @SameAs:      "She"
-addition         @SameAs:      "them"
+<vn:performance-26.7> <has_theme> "song" .
+<vn:performance-26.7> <has_agent> <em:addition> .
+<em:addition> <has_addition> "Luke" .
+"Luke" <has_type> "Thing/Concrete/Animate/Livingbeing/Human" .
+"Luke" <has_type> "masculine" .
+"John" <has_type> "Thing/Concrete/Animate/Livingbeing/Human" .
+"John" <has_type> "masculine" .
+<em:addition> <has_addition> "John" .
+"song" <has_measuremin> "1" .
+"song" <has_type> "Thing/Abstract/Product/Artwork/Music" .
+<vn:performance-26.7> <has_polarity> "positive" .
+<vn:performance-26.7> <has_aspect> "activity" .
+<vn:performance-26.7> <has_timeexact> "DCT" .
+<vn:performance-26.7> <has_consequence> <vn:snooze-40.4> .
+<vn:snooze-40.4> <has_cause> <vn:performance-26.7> .
+<vn:snooze-40.4> <has_agent> "Mary" .
+"Mary" <has_type> "Thing/Concrete/Animate/Livingbeing/Human" .
+"Mary" <has_type> "feminine" .
+<vn:snooze-40.4> <has_aspect> "state" .
+<vn:snooze-40.4> <has_modality> "capacity" .
+"capacity" <has_polarity> "negative" .
+<vn:snooze-40.4> <has_timeexact> "DCT" .
+<vn:snooze-40.4> <has_timemax> <vn:judgment-33> .
+<vn:judgment-33> <has_agent> "she"--> à tagger human/feminine aussi ? si oui revoir la figure dmr> .
+<vn:judgment-33> <has_theme> "them" --> à tagger human/masculine aussi ? si oui revoir la figure dmr> .
+<vn:judgment-33> <has_timemin> "DCT+1dayt06:00:00" .
+<vn:judgment-33> <has_timemax> "DCT+1dayt12:00:00" .
+<vn:judgment-33> <has_polarity> "positive" .
+<vn:judgment-33> <has_aspect> "performance" .
+"Mary" <is_sameas> "she" .
+<em:addition> <is_sameas> "them" .
 ```
 
 The corresponding visual graph from [DMR's paper citation](): <!-- Insert link to final version of paper (to upload to Git) -->
