@@ -1,7 +1,7 @@
 Meaning Representation for Application Purposes - Annotation Guidelines
 =======================================================================
 
-**May 12, 2023**
+**May 23, 2023**
 
 Authors: *Bastien Giordano, Cédric Lopez*
 
@@ -97,8 +97,8 @@ FrameNet ([Baker et al., 1998](https://aclanthology.org/P98-1013.pdf)),
 or PropBank ([Palmer et al., 2005](https://aclanthology.org/J05-1004.pdf)).
 In the examples provided throughout these guidelines, every frame goes with a prefix to indicate its source 
 (`vn:`, `fn:`, `pb:` for the aforementioned resources, `em:` for Emvista's). Every example represents meaning using RDF
-triples following the Turtle syntax. The annotations provided always target a specific element and never exhaustive 
-unless specified.
+triples following the [Turtle](https://www.w3.org/TR/turtle/) syntax. The annotations provided always target a specific 
+element and never exhaustive unless specified.
 
 <[back to the table of contents](#table-of-contents)>
 ### Events and entities
@@ -377,14 +377,16 @@ Here is an exhaustive list of temporal relations with examples.
 Those must be read from the underlined token to the bold one with the relation 
 (e.g., Before Mary **entered** the room, John <ins>left</ins> -> `<vn:leave-51.2-1> <has_timemax> <vn:escape-51.1-1-2>`).
 
-| Relation       | Example                                                          |
-|----------------|------------------------------------------------------------------|
-| `Time`         | When Mary **entered** the room, John <ins>left</ins>.            |
-| `TimeExact`    | As soon as Mary **entered** the room, John <ins>left</ins>.      |
-| `TimeMin`      | After Mary **entered** the room, John <ins>left</ins>.           |
-| `TimeMax`      | Before Mary **entered** the room, John <ins>left</ins>.          |
-| `TimeFuzzy`    | Around the time Mary **entered** the room, John <ins>left</ins>. |
-| `TimeDuration` | As Mary **entered** the room, John <ins>left</ins>.              |
+| Proto-relation | Relation       | Example                                                          |
+|----------------|----------------|------------------------------------------------------------------|
+| `Time`\*       | `TimeExact`    | As soon as Mary **entered** the room, John <ins>left</ins>.      |
+|                | `TimeMin`      | After Mary **entered** the room, John <ins>left</ins>.           |
+|                | `TimeMax`      | Before Mary **entered** the room, John <ins>left</ins>.          |
+|                | `TimeFuzzy`    | Around the time Mary **entered** the room, John <ins>left</ins>. |
+|                | `TimeDuration` | As Mary **entered** the room, John <ins>left</ins>.              |
+
+\* `Time` is the most coarse-grained temporal relation. This relation must be avoided as much as possible as the
+finer-grained relations are preferred. However, whenever the annotator is in doubt, they should fall back to this label.
 
 <[back to the table of contents](#table-of-contents)>
 #### Discourse relations
@@ -408,23 +410,27 @@ John was not working yesterday. As a consequence, he could not help Mary.
 Here is an exhaustive list of discourse relations with examples.  
 Those must be read from the underlined token to the bold one with the relation 
 (e.g., If John wants to **leave**, he has to <ins>ask</ins> first 
--> `<vn:inquire-37.1.2> <has_condition> <vn:leave-51.2-1>`).  
-Bidirectional relations are read... in both directions 
-(e.g., John <ins>**asked**</ins> first, so he <ins>**left**</ins> 
--> `<vn:leave-51.2-1> <has_cause> <vn:inquire-37.1.2>` & `<vn:inquire-37.1.2> <has_consequence> <vn:leave-51.2-1>`).
+-> `<vn:inquire-37.1.2> <has_condition> <vn:leave-51.2-1>`). 
 
-| Bi- / Unidirectional      | Relation                                                                                 | Example                                                                                           |
-|---------------------------|------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| Bidirectional             | `Cause`/`Consequence`                                                                    | John <ins>**asked**</ins> first, so he <ins>**left**</ins>.                                       |
-|| `Opposition`/`Opposition` | John <ins>**asked**</ins> first, but he didn't <ins>**leave**</ins>.                     |
-| Unidirectional            | `Conclusion`                                                                             | John has been <ins>working</ins> with precision for years. In short, he **deserves** a promotion. |
-|| `Comparison`              | John always <ins>works</ins> with precision. Conversely, Mary doesn't **do** much.       |
-|| `Condition`               | If John wants to **leave**, he has to <ins>ask</ins> first.                              |
-|| `Explanation`             | Writing this report will <ins>take</ins> time, especially since John is not **working**. |
-|| `Illustration`            | John <ins>works</ins> with precision. For example, he **wrote** this excellent report.   |
-|| `Purpose`                 | John wants to <ins>leave</ins> to **attend** his medical appointment.                    |
-|| `Restriction`             | John <ins>left</ins> even though he didn't **ask** first.                                |
-|| `Whatever`                | No matter that John **asked**, he can't <ins>leave</ins>.                                |
+| Relation        | Example                                                                                           |
+|-----------------|---------------------------------------------------------------------------------------------------|
+| `Cause`\*       | John **asked** first, so he <ins>left</ins>.                                                      |
+| `Consequence`   | John <ins>asked</ins> first, so he **left**.                                                      |
+| `Opposition`\** | John <ins>**asked**</ins> first, but he didn't <ins>**leave**</ins>.                              |
+| `Conclusion`    | John has been <ins>working</ins> with precision for years. In short, he **deserves** a promotion. |
+| `Comparison`    | John always <ins>works</ins> with precision. Conversely, Mary doesn't **do** much.                |
+| `Condition`     | If John wants to **leave**, he has to <ins>ask</ins> first.                                       |
+| `Explanation`   | Writing this report will <ins>take</ins> time, especially since John is not **working**.          |
+| `Illustration`  | John <ins>works</ins> with precision. For example, he **wrote** this excellent report.            |
+| `Purpose`       | John wants to <ins>leave</ins> to **attend** his medical appointment.                             |
+| `Restriction`   | John <ins>left</ins> even though he didn't **ask** first.                                         |
+| `Whatever`      | No matter that John **asked**, he can't <ins>leave</ins>.                                         |
+
+\* `Cause` and `Consequence` go hand in hand when related to discourse (see the aforementioned example). 
+When `Cause` is a thematic role (see the [Core and non-core relations](#core-and-non-core-relations)) however, 
+the `Consequence` relation must not be annotated.  
+\** `Opposition` can be seen as a bi-directional relation. Whenever two elements are opposed in discourse, the relation
+must go from and to each element.
 
 <[back to the table of contents](#table-of-contents)>
 #### `Comparison`: a special case
@@ -699,158 +705,158 @@ MR4AP exploits Emvista's ontology to semantically type every entity. These types
 <!-- Insert link to Emvista's ontology? Just like UMR did here: 
 https://github.com/umr4nlp/umr-guidelines/blob/master/guidelines.md#part-3-1-2-named-entities --> 
 
-| Level 0                       | Level 1               | Level 2         | Level 3  | Level 4 | Level 5 | Level 6 | 
-|-------------------------------|-----------------------|-----------------|----------|---------|---------|---------|
-| Thing                         | Concrete              | Inanimate       | Material ||||
-|||                               | Ingredient            ||||
-|||| Product                       | DrinkProduct          |||
-||||| FoodProduct                   |||
-||||| Clothing                      |||
-||||| ChemicalAndDrugs              | MedicationAndVaccine  ||
-||||| Equipment                     | MedicalEquipment      ||
-|||||| MusicalEquipment              | MusicalInstrument     |
-|||||| MilitaryEquipment             | Ammunition            |
-||||||| Weapon                        |
-||||| Machine                       | Vehicle               | Aircraft        |
-||||||| RailwayRollingVehicle         |
-||||||| Car                           |
-||||||| Boat                          |
-||||| Archive                       |||
-||||| Facility                      | BusinessFacility      ||
-|||||| CultureFacility               ||
-|||||| EducationFacility             ||
-|||||| HealthFacility                ||
-|||||| MilitaryFacility              ||
-|||||| PoliticsFacility              ||
-|||||| ReligionFacility              ||
-|||||| SportsFacility                ||
-||||| Artwork                       | Sculpture             ||
-|||||| Book                          ||
-|||||| Painting                      ||
-|||||| Jewel                         ||
-||| Product                       | Machine               ||||
-||| Animate                       | AnatomicalStructure   ||||
-|||| Product                       | Machine               |||
-|||| Livingbeing                   | Vegetal               |||
-||||| Animal                        |||
-||||| Human                         | Engineer              ||
-|||||| Scientist                     ||
-|||||| Cleric                        ||
-|||||| Artist                        | Musician              |
-|||||| Politician                    | HeadOfGov             |
-||||||| HeadOfState                   |
-|||||| SportsActor                   | SportsManager         |
-||||||| Footballer                    |
-|| Abstract                      | Symptom               |||||
-||| Deity                         |||||
-||| Technology                    |||||
-||| MedicalDisorder               |||||
-||| Location                      | TransportLine         ||||
-|||| Place                         ||||
-|||| City                          ||||
-|||| Continent                     ||||
-|||| Country                       ||||
-|||| Region                        ||||
-|||| Street                        ||||
-|||| CelestialLoc                  ||||
-|||| District                      ||||
-|||| WaterBody                     ||||
-|||| StateOrProvince               ||||
-|||| Island                        ||||
-|||| Mountain                      ||||
-||| Organization                  | Company               | CarManufacturer |||
-|||| Media                         ||||
-|||| MusicBand                     ||||
-|||| CriminalOrganization          ||||
-|||| EducationalOrganization       ||||
-|||| GovernmentalOrganization      ||||
-|||| HealthOrganization            ||||
-|||| IntergovernmentalOrganization ||||
-|||| JusticeOrganization           ||||
-|||| NonGovernmentalOrganization   ||||
-|||| OrganizedArmedGroup           ||||
-|||| Ethnicity                     ||||
-|||| PoliticalParty                ||||
-|||| ReligionOrganization          ||||
-|||| SportsOrganization            | SportsTeam            |||
-||| Brand                         |||||
-||| Shape                         | Elongated             ||||
-|||| Pointed                       ||||
-||| URL                           |||||
-||| Email                         |||||
-||| Format                        |||||
-||| Disease                       |||||
-||| Unit                          | Money                 ||||
-|||| Volume                        ||||
-|||| Length                        ||||
-|||| Geometry                      ||||
-|||| Mass                          ||||
-|||| Area                          ||||
-|||| Speed                         ||||
-|||| Acceleration                  ||||
-|||| Energy                        ||||
-|||| Power                         ||||
-|||| Frequency                     ||||
-|||| Temperature                   ||||
-|||| Score                         ||||
-|||| Liquid                        ||||
-|||| Astronomy                     ||||
-|||| TimeUnit                      | Century               |||
-||||| Hour                          |||
-||||| Day                           |||
-||||| Minute                        |||
-||||| Second                        |||
-||||| Week                          |||
-||||| Month                         |||
-||||| Year                          |||
-||| FictionalCharacter            |||||
-||| Function                      |||||
-||| Sport                         |||||
-||| Event                         | PoliticsEvent         ||||
-|||| ReligiousEvent                ||||
-|||| NaturalEvent                  ||||
-|||| SportEvent                    ||||
-|||| HistoricalEvent               ||||
-|||| Communication                 ||||
-||| Idea                          |||||
-||| Measure                       | MeasureMin            ||||
-|||| MeasureMax                    ||||
-|||| MeasureExact                  ||||
-|||| MeasureFuzzy                  ||||
-|||| TimeDuration                  ||||
-||| Orientation                   |||||
-||| PhoneNumber                   |||||
-||| State                         |||||
-||| Method                        | MedicalMethod         ||||
-||| Reward                        |||||
-||| DocumentElement               |||||
-||| Reference                     | ReferenceAlphanumeric ||||
-|||| ReferenceDocument             ||||
-|||| ReferenceVehicle              ||||
-|||| ReferencePostal               ||||
-|||| Cedex                         ||||
-|||| CS                            ||||
-|||| PostalCode                    ||||
-|||| ReferenceUser                 ||||
-|||| ReferenceDocumentElement      ||||
-||| Color                         |||||
-||| Product                       | Archive               ||||
-|||| TVShow                        ||||
-|||| Software                      ||||
-|||| Artwork                       | Theatre               |||
-||||| Movie                         |||
-||||| Music                         |||
-||||| Poem                          |||
-||| Time                          | Urgency               ||||
-|||| TimeMin                       ||||
-|||| TimeMax                       ||||
-|||| TimeExact                     ||||
-|||| TimeFuzzy                     ||||
-||| Language                      |||||
-||| Religion                      |||||
-||| Nationality                   |||||
-|| Archive                       ||||||
-|| Product                       ||||||
+| Level 0 | Level 1   | Level 2            | Level 3                       | Level 4          | Level 5              | Level 6               | 
+|---------|-----------|--------------------|-------------------------------|------------------|----------------------|-----------------------|
+| Thing   | Concrete  | Inanimate          | Material                      |                  |                      |                       |
+|         |           |                    | Ingredient                    |                  |                      |                       |
+|         |           |                    | Product                       | DrinkProduct     |                      |                       |
+|         |           |                    |                               | FoodProduct      |                      |                       |
+|         |           |                    |                               | Clothing         |                      |                       |
+|         |           |                    |                               | ChemicalAndDrugs | MedicationAndVaccine |                       |
+|         |           |                    |                               | Equipment        | MedicalEquipment     |                       |
+|         |           |                    |                               |                  | MusicalEquipment     | MusicalInstrument     |
+|         |           |                    |                               |                  | MilitaryEquipment    | Ammunition            |
+|         |           |                    |                               |                  |                      | Weapon                |
+|         |           |                    |                               | Machine          | Vehicle              | Aircraft              |
+|         |           |                    |                               |                  |                      | RailwayRollingVehicle |
+|         |           |                    |                               |                  |                      | Car                   |
+|         |           |                    |                               |                  |                      | Boat                  |
+|         |           |                    |                               | Archive          |                      |                       |
+|         |           |                    |                               | Facility         | BusinessFacility     |                       |
+|         |           |                    |                               |                  | CultureFacility      |                       |
+|         |           |                    |                               |                  | EducationFacility    |                       |
+|         |           |                    |                               |                  | HealthFacility       |                       |
+|         |           |                    |                               |                  | MilitaryFacility     |                       |
+|         |           |                    |                               |                  | PoliticsFacility     |                       |
+|         |           |                    |                               |                  | ReligionFacility     |                       |
+|         |           |                    |                               |                  | SportsFacility       |                       |
+|         |           |                    |                               | Artwork          | Sculpture            |                       |
+|         |           |                    |                               |                  | Book                 |                       |
+|         |           |                    |                               |                  | Painting             |                       |
+|         |           |                    |                               |                  | Jewel                |                       |
+|         |           | Product            | Machine                       |                  |                      |                       |
+|         |           | Animate            | AnatomicalStructure           |                  |                      |                       |
+|         |           |                    | Product                       | Machine          |                      |                       |
+|         |           |                    | Livingbeing                   | Vegetal          |                      |                       |
+|         |           |                    |                               | Animal           |                      |                       |
+|         |           |                    |                               | Human            | Engineer             |                       |
+|         |           |                    |                               |                  | Scientist            |                       |
+|         |           |                    |                               |                  | Cleric               |                       |
+|         |           |                    |                               |                  | Artist               | Musician              |
+|         |           |                    |                               |                  | Politician           | HeadOfGov             |
+|         |           |                    |                               |                  |                      | HeadOfState           |
+|         |           |                    |                               |                  | SportsActor          | SportsManager         |
+|         |           |                    |                               |                  |                      | Footballer            |
+|         | Abstract  | Symptom            |                               |                  |                      |                       |
+|         |           | Deity              |                               |                  |                      |                       |
+|         |           | Technology         |                               |                  |                      |                       |
+|         |           | MedicalDisorder    |                               |                  |                      |                       |
+|         |           | Location           | TransportLine                 |                  |                      |                       |
+|         |           |                    | Place                         |                  |                      |                       |
+|         |           |                    | City                          |                  |                      |                       |
+|         |           |                    | Continent                     |                  |                      |                       |
+|         |           |                    | Country                       |                  |                      |                       |
+|         |           |                    | Region                        |                  |                      |                       |
+|         |           |                    | Street                        |                  |                      |                       |
+|         |           |                    | CelestialLoc                  |                  |                      |                       |
+|         |           |                    | District                      |                  |                      |                       |
+|         |           |                    | WaterBody                     |                  |                      |                       |
+|         |           |                    | StateOrProvince               |                  |                      |                       |
+|         |           |                    | Island                        |                  |                      |                       |
+|         |           |                    | Mountain                      |                  |                      |                       |
+|         |           | Organization       | Company                       | CarManufacturer  |                      |                       | 
+|         |           |                    | Media                         |                  |                      |                       |
+|         |           |                    | MusicBand                     |                  |                      |                       |
+|         |           |                    | CriminalOrganization          |                  |                      |                       |
+|         |           |                    | EducationalOrganization       |                  |                      |                       |
+|         |           |                    | GovernmentalOrganization      |                  |                      |                       |
+|         |           |                    | HealthOrganization            |                  |                      |                       |
+|         |           |                    | IntergovernmentalOrganization |                  |                      |                       |
+|         |           |                    | JusticeOrganization           |                  |                      |                       |
+|         |           |                    | NonGovernmentalOrganization   |                  |                      |                       |
+|         |           |                    | OrganizedArmedGroup           |                  |                      |                       |
+|         |           |                    | Ethnicity                     |                  |                      |                       |
+|         |           |                    | PoliticalParty                |                  |                      |                       |
+|         |           |                    | ReligionOrganization          |                  |                      |                       |
+|         |           |                    | SportsOrganization            | SportsTeam       |                      |                       |
+|         |           | Brand              |                               |                  |                      |                       |
+|         |           | Shape              | Elongated                     |                  |                      |                       |
+|         |           |                    | Pointed                       |                  |                      |                       |
+|         |           | URL                |                               |                  |                      |                       |
+|         |           | Email              |                               |                  |                      |                       |
+|         |           | Format             |                               |                  |                      |                       |
+|         |           | Disease            |                               |                  |                      |                       |
+|         |           | Unit               | Money                         |                  |                      |                       |
+|         |           |                    | Volume                        |                  |                      |                       |
+|         |           |                    | Length                        |                  |                      |                       |
+|         |           |                    | Geometry                      |                  |                      |                       |
+|         |           |                    | Mass                          |                  |                      |                       |
+|         |           |                    | Area                          |                  |                      |                       |
+|         |           |                    | Speed                         |                  |                      |                       |
+|         |           |                    | Acceleration                  |                  |                      |                       |
+|         |           |                    | Energy                        |                  |                      |                       |
+|         |           |                    | Power                         |                  |                      |                       |
+|         |           |                    | Frequency                     |                  |                      |                       |
+|         |           |                    | Temperature                   |                  |                      |                       | 
+|         |           |                    | Score                         |                  |                      |                       |
+|         |           |                    | Liquid                        |                  |                      |                       |
+|         |           |                    | Astronomy                     |                  |                      |                       |
+|         |           |                    | TimeUnit                      | Century          |                      |                       |
+|         |           |                    |                               | Hour             |                      |                       |
+|         |           |                    |                               | Day              |                      |                       |
+|         |           |                    |                               | Minute           |                      |                       |
+|         |           |                    |                               | Second           |                      |                       |
+|         |           |                    |                               | Week             |                      |                       |
+|         |           |                    |                               | Month            |                      |                       |
+|         |           |                    |                               | Year             |                      |                       |
+|         |           | FictionalCharacter |                               |                  |                      |                       |
+|         |           | Function           |                               |                  |                      |                       |
+|         |           | Sport              |                               |                  |                      |                       |
+|         |           | Event              | PoliticsEvent                 |                  |                      |                       |
+|         |           |                    | ReligiousEvent                |                  |                      |                       |
+|         |           |                    | NaturalEvent                  |                  |                      |                       |
+|         |           |                    | SportEvent                    |                  |                      |                       |
+|         |           |                    | HistoricalEvent               |                  |                      |                       |
+|         |           |                    | Communication                 |                  |                      |                       |
+|         |           | Idea               |                               |                  |                      |                       |
+|         |           | Measure            | MeasureMin                    |                  |                      |                       |
+|         |           |                    | MeasureMax                    |                  |                      |                       |
+|         |           |                    | MeasureExact                  |                  |                      |                       |
+|         |           |                    | MeasureFuzzy                  |                  |                      |                       |
+|         |           |                    | TimeDuration                  |                  |                      |                       |
+|         |           | Orientation        |                               |                  |                      |                       |
+|         |           | PhoneNumber        |                               |                  |                      |                       |
+|         |           | State              |                               |                  |                      |                       |
+|         |           | Method             | MedicalMethod                 |                  |                      |                       |
+|         |           | Reward             |                               |                  |                      |                       |
+|         |           | DocumentElement    |                               |                  |                      |                       |
+|         |           | Reference          | ReferenceAlphanumeric         |                  |                      |                       |
+|         |           |                    | ReferenceDocument             |                  |                      |                       |
+|         |           |                    | ReferenceVehicle              |                  |                      |                       |
+|         |           |                    | ReferencePostal               |                  |                      |                       |
+|         |           |                    | Cedex                         |                  |                      |                       |
+|         |           |                    | CS                            |                  |                      |                       |
+|         |           |                    | PostalCode                    |                  |                      |                       |
+|         |           |                    | ReferenceUser                 |                  |                      |                       |
+|         |           |                    | ReferenceDocumentElement      |                  |                      |                       |
+|         |           | Color              |                               |                  |                      |                       |
+|         |           | Product            | Archive                       |                  |                      |                       |
+|         |           |                    | TVShow                        |                  |                      |                       |
+|         |           |                    | Software                      |                  |                      |                       |
+|         |           |                    | Artwork                       | Theatre          |                      |                       |
+|         |           |                    |                               | Movie            |                      |                       |
+|         |           |                    |                               | Music            |                      |                       |
+|         |           |                    |                               | Poem             |                      |                       |
+|         |           | Time               | Urgency                       |                  |                      |                       |
+|         |           |                    | TimeMin                       |                  |                      |                       |
+|         |           |                    | TimeMax                       |                  |                      |                       |
+|         |           |                    | TimeExact                     |                  |                      |                       |
+|         |           |                    | TimeFuzzy                     |                  |                      |                       |
+|         |           | Language           |                               |                  |                      |                       |
+|         |           | Religion           |                               |                  |                      |                       |
+|         |           | Nationality        |                               |                  |                      |                       |
+|         | Archive   |                    |                               |                  |                      |                       |
+|         | Product   |                    |                               |                  |                      |                       |
 
 <[back to the table of contents](#table-of-contents)>
 #### Named Entities and Word Senses
@@ -1062,31 +1068,19 @@ Quantification is used to assign a normalized numeric value to an entity.
 <[back to the table of contents](#table-of-contents)>
 #### Usual cases
 
-Just like temporal relations, quantification can be symbolized with a number of derivative labels, namely 
-`Measure{Exact,Min,Max,Fuzzy}`.  
+Just like temporal relations (see the [Temporal relations](#temporal-relations) section, quantification can be 
+symbolized with a number of derivative labels, namely `Measure{Exact,Min,Max,Fuzzy}`.  
 Quantification can either be explicit or implicit.
 
-```console
-John owns a car.
+| Proto-relation | Relation       | Example                                            | Annotation                     |
+|----------------|----------------|----------------------------------------------------|--------------------------------|
+| `Measure`\*    | `MeasureExact` | John owns a car / is driving his car.              | `"car" <has_measureexact> "1"` |
+|                | `MeasureMin`   | John owns cars / several cars / more than one car. | `"car" <has_measuremin> "2"`   |
+|                | `MeasureMax`   | John owns fewer than three cars.                   | `"car" <has_measuremax> "2"`   |
+|                | `MeasureFuzzy` | John owns around three cars.                       | `"car" <has_measurefuzzy> "3"` |
 
-"car" <has_measure> "1" .
-
-John owns three cars.
-
-"car" <has_measureexact> "3" .
-
-John owns cars.
-
-"car" <has_measuremin> "2" .
-
-John owns fewer than three cars.
-
-"car" <has_measuremax> "3" .
- 
-John owns around three cars.
-
-"car" <has_measurefuzzy> "3" .
-```
+\* `Measure` is the most coarse-grained quantification relation. This relation must be avoided as much as possible as the 
+finer-grained relations are preferred. However, whenever the annotator is in doubt, they should fall back to this label.
 
 <[back to the table of contents](#table-of-contents)>
 #### Quantification in comparisons
