@@ -1,71 +1,71 @@
 Meaning Representation for Application Purposes - Annotation Guidelines
 =======================================================================
 
-**May 23, 2023**
+**May 24, 2023**
 
 Authors: *Bastien Giordano, Cédric Lopez*
 
 ## Table of contents
 1. [Introduction to MR4AP](#introduction-to-mr4ap)
 2. [Predicate-argument structure](#predicate-argument-structure)
-1. [Events and entities](#events-and-entities)
-1. [Dynamic events](#dynamic-events)
-2. [Stative events](#stative-events)
-3. [Adjectives: predicates?](#adjectives-predicates)
-4. [Reified predicates](#reified-predicates)
-5. [Implicit predicates and arguments](#implicit-predicates-and-arguments)
-2. [Relation types](#relation-types)
-1. [Core and non-core relations](#core-and-non-core-relations)
-2. [Temporal relations](#temporal-relations)
-3. [Discourse relations](#discourse-relations)
-4. [`Comparison`: a special case](#comparison-a-special-case)
-1. [Comparatives](#Comparatives)
-2. [Superlatives](#Superlatives)
-3. [Other constructions](#other-constructions)
-5. [Coreference relations](#coreference-relations)
+   1. [Events and entities](#events-and-entities)
+      1. [Dynamic events](#dynamic-events)
+      2. [Stative events](#stative-events)
+      3. [Factual annotation](#factual-annotation)
+      4. [Reified predicates](#reified-predicates)
+      5. [Implicit predicates and arguments](#implicit-predicates-and-arguments)
+   2. [Relation types](#relation-types)
+      1. [Core and non-core relations](#core-and-non-core-relations)
+   3. [Temporal relations](#temporal-relations)
+   4. [Discourse relations](#discourse-relations)
+   5. [`Comparison`: a special case](#comparison-a-special-case)
+      1. [Comparatives](#Comparatives)
+      2. [Superlatives](#Superlatives)
+      3. [Other constructions](#other-constructions)
+      4. [Coreference relations](#coreference-relations)
 3. [Multiword expressions (MWEs)](#multiword-expressions-mwes)
-1. [Entities](#entities)
-2. [Light-verb constructions (LVCs)](#light-verb-constructions-lvcs)
-3. [Verb-particle constructions (VPCs)](#verb-particle-constructions-vpcs)
-4. [Idioms](#idioms)
+   1. [Entities](#entities)
+   2. [Light-verb constructions (LVCs)](#light-verb-constructions-lvcs)
+   3. [Verb-particle constructions (VPCs)](#verb-particle-constructions-vpcs)
+   4. [Idioms](#idioms)
 4. [Questions](#questions)
-1. [Polar questions](#polar-questions)
-2. [Alternative questions](#alternative-questions)
-3. [Variable questions](#variable-questions)
+   1. [Polar questions](#polar-questions)
+   2. [Alternative questions](#alternative-questions)
+   3. [Variable questions](#variable-questions)
 5. [MR4AP attributes](#mr4ap-attributes)
-1. [Semantic typing](#semantic-typing)
-1. [Named Entities and Word Senses](#named-entities-and-word-senses)
-2. [Gender](#gender)
-3. [Question types](#questions)
-2. [Aspect](#aspect)
-1. [Event nominals](#event-nominals)
-2. [Habitual](#habitual)
-3. [State](#state)
-4. [Activity](#activity)
-5. [Endeavor](#endeavor)
-6. [Performance](#performance)
-3. [Quantification](#quantification)
-1. [Usual cases](#usual-cases)
-2. [Quantification in comparisons](#quantification-in-comparisons)
-3. [Quantification and superlatives](#quantification-and-superlatives)
-4. [Polarity (and scope)](#polarity-and-scope)
-5. [Modality (and scope)](#modality-and-scope)
-1. [Obligation](#obligation)
-2. [Capacity](#capacity)
-3. [Wish](#wish)
-4. [Suggestion](#suggestion)
-5. [Uncertainty](#uncertainty)
-6. [Temporality](#temporality)
-6. [Degree](#degree)
-1. [Intensifiers and downtoners](#intensifiers-and-downtoners)
-2. [Degree-consequence constructions](#degree-consequence-constructions)
-6. [Coreference and anaphora](#coreference-and-anaphora)
-1. [Event coreference](#event-coreference)
-2. [Entity coreference](#entity-coreference)
-3. [Possessive anaphora](#possessive-anaphora)
-7. [Annotation cheatsheet](#annotation-cheatsheet)
-1. [Relations and values](#relations-and-values)
-2. [Complete example](#complete-example)
+   1. [Semantic typing](#semantic-typing)
+   2. [Named Entities and Word Senses](#named-entities-and-word-senses)
+   3. [Gender](#gender)
+   4. [Question types](#questions)
+   5. [Aspect](#aspect)
+      1. [Event nominals](#event-nominals)
+      2. [Habitual](#habitual)
+      3. [State](#state)
+   6. [Activity](#activity)
+   7. [Endeavor](#endeavor)
+   8. [Performance](#performance)
+   9. [Quantification](#quantification)
+      1. [Usual cases](#usual-cases)
+      2. [Quantification in comparisons](#quantification-in-comparisons)
+      3. [Quantification and superlatives](#quantification-and-superlatives)
+   10. [Polarity (and scope)](#polarity-and-scope)
+   11. [Modality (and scope)](#modality-and-scope)
+       1. [Obligation](#obligation)
+       2. [Capacity](#capacity)
+       3. [Wish](#wish)
+       4. [Suggestion](#suggestion)
+       5. [Uncertainty](#uncertainty)
+       6. [Temporality](#temporality)
+   12. [Degree](#degree)
+       1. [Intensifiers and downtoners](#intensifiers-and-downtoners)
+       2. [Degree-consequence constructions](#degree-consequence-constructions)
+   13. [Coreference and anaphora](#coreference-and-anaphora)
+       1. [Event coreference](#event-coreference)
+       2. [Entity coreference](#entity-coreference)
+       3. [Possessive anaphora](#possessive-anaphora)
+6. [Annotation cheatsheet](#annotation-cheatsheet)
+   1. [Relations and values](#relations-and-values)
+   2. [Complete example](#complete-example)
 
 --- 
 
@@ -131,56 +131,91 @@ relative entities (see the [Relation types](#relation-types) section).
 Even though stative events are considered as events as well, they do not denote actions. 
 Stative events include the following:
 
-| Stative event type        | Example                       | Predicate/Relations                                                                                |
-|---------------------------|-------------------------------|----------------------------------------------------------------------------------------------------|
-| Thetic possession         | John has two cats.            | `<em:own> <has_pivot> "possessor"`<br/>`<em:own> <has_theme> "possessum"`                             |
-| Predicational possession  | These cats are John's.        | `<em:own> <has_pivot> "possessor"`<br/>`<em:own> <has_theme> "possessum"`                                |
+| Stative event type        | Example                       | Predicate/Relations                                                                                      |
+|---------------------------|-------------------------------|----------------------------------------------------------------------------------------------------------|
+| Thetic possession         | John has two cats.            | `<em:own> <has_pivot> "possessor"`<br/>`<em:own> <has_theme> "possessum"`                                |
+| Predicational possession  | The two cats are John's.      | `<em:own> <has_pivot> "possessor"`<br/>`<em:own> <has_theme> "possessum"`                                |
 | Predicational location    | John's cats are on the table. | `<em:is_located> <has_theme> "entity"`<br/>`<em:is_located> <has_location{exact,fuzzy,span}: "location"` |
-| State and change of state | John is a doctor.             | `<em:type> <has_pivot> "entity"`<br/>`<em:type> <has_theme> "category"`                                  |
-| Predicational property    | John's cats are black.        | `<em:property> <has_theme> "entity"`                                                                  |
-| Existential predication   | There was a cat.              | `<em:exist> <has_experiencer> "entity"`                                                               |
+| State and change of state | John is a doctor.             | `<em:type> <has_experiencer> "entity"`<br/>`<em:type> <has_attribute> <prefix:category>`                 |
+| Predicational property    | John's cats are black.        | `<em:property> <has_theme> "entity"` <br/> <em:property> <has_property> <prefix:property>                |
+| Existential predication   | There was a cat.              | `<em:exist> <has_experiencer> "entity"`                                                                  |
 
-Creating such nodes is mandatory in order to specify potential attributes regarding temporality, modality, polarity, etc.
-
-<[back to the table of contents](#table-of-contents)>
-#### Adjectives: predicates?
-
-Adjectives can either be attributive or predicate. In the former case (as in "the quiet cat"), the adjective must be 
-treated as a property of the noun it modifies (i.e., `"cat" @Property: "quiet"`). However in the latter case (as in 
-"the cat is quiet"), the noun must be treated as an argument of the predicate adjective (i.e., `quiet-04 @Theme: "cat"`).
-
-This difference in treatment is useful because the predicate adjective can later receive modal or aspectual modifications.
-In languages like English or French, the linking verbs / copulas are used can be modified 
-("the cat {is,was,might have been,should be,will be} gentle"). However in other languages such as Arabic, this verbal 
-element might or might not appear depending on the aspect:
+Creating such nodes is mandatory in order to specify potential attributes regarding temporality, modality, polarity, etc.  
+This also holds true when these nodes are linked to others (e.g., by discourse or temporal relations).
 
 ```console
+Had he worked smarter, John could have become a doctor.
+
+<em:type> <has_experiencer> "John"
+<em:type> <has_attribute> "doctor"
+<em:type> <has_timemin> "DCT"
+<em:type> <has_modality> "capacity"
+<em:type> <has_condition> <vn:work-73.2>
+```
+
+<[back to the table of contents](#table-of-contents)>
+#### Factual annotation
+
+The most recent formalisms argue that the more the representation abstracts away from the syntactic surface form, the 
+better the representation. This holds true for typical examples illustrating the dichotomy passive/active voices. In the
+following (complete) example, even though the syntactic realization is different, the meaning is strictly equivalent. 
+Therefore, the resulting annotations can't be different from one another.
+
+```console
+John broke the vase.
+The vase was broken by John.
+
+<vn:break-45.1> <has_agent> "John"
+<vn:break-45.1> <has_patient> "vase"
+<vn:break-45.1> <has_timemax> "DCT"
+<vn:break-45.1> <has_aspect> "performance"
+"vase" <has_measureexact> "1"
+"John" <has_type> "Thing/Concrete/Animate/Livingbeing/Human"
+"vase" <has_type> "Thing/Concrete/Inanimate/Product"
+```
+
+However, the same mindset should be extended to other phenomena as well, leaving no choice or doubt to the annotator.
+For instance, we consider that the representations of adjectives should remain the same whatever the function. Instead 
+of having a specific representation for attributive adjectives (i.e., in modification function) and another for 
+predicative adjectives (i.e., in predication function), we annotate both of these using the same formalization.
+
+```console
+[Predicative]
 القط هادئ
 (al-qiṭṭu hādiʾ, lit. "the-cat quiet", transl. "the cat is quiet")
 
-<quiet-04> <has_theme> "قط" .
+<quiet.04> @Theme: "قط"
+<em:property> <has_theme> "قط"
+<em:property> <has_property> <pb:quiet.04>
 
 ---
 
-كان القط هادئ
-(kāna al-qiṭṭu hādiʾ, lit. "was the-cat quiet", transl. "the cat was quiet")
+[Attributive]
+ينام القط الهادئ
+(yanāmu al-qiṭṭu al-hādiʾ, lit. "sleeps the-cat the-quiet", transl. "the quiet cat is sleeping")
 
-<quiet-04> <has_theme> "قط" .
+<quiet.04> @Theme: "قط"
+<em:property> <has_theme> "قط"
+<em:property> <has_property> <pb:quiet.04>
 ```
 
-However, adjectives denoting temporal information must receive additional information.
+That being said, some predicative adjectives might evoke dynamic events predicates instead.
+<!-- Quid de ces cas-là ? Ne plus considérer l'adjectif comme une propriété mais comme un événement dynamique ?
+Quid du cas "the dead man is walking" ? "dead" évoque-t-il toujours un événement ? Comment justifier de la différence de 
+traitement, sachant que pour l'exemple suivant, il n'y a clairement pas de distinction sémantique entre les 2 phrases 
+et que ce choix est donc justifié ? -->
 
 ```console
-The company's former CEO created new ones.
+John has been dead since 2010.
+John died in 2010.
 
-"CEO" <has_property> "former" .
+<vn:die-42.4-1> <has_patient> "John"
+<vn:die-42.4-1> <has_timemin> "2010-01-01T00:00"
+<vn:die-42.4-1> <has_timemax> "2010-31-12T23:59"
 ```
 
 <!-- TODO: parler des réentrances quelque part (retrouver le papier qui parlait des réentrances avec les différentes configurations syntaxiques prototypiques des réentrances -->
-<!-- TODO: fix les affaires de property et time -->
 <!-- TODO: parler de l'attribut :frequency vs. la modality :temporality -->
-<!-- TODO: valider les comparisonMinMax -->
-<!-- TODO: fix les relations Type pour copule + nom, i.e. Lacrimosa est un groupe allemand -->
 
 <[back to the table of contents](#table-of-contents)>
 #### Reified predicates
@@ -1289,45 +1324,6 @@ The less stubborn he is, the happier she is.
 <pb:happy.01> <has_experiencer> "she" .
 <pb:happy.01> <has_degree> "+" .
 <pb:obstinate.01> <has_consequence> <pb:happy.01> .
-```
-
-<[back to the table of contents](#table-of-contents)>
-### Property
-
-<!-- Relation ou attribut ? -->
-
-Whenever an adjective is used attributively (see the [Adjectives: predicates?](#adjectives-predicates) section), the 
-entity that is modified by said adjective must be linked to it with a `Property` relation/attribute.
-
-// TODO => amender tout ce qui est relatif aux adjectifs, toujours en prédicats
-
-```console
-Mary knows a nice lady.
-
-"lady" <has_property> "nice" .
-```
-
-Moreover, adjectives can be linked to adverbials that in turn modify them.
-
-```console
-Mary knows an almost nice lady.
-
-"lady" <has_property> "nice" .
-"lady" <has_property> "almost" .
-```
-
-<[back to the table of contents](#table-of-contents)>
-### Named
-
-The `Named` relation is used to link nouns and related proper nouns.
-
-```console
-The chef John Smith cooks wonderful meals.
-
-<vn:cooking-45.3> <has_agent> "chef" .
-"chef" <has_type> "Thing/Concrete/Animate/Livingbeing/Human" .
-"John Smith" <has_type> "Thing/Concrete/Animate/Livingbeing/Human" .
-"chef" <is_named> "John Smith" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
