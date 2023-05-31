@@ -5,7 +5,7 @@ This repository hosts everything related to the Meaning Representation for Appli
 
 ## Corpora
 
-Click on the links to access the MR4AP corpus you are looking for:
+There are several [MR4AP corpora](corpora). Click on the links to access the MR4AP corpus you are looking for:
 * [MR4AP-tapaco](corpora/MR4AP-tapaco)
 * [MR4AP-wikipedia](corpora/MR4AP-wikipedia)
 
