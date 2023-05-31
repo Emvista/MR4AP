@@ -1,4 +1,4 @@
-# Meaning Representation for Application Purposes (MR4AP) corpus (v0.1)
+# MR4AP-tapaco corpus (v0.1)
 
 ## Disclaimer
 
