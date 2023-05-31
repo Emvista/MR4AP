@@ -481,41 +481,73 @@ Those derivative labels are introduced in order to represent comparatives and su
 <[back to the table of contents](#table-of-contents)>
 ##### Comparatives
 
-As far as comparatives are concerned, there are three possible relations: `ComparisonMore`, `ComparisonLess`, and 
-`ComparisonEqual`.
+MR4AP remains consistent in the vocabulary used for derivative labels: `Comparison{Exact,Min,Max,Fuzzy}`. These 
+relations are two-way: one or both can be annotated.  
+Note that implicit predicates must be used in order to represent the comparison taking place (see the 
+[Implicit predicates and arguments](#implicit-predicates-and-arguments) section). These implicit predicates  
+are duly mentioned along with the following examples.
 
 ```console
-John is wealthier than Mary.
+John is as kind as Mary [ø = is kind].
 
-<pb:wealthy.01> <has_theme> "John" .
-<pb:wealthy.01> <has_theme> "Mary" .
-<pb:wealthy.01> <has_comparisonmore> "John" .
-<pb:wealthy.01> <has_comparisonless> "Mary" .
-
----
-
-John is less smart than Mary.
-
-<pb:smart.06> <has_theme> "John" .
-<pb:smart.06> <has_theme> "Mary" .
-<pb:smart.06> <has_comparisonless> "John" .
-<pb:smart.06> <has_comparisonmore> "Mary" .
+<em:property> <has_theme> "John" . 
+<em:property> <has_property> <pb:wealthy.01> .
+<em:property_implicit> <has_theme> "John" .
+<em:property_implicit> <has_property> <pb:wealthy.01> . 
+<em:property> <has_comparisonexact> <em:property_implicit> . 
+<em:property_implicit> <has_comparisonexact> <em:property> . 
 
 ---
 
-John is as kind as Mary.
+John is wealthier than Mary [ø = is wealthy].
 
-<pb:kind.01> <has_theme> "John" .
-<pb:kind.01> <has_theme> "Mary" .
-<pb:kind.01> <has_comparisonless> "John" .
-<pb:kind.01> <has_comparisonmore> "Mary" .
+<em:property> <has_theme> "John" .
+<em:property> <has_property> <pb:wealthy.01> . 
+<em:property_implicit> <has_theme> "John" . 
+<em:property_implicit> <has_property> <pb:wealthy.01> . 
+<em:property> <has_comparisonmin> <em:property_implicit> .
+<em:property_implicit> <has_comparisonmax> <em:property> .
+
+---
+
+John is less smart than Mary [ø = is smart].
+
+<em:property> <has_theme> "John" .
+<em:property> <has_property> <pb:smart.06> . 
+<em:property_implicit> <has_theme> "John" . 
+<em:property_implicit> <has_property> <pb:smart.06> . 
+<em:property> <has_comparisonmax> <em:property_implicit> .
+<em:property_implicit> <has_comparisonmin> <em:property> .
+
+---
+
+John is about as reckless as Mary [ø = is reckless].
+
+<em:property> <has_theme> "John" .
+<em:property> <has_property> <pb:reckless.01> . 
+<em:property_implicit> <has_theme> "John" . 
+<em:property_implicit> <has_property> <pb:reckless.01> . 
+<em:property> <has_comparisonfuzzy> <em:property_implicit> .
+<em:property_implicit> <has_comparisonfuzzy> <em:property> .
+```
+
+The same goes for verbal predicates. If the predicates in comparison are not all explicit, instantiating the implicit
+ones is mandatory. Compare the following examples.
+
+```console
+John works more than Mary [ø = does / works].
+
+<vn:work-73.2>          <has_agent>         "John" .
+<vn:work-73.2_implicit> <has_agent>         "Mary" .
+<vn:work-73.2>          <has_comparisonmin> <vn:work-73.2_implicit>
+<vn:work-73.2_implicit> <has_comparisonmax> <vn:work-73.2>
 ```
 
 <[back to the table of contents](#table-of-contents)>
 ##### Superlatives
 
-As for superlatives, there are two possible relations: `ComparisonMost` and `ComparisonLeast`.
-Superlatives remain an expression of comparison, whether the compared element be explicit (1) or implicit (2).
+As for superlatives, there are two relevant relations: `Comparison{Min,Max}`.  
+Superlatives remain an expression of comparison, whether the compared element be explicit or implicit.
 
 ```console
 (1) John is the smartest of his siblings. (= John is smarter than his siblings)
