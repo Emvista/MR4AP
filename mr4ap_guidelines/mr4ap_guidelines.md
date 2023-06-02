@@ -1352,9 +1352,9 @@ constructions (e.g., degree-consequence constructions), two additional values ar
 The less stubborn he is, the happier she is.
 
 <pb:obstinate.01> <has_theme> "he" .
-<pb:obstinate.01> <has_degree> "-" .
+<pb:obstinate.01> <has_degree> "downtoner" .
 <pb:happy.01> <has_experiencer> "she" .
-<pb:happy.01> <has_degree> "+" .
+<pb:happy.01> <has_degree> "intensifier" .
 <pb:obstinate.01> <has_consequence> <pb:happy.01> .
 ```
 
