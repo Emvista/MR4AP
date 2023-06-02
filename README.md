@@ -12,3 +12,13 @@ There are several [MR4AP corpora](corpora). Click on the links to access the MR4
 ## Annotation guidelines
 
 The annotation guidelines can be found [here](guidelines/guidelines.md).
+
+## Citation
+
+The MR4AP original paper can be found [here](paper/mr4ap_giordano_lopez_dmr2023.pdf).  
+
+For any reference to the article, please cite it:
+
+Bastien Giordano and Cédric Lopez. 2023. [MR4AP: Meaning Representation for Application Purposes](). 
+_In Proceedings of the Fourth International Workshop on Designing Meaning Representations_, pages XX-XX, Nancy, France. 
+Association for Computational Linguistics. (To be published)
