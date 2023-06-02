@@ -1,7 +1,7 @@
 Meaning Representation for Application Purposes - Annotation Guidelines
 =======================================================================
 
-**May 24, 2023**
+**June 2, 2023**
 
 Authors: *Bastien Giordano, Cédric Lopez*
 
