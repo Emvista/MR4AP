@@ -6,10 +6,11 @@ This corpus is supposed to grow in size.
 
 ## Repository contents
 
-This repository hosts the __MR4AP__ corpus v0.1. The `files` folder contains all
-the currently available JSON files. Those files present two main fields:
-* `text`: the plain text that is annotated,
-* `graph`: the corresponding graph containing the annotations.
+This repository hosts the __MR4AP-tapaco__ corpus v0.1. The `files` folder contains all
+the currently available JSON files. Those files present three main fields:
+* `id`: the text id,
+* `text`: the plain text,
+* `rdf`: the corresponding RDF representation containing the annotations.
 
 Each filename follows the following syntax `sentence_00000.json`.
 
@@ -19,17 +20,17 @@ In this very first version, 100 short French sentences from the TaPaCo corpus
 [(Scherrer, 2020)](https://helda.helsinki.fi/bitstream/handle/10138/327739/multitatoeba_lrec2020.pdf?sequence=1) 
 are included. Below are some additional insights.
 
-| Item   | Number |
-|--------|--------|
-| Sentences | 100 |
-| Tokens | 534    |
-| Min length | 3 |
-| Max length | 12 |
-| Avg length | 5.34 |
+| Item       | Number |
+|------------|--------|
+| Sentences  | 100    |
+| Tokens     | 534    |
+| Min length | 3      |
+| Max length | 12     |
+| Avg length | 5.34   |
 
 __MR4AP__'s graphs are directed graphs and are composed of nodes and relations. Each node can either be:
-* an event (e.g. `eat` in _John ate an apple_),
-* a state (e.g. `state` in _John is tired_),
+* a dynamic event (e.g. `eat` in _John ate an apple_),
+* a stative event (e.g. `type` in _John is a doctor_),
 * or a feature (e.g. `aspect`, `modality`, etc.)
 
 Nodes can represent (named) entities. Those entities are semantically typed.
