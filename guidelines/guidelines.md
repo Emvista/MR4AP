@@ -1,7 +1,7 @@
 Meaning Representation for Application Purposes - Annotation Guidelines
 =======================================================================
 
-**June 2, 2023**
+**June 12, 2023**
 
 Authors: *Bastien Giordano, Cédric Lopez*
 
@@ -98,8 +98,9 @@ FrameNet ([Baker et al., 1998](https://aclanthology.org/P98-1013.pdf)),
 or PropBank ([Palmer et al., 2005](https://aclanthology.org/J05-1004.pdf)).
 In the examples provided throughout these guidelines, every frame goes with a prefix to indicate its source 
 (`vn:`, `fn:`, `pb:` for the aforementioned resources, `em:` for Emvista's). Every example represents meaning using RDF
-triples following the [Turtle](https://www.w3.org/TR/turtle/) syntax. The annotations provided always target a specific 
-element and never exhaustive unless specified.
+triples following the [Turtle](https://www.w3.org/TR/turtle/) syntax. In fact, whenever we refer to a relation, its 
+equivalent within the examples will be noted like this: `<:has_[relation]>`. What's more, the annotations provided 
+always target a specific element and are never exhaustive unless specified.
 
 <[back to the table of contents](#table-of-contents)>
 ### Events and entities
@@ -132,14 +133,14 @@ relative entities (see the [Relation types](#relation-types) section).
 Even though stative events are considered as events as well, they do not denote actions. 
 Stative events include the following:
 
-| Stative event type        | Example                       | Predicate/Relations                                                                                        |
-|---------------------------|-------------------------------|------------------------------------------------------------------------------------------------------------|
-| Thetic possession         | John has two cats.            | `<em:own> <:has_pivot> "possessor"`<br/>`<:own> <:has_theme> "possessum"`                                  |
-| Predicational possession  | The two cats are John's.      | `<em:own> <:has_pivot> "possessor"`<br/>`<:own> <:has_theme> "possessum"`                                  |
-| Predicational location    | John's cats are on the table. | `<em:is_located> <:has_theme> "entity"`<br/>`<em:is_located> <:has_location{exact,fuzzy,span}> "location"` |
-| State and change of state | John is a doctor.             | `<em:type> <:has_argumentin> "entity"`<br/>`<:type> <:has_argumentout> <prefix:category>`                  |
-| Predicational property    | John's cats are black.        | `<:property> <:has_argumentin> "entity"` <br/> `<:property> <:has_argumentout> <prefix:property> `         |
-| Existential predication   | There was a cat.              | `<em:exist> <:has_experiencer> "entity"`                                                                   |
+| Stative event type        | Example                       | Predicate/Relations                                                                                    |
+|---------------------------|-------------------------------|--------------------------------------------------------------------------------------------------------|
+| Thetic possession         | John has two cats.            | `<:own> <:has_pivot> "possessor"`<br/>`<:own> <:has_theme> "possessum"`                                |
+| Predicational possession  | The two cats are John's.      | `<:own> <:has_pivot> "possessor"`<br/>`<:own> <:has_theme> "possessum"`                                |
+| Predicational location    | John's cats are on the table. | `<:is_located> <:has_theme> "entity"`<br/>`<:is_located> <:has_location{exact,fuzzy,span}> "location"` |
+| State and change of state | John is a doctor.             | `<:type> <:has_experiencer> "entity"`<br/>`<:type> <:has_attribute> <prefix:category>`                 |
+| Predicational property    | John's cats are black.        | `<:property> <:has_argumentin> "entity"` <br/> `<:property> <:has_argumentout> <prefix:property> `     |
+| Existential predication   | There was a cat.              | `<:exist> <:has_experiencer> "entity"`                                                                 |
 
 Creating such nodes is mandatory in order to specify potential attributes regarding temporality, modality, polarity, etc.  
 This also holds true when these nodes are linked to others (e.g., by discourse or temporal relations).
@@ -147,15 +148,19 @@ This also holds true when these nodes are linked to others (e.g., by discourse o
 ```console
 Had he worked smarter, John could have become a doctor.
 
-<em:type> <:has_argumentin> "John"
-<em:type> <:has_argumentout> "doctor"
-<em:type> <:has_timemin> "DCT"
-<em:type> <:has_modality> "capacity"
-<em:type> <:has_condition> <vn:work-73.2>
+<:type> <:has_experiencer> "John"
+<:type> <:has_attribute> "doctor"
+<:type> <:has_timemin> "DCT"
+<:type> <:has_modality> "capacity"
+<:type> <:has_condition> <vn:work-73.2>
 ```
 
 <[back to the table of contents](#table-of-contents)>
 #### Factual annotation
+
+The factual character of MR4AP mainly lies within the fact that it exploits multi-rooted graphs. Contrary to most
+formalisms, there is no need to choose a root node for the graph. This leaves no place to the annotator's subjectivity,
+hence the "factuality" of the annotation process.
 
 The most recent formalisms argue that the more the representation abstracts away from the syntactic surface form, the 
 better the representation. This holds true for typical examples with the passive or active voices. In the
@@ -171,21 +176,20 @@ The vase was broken by John.
 <vn:break-45.1> <:has_timemax> "DCT"
 <vn:break-45.1> <:has_aspect> "performance"
 "vase" <:has_measureexact> "1"
-"John" <:has_type> "Thing/Concrete/Animate/Livingbeing/Human"
-"vase" <:has_type> "Thing/Concrete/Inanimate/Product"
+"John" <:has_type> "em:Thing/Concrete/Animate/Livingbeing/Human"
+"vase" <:has_type> "em:Thing/Concrete/Inanimate/Product"
 ```
 
 However, the same mindset should be extended to other phenomena as well, leaving no choice or doubt to the annotator.
 For instance, we consider that the representations of adjectives should remain the same whatever the function. Instead 
-of having a specific representation for attributive adjectives (i.e., in modification function) and another for 
-predicative adjectives (i.e., in predication function), we annotate both of these using the same formalization.
+of having a specific representation for attributive adjectives (*i.e.*, in modification function) and another for 
+predicative adjectives (*i.e.*, in predication function), we annotate both of these using the same formalization.
 
 ```console
 [Predicative]
 القط هادئ
 (al-qiṭṭu hādiʾ, lit. "the-cat quiet", transl. "the cat is quiet")
 
-<pb:quiet.04> @Theme: "قط"
 <:property> <:has_argumentin> "قط"
 <:property> <:has_argumentout> <pb:quiet.04>
 
@@ -195,16 +199,11 @@ predicative adjectives (i.e., in predication function), we annotate both of thes
 ينام القط الهادئ
 (yanāmu al-qiṭṭu al-hādiʾ, lit. "sleeps the-cat the-quiet", transl. "the quiet cat is sleeping")
 
-<pb:quiet.04> @Theme: "قط"
 <:property> <:has_argumentin> "قط"
 <:property> <:has_argumentout> <pb:quiet.04>
 ```
 
 That being said, some predicative adjectives might evoke dynamic events predicates instead.
-<!-- Quid de ces cas-là ? Ne plus considérer l'adjectif comme une propriété mais comme un événement dynamique ?
-Quid du cas "the dead man is walking" ? "dead" évoque-t-il toujours un événement ? Comment justifier de la différence de 
-traitement, sachant que pour l'exemple suivant, il n'y a clairement pas de distinction sémantique entre les 2 phrases 
-et que ce choix est donc justifié ? -->
 
 ```console
 John has been dead since 2010.
@@ -216,7 +215,6 @@ John died in 2010.
 ```
 
 <!-- TODO: parler des réentrances quelque part (retrouver le papier qui parlait des réentrances avec les différentes configurations syntaxiques prototypiques des réentrances -->
-<!-- TODO: parler de l'attribut :frequency vs. la modality :temporality -->
 
 <[back to the table of contents](#table-of-contents)>
 #### Reified predicates
@@ -257,20 +255,19 @@ John loves the lake, his bike and his running shoes.
 <:addition> <:has_addition> "running shoes" .
 ```
 
+Other cases of reification can occur. For instance, the `Modality` attribute might need to be reified to have additional
+information linked to it, such as a negative polar value. See the [Attribute nodes and `Argument{In,Out}` relations](#attribute-nodes-and-argumentinout-relations) section
+for more details about it.
+
 <[back to the table of contents](#table-of-contents)>
 #### Implicit predicates and arguments
 
-In a number of cases, predicates and arguments can be implicit, i.e. the linguistic form does not convey what an 
-utterance's meaning does.
-
-<!-- Work in progress... À mettre dans le papier en tant que limites et perspectives, tant le chantier semble vaste.
-Référence : les travaux de O'Gorman, notamment sa thèse (2019) sous la direction de M. Palmer -->
-
-Temporary list of examples, to be checked and validated:
+In a number of cases, predicates and arguments can be implicit, *i.e.*, the linguistic form does not convey what an 
+utterance's meaning does. Implicit elements must be rendered explicit while annotating.
 
 ```console
 John arrived before Mary.
-(=John arrived before Mary arrived.)
+(=John arrived before Mary arrived/did.)
 
 <vn:escape-51.1-1$1> <:has_agent> "John" .
 <vn:escape-51.1-1$2> <:has_agent> "Mary" .
@@ -284,23 +281,27 @@ John bought three green apples whereas Mary two red.
 <vn:get-13.5.1$1> <:has_agent> "John" .
 <vn:get-13.5.1$1> <:has_theme> "apples"$1 .
 "apples"$1 <:has_measureexact> "3" .
-"apples"$1 <:has_property> <pb:green.02> .
+<:property$1> <:has_argumentin> "apples"$1 .
+<:property$1> <:has_argumentin> <pb:green.02> .
 <vn:get-13.5.1$1 <:has_opposition> <vn:get-13.5.1$2> .
 <vn:get-13.5.1$2 <:has_opposition> <vn:get-13.5.1$1> .
 <vn:get-13.5.1$2 <:has_agent> "Mary" .
 <vn:get-13.5.1$2 <:has_theme> "apples"$2 .
-"apples"$2> <:has_measureexact> "2" .
-"apples"$2> <:has_property> <pb:red.02> .
+"apples"$2 <:has_measureexact> "2" .
+<:property$2> <:has_argumentin> "apples"$2 .
+<:property$2> <:has_argumentin> <pb:red.02> .
 ```
 
 ```console
-John is sick as well as Mary.
+John is sick and Mary is too.
 (=John is sick. Mary is sick.)
 
-<pb:sick.04$1> <:has_patient> "John" .
-<pb:sick.04$2> <:has_patient> "Mary" .
-<:addition> <:has_addition> <pb:sick.04$1> .
-<:addition> <:has_addition> <pb:sick.04$2> .
+<:property$1> <:has_argumentin> "John" .
+<:property$1> <:has_argumentin> <pb:sick.04$1>
+<:property$2> <:has_argumentin> "John" .
+<:property$2> <:has_argumentin> <pb:sick.04$2>
+<:addition> <:has_addition> <:property$1> .
+<:addition> <:has_addition> <:property$2> .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -312,7 +313,7 @@ The different types of relations are described in the following sections.
 <[back to the table of contents](#table-of-contents)>
 #### Core and non-core relations
 
-Core relations symbolize prototypical predicate arguments relations, as can be detailed in some resources like VerbNet.  
+Core relations symbolize prototypical predicate-argument relations, as can be detailed in some resources like VerbNet.  
 For instance, the `vn:eat-39.1` frame is described as follows: `Agent [+animate] V Patient [+comestible]`
 
 ```console
@@ -337,6 +338,7 @@ Those must be read from the underlined token to the bold one with the relation
 | Relation        | Example                                                                     |
 |-----------------|-----------------------------------------------------------------------------|
 | `Agent`         | **John** <ins>ate</ins> an apple.                                           |
+| `Pivot`         | **John** <ins>craves</ins> new shoes.                                       |
 | `Cause`         | **John** made Mary <ins>eat</ins> an apple.                                 |
 | `Theme`         | John <ins>ordered</ins> **sushi**.                                          |
 | `Patient`       | John <ins>ate</ins> an **apple**.                                           |
@@ -345,6 +347,7 @@ Those must be read from the underlined token to the bold one with the relation
 | `Beneficiary`   | John <ins>helped</ins> **Mary**.                                            |
 | `Experiencer`   | **John** <ins>saw</ins> Mary.                                               |
 | `Stimulus`      | John <ins>saw</ins> **Mary**.                                               |
+| `Result`        | John <ins>broke</ins> the vase into **pieces**.                             |
 | `Attribute`     | John <ins>praised</ins> the **courage** of the volunteers.                  |
 | `Product`       | John <ins>built</ins> a **house**.                                          |
 | `Location`      | John <ins>built</ins> a house in **France**.                                |
@@ -353,8 +356,8 @@ Those must be read from the underlined token to the bold one with the relation
 | `LocationFuzzy` | John <ins>built</ins> a house somewhere in **France**.                      |
 | `Source`        | John <ins>emptied</ins> the trash from the **trash can** into the dumpster. |
 | `Destination`   | John <ins>emptied</ins> the trash from the trash can into the **dumpster**. |
-| `Instrument`    | John <ins>traveled</ins> on his **bike**.                                   |
 | `Manner`        | John **quickly** <ins>built</ins> a house.                                  |
+| `Instrument`    | John <ins>traveled</ins> on his **bike**.                                   |
 | `Material`      | John <ins>built</ins> a **brick** house.                                    |
 | `Value`         | John <ins>estimated</ins> the probability at **20%**.                       |
 | `Asset`         | John <ins>billed</ins> Mary for 100 **euros**.                              |
@@ -471,12 +474,7 @@ must go from and to each element.
 <[back to the table of contents](#table-of-contents)>
 #### `Comparison`: a special case
 
-<!-- Compte tenu du chantier qui semble s'imposer pour les différentes expressions de la comparaison, i.e. 
-en-dehors des cas classiques et faciles, cette partie pourrait faire l'objet de limites et de perspectives,
-en se basant notamment sur le travail de Bonial et al. (2018) -->
-
-Just like quantification (see the [Quantification](#quantification) section) and temporal relations 
-(see the [Temporal relations](#temporal-relations) section), the `Comparison` relation has several derivative labels.
+The `Comparison` relation has several derivative labels.
 Those derivative labels are introduced in order to represent comparatives and superlatives.
 
 <[back to the table of contents](#table-of-contents)>
@@ -485,8 +483,8 @@ Those derivative labels are introduced in order to represent comparatives and su
 MR4AP remains consistent in the vocabulary used for derivative labels: `Comparison{Exact,Min,Max,Fuzzy}`. These 
 relations are two-way: one or both can be annotated.  
 Note that implicit predicates must be used in order to represent the comparison taking place (see the 
-[Implicit predicates and arguments](#implicit-predicates-and-arguments) section). These implicit predicates  
-are duly mentioned along with the following examples.
+[Implicit predicates and arguments](#implicit-predicates-and-arguments) section). These implicit predicates
+are duly mentioned (using the `$implicit` annotation) along with the following examples.
 
 ```console
 John is as kind as Mary [ø = is kind].
@@ -533,7 +531,7 @@ John is about as reckless as Mary [ø = is reckless].
 ```
 
 The same goes for verbal predicates. If the predicates in comparison are not all explicit, instantiating the implicit
-ones is mandatory. Compare the following examples.
+ones is mandatory. Consider the following example.
 
 ```console
 John works more than Mary [ø = does / works].
@@ -582,23 +580,14 @@ example:
 The more we include, the better the representation.
 (=The more {things,elements,items} we include, the better the representation is.)
 
+<!-- TODO --> 
 
 ---
 
 The faster, the better.
 (=The faster something is, the better this something is.)
-```
 
-Degree-consequence constructions are annotated like the following example (borrowed from Bonial et al. (2018)):
-
-```console
-The smell is so terrible, you want to throw up.
-
-<:property> <:has_argumentin> "smell" .
-<:property> <:has_argumentout> <pb:terrible.01> . 
-<:property> <:has_degree> "intensifier"
-<:property> <:has_consequence> <fn:Excreting> .
-<fn:Excreting> <:has_agent> "you" .
+<!-- TODO --> 
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -651,7 +640,7 @@ John ate it all up.
 <[back to the table of contents](#table-of-contents)>
 ### Idioms
 
-Idioms must also be considered as a whole (i.e., a single node) since their meanings are not deducible from their 
+Idioms must also be considered as a whole (*i.e.*, a single node) since their meanings are not deducible from their 
 components. Traditional examples in English include "to kick the bucket" and "to miss the boat". Both can have a literal 
 meaning, in which case the components **must** be analyzed separately. However, in their idiomatic readings, their 
 meanings must be analyzed accordingly. Linguistic tests can be used to determine whether an expression's reading is 
@@ -670,8 +659,8 @@ John kicked the bucket because he was angry.
 <vn:hit-18.1-1> <:has_patient> "bucket" .
 ```
 
-The first example illustrates the idiomatic meaning of "John kicked the bucket" (i.e., "John died"), whereas the second 
-illustrates its literal meaning (i.e., "John hit the bucket with his foot").
+The first example illustrates the idiomatic meaning of "John kicked the bucket" (*i.e.*, "John died"), whereas the second 
+illustrates its literal meaning (*i.e.*, "John hit the bucket with his foot").
 
 <[back to the table of contents](#table-of-contents)>
 ## Questions
@@ -682,12 +671,14 @@ MR4AP splits questions into three types: polar questions, alternative questions,
 ### Polar questions
 
 Polar questions are questions whose possible answers are either affirmative, negative, or doubtful. 
-To mark the interrogativeness linked to a predicate, we link the latter to an `unknown` node with an `Unknown` relation.
+To mark the interrogativeness linked to a predicate, we link the latter to an `:unknown` node with an `Unknown` relation.
 This node is then typed `question-closed` (see the [Question types](#question-types) section).
 
 ```console
 Do you want some tea?
 
+<vn:want-32.1-1-1> <:has_pivot> "you" .
+<vn:want-32.1-1-1> <:has_theme> "tea" .
 <vn:want-32.1-1-1> <:has_unknown> <:unknown> .
 <:unknown> <:has_type> "question-closed" .
 ```
@@ -696,13 +687,13 @@ Do you want some tea?
 ### Alternative questions
 
 Alternative questions are questions whose possible answers are offered within the question. 
-Once again, to mark the interrogativeness linked to a predicate, we link the latter to an `unknown` node with an `Unknown` relation.
+Once again, to mark the interrogativeness linked to a predicate, we link the latter to an `:unknown` node with an `Unknown` relation.
 This node is then typed `question-choice` (see the [Question types](#question-types) section).
 
 However, more parameters are to be taken into account. First, the alternative offered in the question must give way to a 
-reified `alternative` node. This node is then linked to the different elements contained in the alternative with the 
-`Alternative` relation. Secondly, whenever the alternative has a function in respect with a predicate (i.e., whenever 
-the alternative is an argument of a predicate), the predicate must be linked to the `alternative` node with the appropriate relation. 
+reified `:alternative` node. This node is then linked to the different elements contained in the alternative with the 
+`Alternative` relation. Secondly, whenever the alternative has a function in respect with a predicate (*i.e.*, whenever 
+the alternative is an argument of a predicate), the predicate must be linked to the `:alternative` node with the appropriate relation. 
 
 ```console
 Do you want tea or coffee?
@@ -720,8 +711,8 @@ Do you want tea or coffee?
 
 Variable questions are questions whose answers are the most open-ended. In English, they are typically WH-questions.
 Since these questions are targeted, the unknown element is in fact an argument of the question's predicate. Therefore, 
-the `unknown` node must be the endpoint of the appropriate relation in respect with the predicate.
-Then, this `unknown` node must be typed `question-open` (see the [Question types](#question-types) section).
+the `:unknown` node must be the endpoint of the appropriate relation in respect with the predicate.
+Then, this `:unknown` node must be typed `question-open` (see the [Question types](#question-types) section).
 
 ```console
 Who ate the apple?
@@ -767,7 +758,7 @@ Attributes are by default **reified nodes**. Prototypically, attributes link a n
 have a negative polar value).
 As such, they could be simple relations in most cases. However, additional information may sometimes need to be attached
 to said relations (e.g., a negative polar value can itself have a negative polar value). To do that, these relations 
-have to be reified. When reified, the relation (i.e., the triple's predicate) becomes a linking node (and becomes the 
+have to be reified. When reified, the relation (*i.e.*, the triple's predicate) becomes a linking node (and becomes the 
 subject for two triples). The two relations used to link the node to its value through such a reified node are the 
 generic and empty relations `Argument{In,Out}`. 
 
@@ -790,7 +781,7 @@ John is able to cook.
 ```
 
 For readability reasons, we might omit the representation using the `Argument{In,Out}` relations. However, when needed
-(i.e., additional information is attached to the attribute node), the representation with `Argument{In,Out}` is used.
+(*i.e.*, additional information is attached to the attribute node), the representation with `Argument{In,Out}` is used.
 
 ```console
 John is NOT able to cook.
@@ -968,28 +959,29 @@ https://github.com/umr4nlp/umr-guidelines/blob/master/guidelines.md#part-3-1-2-n
 <[back to the table of contents](#table-of-contents)>
 #### Named Entities and Word Senses
 
-As mentioned earlier, in its search for explicitness, MR4AP aims at semantically type every entity. 
+In its search for explicitness, MR4AP aims at semantically type every entity. 
 Entities can either be named or not. In both cases, MR4AP attaches a tag from Emvista's ontology. 
-As mentioned earlier, entities that are in fact MWEs must be treated and tagged as single units.
+Entities that are in fact MWEs must be treated and tagged as single units.
 
 ```console
 John read "Le Petit prince" in the train to Nancy.
 
-"John" <:has_type> "Thing/Concrete/Animate/Livingbeing/Human" .
-"Le Petit prince" <:has_type> "Thing/Concrete/Inanimate/Product/Artwork/Book" .
-"train" <:has_type> "Thing/Concrete/Inanimate/Product/Machine/Vehicle/RailwayRollingVehicle" .
-"Nancy" <:has_type> "Thing/Abstract/Location/City" .
+"John" <:has_type> "em:Thing/Concrete/Animate/Livingbeing/Human" .
+"Le Petit prince" <:has_type> "em:Thing/Concrete/Inanimate/Product/Artwork/Book" .
+"train" <:has_type> "em:Thing/Concrete/Inanimate/Product/Machine/Vehicle/RailwayRollingVehicle" .
+"Nancy" <:has_type> "em:Thing/Abstract/Location/City" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
 #### Gender
 
-Entities that have been typed `Thing/Concrete/Animate/Livingbeing` may also receive a gender whenever possible.
+Entities that have been typed `em:Thing/Concrete/Animate/Livingbeing` may also receive a gender value whenever possible 
+using the `Type` attribute.
 
 ```console
 Swimming is one of John's passions.
 
-"John" <:has_type> "Thing/Concrete/Animate/Livingbeing/Human" .
+"John" <:has_type> "em:Thing/Concrete/Animate/Livingbeing/Human" .
 "John" <:has_type> "masculine" .
 ```
 
@@ -1003,7 +995,7 @@ See the [Questions](#questions) section.
 <[back to the table of contents](#table-of-contents)>
 ### Aspect
 
-Aspect is a grammatical trait expressing how events (as defined earlier, see [Events and entities](#events-and-entities) 
+Aspect is a grammatical trait expressing how events (as defined earlier, see the [Events and entities](#events-and-entities) 
 section) extend over time. MR4AP makes use of 
 [UMR's extensive work on aspect](https://github.com/umr4nlp/umr-guidelines/blob/master/guidelines.md#part-3-3-1-aspect). 
 However, instead of using the very fine-grained lattice it offers, MR4AP only keeps the higher levels. 
@@ -1014,7 +1006,9 @@ Those labels can be seen in the adapted lattice below and each of them are then 
 <[back to the table of contents](#table-of-contents)>
 #### Event nominals
 
-As event nominals lack morphosyntactic clues to determine their aspectual values, the default annotation is `process`.
+As event nominals lack morphosyntactic information to determine their aspectual values, the default annotation is 
+`process`. However, whenever the event nominal is part of an LVC, it may inherit the aspectual value the verb would have
+been assigned.
 
 ```console
 The bombing killed more than 25 people.
@@ -1025,7 +1019,7 @@ The bombing killed more than 25 people.
 <[back to the table of contents](#table-of-contents)>
 #### Habitual
 
-Aspectual value `habitual` is used for recurring events.
+The aspectual `habitual` is used for recurring events.
 
 ```console
 John runs every Wednesday.
@@ -1036,16 +1030,16 @@ John runs every Wednesday.
 <[back to the table of contents](#table-of-contents)>
 #### State
 
-Aspectual value `state` is used for stative events (see the [Stative events](#stative-events) section). 
+The aspectual `state` is used for stative events (see the [Stative events](#stative-events) section). 
 
 These include state verbs:
 
 ```console
 John is a doctor.
 
-<em:type> <:has_argumentin> "John" .
-<em:type> <:has_argumentout> "doctor" .
-<em:type> <:has_aspect> "state" .
+<:type> <:has_experiencer> "John" .
+<:type> <:has_attribute> "doctor" .
+<:type> <:has_aspect> "state" .
 ```
 
 Verbs modified by an ability modal:
@@ -1061,19 +1055,19 @@ Thetic/predicative possession:
 ```console
 John owns a car.
 
-<em:own> <:has_aspect> "state" .
+<:own> <:has_aspect> "state" .
 
 ---
  
 This car belongs to John.
 
-<em:own> <:has_aspect> "state" .
+<:own> <:has_aspect> "state" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
 #### Activity
 
-Aspectual value `activity` is used for events that haven't reached their ends.
+The aspectual `activity` is used for events that haven't reached their ends.
 
 These include the canonical progressive aspect:
 
@@ -1137,7 +1131,7 @@ telic one and go further down the lattice. In those cases, falling back to `atel
 <[back to the table of contents](#table-of-contents)>
 #### Endeavor
 
-Aspectual value `endeavor` is used for telic events, i.e. for events that have reached their ends. 
+The aspectual `endeavor` is used for telic events, *i.e.*, for events that have reached their ends. 
 However, it is not obvious that they have reached a result state. 
 
 The only markers to look for are durative adverbials modifying the verb:
@@ -1175,7 +1169,7 @@ Quantification is used to assign a normalized numeric value to an entity.
 <[back to the table of contents](#table-of-contents)>
 #### Usual cases
 
-Just like temporal relations (see the [Temporal relations](#temporal-relations) section, quantification can be 
+Just like temporal relations (see the [Temporal relations](#temporal-relations)) section, quantification can be 
 symbolized with a number of derivative labels, namely `Measure{Exact,Min,Max,Fuzzy}`.  
 Quantification can either be explicit or implicit.
 
@@ -1192,78 +1186,107 @@ finer-grained relations are preferred. However, whenever the annotator is in dou
 <[back to the table of contents](#table-of-contents)>
 #### Quantification in comparisons
 
-Whenever quantification is expressed in comparative constructions, there are different derivative labels that need
-to be introduced, namely `Measure{More,Less,Equal}`. With those constructions, implicit predicates and/or arguments
-are common. Those implicit elements must be represented (see 
+Whenever quantification is expressed in comparative constructions, the scope must be adjusted. With those constructions, 
+implicit predicates and/or arguments are common and must be represented (see 
 the [Implicit predicates and arguments](#implicit-predicates-and-arguments) section). When
 these implicit arguments are different instantiations of events/entities, they are distinct nodes from the explicit 
-ones. <!-- une réification semble nécessaire pour ce cas précis, non ? pour pouvoir joindre les mentions implicites 
-et explicites qui sont comparées -->
+ones.
 
 ```console
-John bought more flowers than Mary did. (=John bought more flowers than Mary did buy flowers.)
+John bought more flowers than Mary. (=John bought more flowers than Mary did [buy flowers]..)
 
 <vn:get-13.5.1> <:has_agent> "John" .
 <vn:get-13.5.1> <:has_theme> "flower" .
 "flower" <:has_measuremin> "2" .
 <vn:get-13.5.1$implicit> <:has_agent> "Mary" .
 <vn:get-13.5.1$implicit> <:has_theme> "flower$implicit" .
-"flower$implicit"> <:has_measuremin> "2" .
-"flower" <:has_measuremore> "flower$implicit" .
-"flower$implicit" <:has_measureless> "flower" .
+"flower$implicit"> <:has_measuremin> <:unknown> .
+"2" <:has_comparisonmin> <:unknown> .
 ```
 
 <[back to the table of contents](#table-of-contents)>
 #### Quantification and superlatives
 
-On the other hand, whenever quantification is expressed in superlative constructions, the two possible derivate 
-`Measure` relations are `MeasureMost` and `MeasureLeast`.
+Quantification in superlatives works the same, *i.e.*, all the implicit predicates and arguments must be instantiated.
 
 <!-- Cette représentation n'est pas satisfaisante -->
 
 ```console
-John bought the most flowers (=out of everybody else).
+John bought the most flowers. (=John bought the most flowers out of {everybody else, his siblings, his team members}).
 
 <vn:get-13.5.1> <:has_agent> "John" .
 <vn:get-13.5.1> <:has_theme> "flower" .
 "flower" <:has_measuremin> "2" .
 <vn:get-13.5.1$implicit> <:has_agent> "implicit_argument" .
 <vn:get-13.5.1$implicit> <:has_theme> "flower$implicit" .
-"flower$implicit" <:has_measuremin> "2" .
-"flower" <:has_measuremost> "flower$implicit" .
+"flower$implicit"> <:has_measuremin> <:unknown> .
+"2" <:has_comparisonmin> <:unknown> .
 ```
+
+#### Other uses of quantification
+
+The expression of quantification can take several forms. Ordinal entities for instance give way to `:ordinal` nodes with
+the relations `Ordinal` and `Value`.
+
+```console
+She is the duke's fourth daughter and tenth child.
+
+"daughter" <:has_ordinal> <:ordinal$1>
+<:ordinal$1> <:has_value> "4"
+"child" <:has_ordinal> <:ordinal$2>
+<:ordinal$2> <:has_value> "10"
+```
+
+<!-- TODO: other cases -->
 
 <[back to the table of contents](#table-of-contents)>
 ### Polarity (and scope)
 
-Polarity can receive one of two values: `negative` or `positive`. However, to reduce the number of annotations needed,
-`positive` polarity can be considered the default annotation and not be annotated.
-The scope of the negation must be taken into account, especially when interacting with modality.
+Polarity can receive one of two values: `negative` or `positive`. **However, to reduce the number of annotations needed,
+`positive` polarity can be considered the default annotation and not be annotated.**
+
+The scope of the negation must be taken into account, especially when interacting with modality. As explained in
+the [Attribute nodes and `Argument{In,Out}` relations](#attribute-nodes-and-argumentinout-relations) section,
+attributes should be considered as reified nodes by default. In fact, polarity can either be seen as the attribute 
+acting as a relation (*i.e.*, `<:has_polarity>`) or as the attribute node `<:polarity>` with the `Argument{In,Out}` 
+relations. Doing so allows the annotator to address scope whenever needed.
+
+The first two examples are demonstrations of cases where reifying seems pointless:
 
 ```console
 John is cooking.
 
+<vn:cooking-45.3> <:has_agent> "John" .
 <vn:cooking-45.3> <:has_polarity> "positive" .
 
 ---
 
 John is not cooking.
 
+<vn:cooking-45.3> <:has_agent> "John" .
 <vn:cooking-45.3> <:has_polarity> "negative" .
+```
 
----
+On the other hand, the next three examples show how scope is important, especially when modality and 
+negation interact or when negation is doubled.
 
-John has to cook.
+```console
+John is not not cooking.
 
-<vn:cooking-45.3> <:has_modality> "obligation" .
-"obligation" <:has_polarity> "positive" .
+<vn:cooking-45.3> <:has_agent> "John" .
+<:polarity$1> <:has_argumentin> <vn:cooking-45.3> .
+<:polarity$1> <:has_argumentout> "negative" .
+<:polarity$2> <:has_argumentin> <:polarity$1> .
+<:polarity$2> <:has_argumentout> "negative" .
 
----
+--- 
 
 John does not have to cook.
 
-<vn:cooking-45.3> <:has_modality> "obligation" .
-"obligation" <:has_polarity> "negative" .
+<vn:cooking-45.3> <:has_agent> "John" .
+<:modality> <:has_argumentin> <vn:cooking-45.3> .
+<:modality> <:has_argumentout> "obligation" .
+<:modality> <:has_polarity> "negative" .
 
 ---
 
@@ -1292,6 +1315,13 @@ What John did was unfair.
 
 Modality expresses the relationship between a given utterance and its truth value.  
 Modality can receive one of six values: `obligation`, `capacity`, `wish`, `suggestion`, `uncertainty`, and `temporality`.
+
+The scope of modals must be taken into account, especially when interacting with negation. As explained in
+the [Attribute nodes and `Argument{In,Out}` relations](#attribute-nodes-and-argumentinout-relations) section,
+attributes should be considered as reified nodes by default. In fact, modality can either be seen as the attribute 
+acting as a relation (*i.e.*, `<:has_modality>`) or as the attribute node `<:modality>` with the `Argument{In,Out}` 
+relations. Doing so allows the annotator to address scope whenever needed (see the [Polarity (and scope)](#polarity-and-scope)
+section for such examples.
 
 <[back to the table of contents](#table-of-contents)>
 #### Obligation
@@ -1385,25 +1415,22 @@ John is a little slow.
 <[back to the table of contents](#table-of-contents)>
 #### Degree-consequence constructions
 
-As mentioned in the [Other constructions](#other-constructions) section, whenever `Degree` is involved in comparative 
-constructions (e.g., degree-consequence constructions), two additional values are possible: `intensifier` and `downtoner`.
+Degree-consequence constructions are annotated like the following example (borrowed from Bonial et al. (2018)):
 
 ```console
-The less stubborn he is, the happier she is.
+The smell is so terrible, you want to throw up.
 
-<:property$1> <:has_argumentin> "he" .
-<:property$1> <:has_argumentout> <pb:obstinate.01> .
-<:property$1> <:has_degree> "downtoner" .
-<:property$2> <:has_argumentin> "she" .
-<:property$2> <:has_argumentout><pb:happy.01> .
-<:property$2> <:has_degree> "intensifier" .
-<:property$1> <:has_consequence> <:property$2> .
+<:property> <:has_argumentin> "smell" .
+<:property> <:has_argumentout> <pb:terrible.01> . 
+<:property> <:has_degree> "intensifier"
+<:property> <:has_consequence> <fn:Excreting> .
+<fn:Excreting> <:has_agent> "you" .
 ```
 
 <[back to the table of contents](#table-of-contents)>
 ## Coreference and anaphora
 
-Coreference indicates that two or more expressions have the same referent, i.e. they refer to the same entity or event.
+Coreference indicates that two or more expressions have the same referent, *i.e.*, they refer to the same entity or event.
 
 <[back to the table of contents](#table-of-contents)>
 ### Event coreference
@@ -1413,7 +1440,7 @@ Coreference can occur between events.
 ```console
 The bombing killed more than 25 people. It occurred in broad daylight.
 
-<vn:attack-60.1$1> <is_sameas> <vn:attack-60.1$2> .
+<vn:attack-60.1$2> <:is_sameas> <vn:attack-60.1$1> .
 ```
 
 Whenever there is a coreference, every mention of the chain must bear the same class.
@@ -1426,22 +1453,22 @@ Coreference can occur between entities.
 ```console
 John swam for hours. Then, he went straight back home.
 
-"John" <is_sameas> "he" .
+"he" <:is_sameas> "John" .
 ```
 <[back to the table of contents](#table-of-contents)>
 ### Possessive anaphora
 
 An expression is anaphoric when it has an antecedent. However, contrary to coreference, the anaphoric mention and its
 antecedent do not share the same referent. This is the case for possessive anaphora, as in "John broke his bike", where
-"his" refers indirectly to the bike's owner, i.e. "John". In such cases, there are two scenarios: either the noun 
+"his" refers indirectly to the bike's owner, *i.e.*, "John". In such cases, there are two scenarios: either the noun 
 determined by the possessive determiner is an event or it is an object. In the latter case, the object and its 
 possessor must be linked with an `own` node, just like thetic/predicational possession:
 
 ```console
 John broke his bike.
 
-<em:own> <:has_pivot> "John" .
-<em:own> <:has_theme> "bike" .
+<:own> <:has_pivot> "John" .
+<:own> <:has_theme> "bike" .
 ```
 
 In the former case (when the noun is an event), the antecedent must be linked to said event with the appropriate relation.
@@ -1453,7 +1480,7 @@ John was apprehended by the police yesterday. His arrest lasted only a few minut
 
 <vn:prosecute-33.2$1> <:has_patient> "John" .
 <vn:prosecute-33.2$2> <:has_patient> "John" (from "his")> .
-<vn:prosecute-33.2$1> <is_sameas> <vn:prosecute-33.2$2> .
+<vn:prosecute-33.2$2> <:is_sameas> <vn:prosecute-33.2$1> .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1479,8 +1506,6 @@ The following cheatsheet is provided in order to ease the annotation process.
 |                       | `Result`          | Predicate or entity                                                                             |
 |                       | `Attribute`       | Entity                                                                                          |
 |                       | `Product`         | Predicate or entity                                                                             |
-|                       | `Result`          | Predicate or entity                                                                             |
-|                       | `Instrument`      | Entity                                                                                          |
 |                       | `Location`        | Entity                                                                                          |
 |                       | `LocationExact`   | Entity                                                                                          |
 |                       | `LocationFuzzy`   | Entity                                                                                          |
@@ -1488,6 +1513,7 @@ The following cheatsheet is provided in order to ease the annotation process.
 |                       | `Source`          | Predicate or entity                                                                             |
 |                       | `Destination`     | Predicate or entity                                                                             |
 |                       | `Manner`          | Adverbial                                                                                       |
+|                       | `Instrument`      | Entity                                                                                          |
 |                       | `Material`        | Entity                                                                                          |
 |                       | `Value`           | Entity                                                                                          |
 |                       | `Asset`           | Entity                                                                                          |
@@ -1543,7 +1569,7 @@ The following cheatsheet is provided in order to ease the annotation process.
 |                       | `MeasureMin`      | Literal value                                                                                   |
 |                       | `MeasureMax`      | Literal value                                                                                   |
 |                       | `MeasureFuzzy`    | Literal value                                                                                   |
-|                       | `Property`        | Literal value                                                                                   |
+|                       | `Property`        | Predicate or literal value                                                                      |
 
 
 <[back to the table of contents](#table-of-contents)>
@@ -1557,20 +1583,20 @@ Luke and John are singing songs. As a result, Mary cannot sleep. She will reprim
 <vn:performance-26.7> <:has_theme> "song" .
 <vn:performance-26.7> <:has_agent> <:addition> .
 <:addition> <:has_addition> "Luke" .
-"Luke" <:has_type> "Thing/Concrete/Animate/Livingbeing/Human" .
+"Luke" <:has_type> "em:Thing/Concrete/Animate/Livingbeing/Human" .
 "Luke" <:has_type> "masculine" .
-"John" <:has_type> "Thing/Concrete/Animate/Livingbeing/Human" .
+"John" <:has_type> "em:Thing/Concrete/Animate/Livingbeing/Human" .
 "John" <:has_type> "masculine" .
 <:addition> <:has_addition> "John" .
 "song" <:has_measuremin> "1" .
-"song" <:has_type> "Thing/Abstract/Product/Artwork/Music" .
+"song" <:has_type> "em:Thing/Abstract/Product/Artwork/Music" .
 <vn:performance-26.7> <:has_polarity> "positive" .
 <vn:performance-26.7> <:has_aspect> "activity" .
 <vn:performance-26.7> <:has_timeexact> "DCT" .
 <vn:performance-26.7> <:has_consequence> <vn:snooze-40.4> .
 <vn:snooze-40.4> <:has_cause> <vn:performance-26.7> .
 <vn:snooze-40.4> <:has_agent> "Mary" .
-"Mary" <:has_type> "Thing/Concrete/Animate/Livingbeing/Human" .
+"Mary" <:has_type> "em:Thing/Concrete/Animate/Livingbeing/Human" .
 "Mary" <:has_type> "feminine" .
 <vn:snooze-40.4> <:has_aspect> "state" .
 <vn:snooze-40.4> <:has_modality> "capacity" .
@@ -1583,8 +1609,8 @@ Luke and John are singing songs. As a result, Mary cannot sleep. She will reprim
 <vn:judgment-33> <:has_timemax> "DCT+1dayt12:00:00" .
 <vn:judgment-33> <:has_polarity> "positive" .
 <vn:judgment-33> <:has_aspect> "performance" .
-"Mary" <is_sameas> "she" .
-<:addition> <is_sameas> "them" .
+"Mary" <:is_sameas> "she" .
+<:addition> <:is_sameas> "them" .
 ```
 
 The corresponding visual graph from [MR4AP: Meaning Representation for Application Purposes]()'s paper: 
