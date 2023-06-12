@@ -1613,7 +1613,8 @@ Luke and John are singing songs. As a result, Mary cannot sleep. She will reprim
 <:addition> <:is_sameas> "them" .
 ```
 
-The corresponding visual graph from [MR4AP: Meaning Representation for Application Purposes]()'s paper: 
+The corresponding visual graph from 
+[MR4AP: Meaning Representation for Application Purposes](../paper/mr4ap_giordano_lopez_dmr2023.pdf)'s paper: 
 <!-- Insert link to final version of paper (to upload to Git) -->
 
 ![Example from DMR's paper)](img/fig1_0106.png)
