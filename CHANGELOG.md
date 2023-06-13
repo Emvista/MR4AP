@@ -1,3 +1,6 @@
+# 0.3.0
+* [BG] Updated guidelines
+
 # 0.2.1
 * [BG] Reuploaded MR4AP-tapaco files and updated README
 
