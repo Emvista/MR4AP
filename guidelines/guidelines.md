@@ -1569,6 +1569,8 @@ Annotating entities is as simple as it gets:
 * Give the annotation a tag from the [ontology](#semantic-typing) (beginning to fill the `Tag` field offers suggestions),
 * You can edit your annotation anytime.
 
+![Annotating entities](img/annotating_entities.gif)
+
 To speed up the process, key bindings for the most frequent tags exist.  
 We recommend annotating entities before anything else. 
 
@@ -1583,6 +1585,8 @@ Annotating predicates works the same as annotating entities with a twist:
   the `Tag` field offers suggestions),
 * You can edit your annotation anytime.
 
+![Annotating predicates](img/annotating_predicates.gif)
+
 We recommend annotating predicates early during the annotation process.
 
 <[back to the table of contents](#table-of-contents)>
@@ -1596,6 +1600,8 @@ Take for instance the segment "Lavorerai domani" and compare it with its English
 In both cases, we need to have the triple `<:work> <:has_agent> "you"` annotated somehow. To do so (in Italian):
 * Annotate an asterisk at the end of the document with a `Human` entity,
 * Link the `Work` event node to the newly created `Human` entity with an `Agent` relation.
+
+![Annotating implicit elements](img/annotating_implicit_elements.gif)
 
 The same goes for any implicit element the annotator wishes to represent.
 
@@ -1612,6 +1618,8 @@ an annotation can be added. For instance, copulae may not be present in nominal 
 * Link the `Human` entity as the `Experiencer`,
 * Link the `Function` entity as the `Attribute`.
 
+![Annotating stative events](img/annotating_stative_events.gif)
+
 The same goes for every stative event when no surface tokens can be used.
 
 <[back to the table of contents](#table-of-contents)>
@@ -1622,6 +1630,8 @@ Annotating relations works once entities and predicates exist in your document:
 * Drag the mouse to another annotation,
 * In the `Relation` field, choose one from the list,
 * You can edit your annotation anytime.
+
+![Annotating relations](img/annotating_relations.gif)
 
 **Relations are to be taken into account at both the sentence and the document levels.**  
 To speed up the process, key bindings for the most frequent tags exist.  
@@ -1635,6 +1645,8 @@ Attributes are usually superimposed on predicates and entities annotations:
 * Highlight the span of text you wish to annotate,
 * Assign the annotation an attribute in the `Attribute` field (beginning to fill the `Tag` field offers suggestions),
 * You can edit your annotation anytime.
+
+![Annotating attributes](img/annotating_attributes.gif)
 
 To speed up the process, key bindings for the most frequent attributes exist.  
 We recommend annotating attributes after everything else. 
@@ -1652,6 +1664,8 @@ Take for instance the segment "John ate apples before dinner". The correct way t
 * Annotate the asterisk bearing the `Measure` tag with a value annotation,
 * Set the correct value using the `Value` field.
 
+![Annotating values](img/annotating_values.gif)
+
 <[back to the table of contents](#table-of-contents)>
 #### Reifying attribute nodes
 
@@ -1660,12 +1674,14 @@ Whenever needed, the annotator should make use of the asterisks at the end of th
 "John does not have to cook Mary dinner". The negation concerns the deontic modal value expressed with "have to", but 
 does not concern the verb "cook" (compare with "John has to not cook Mary dinner"). Attributes superimposed on
 predicates can't be the endpoints of relations. Thus, the correct way to annotate the triples 
-`<:cook> <:has_modality> "capacity">` and `<:modality> <:has_polarity> "negative">` is:
+`<:cook> <:has_modality> "obligation">` and `<:modality> <:has_polarity> "negative">` is:
 * Annotate the cooking event with the `Cook` predicate class,
 * Annotate an asterisk with a `Modality` entity node,
-* Assign an attribute `modality:capacity` to said `Modality` node,
+* Assign an attribute `modality:obligation` to said `Modality` node,
 * Assign an attribute `polarity:negative` to said `Modality` node,
 * Link the `Modality` node to the `Cook` node with an `ArgumentIn` relation.
+
+![Reifying attribute nodes](img/reifying_attribute_nodes.gif)
 
 This method can be extended to any attribute node.
 
