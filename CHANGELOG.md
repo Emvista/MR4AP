@@ -1,3 +1,6 @@
+# 0.4.0
+* [BG] Added an INCEpTION practical guide in guidelines
+
 # 0.3.0
 * [BG] Updated guidelines
 

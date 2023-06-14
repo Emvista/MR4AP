@@ -65,8 +65,18 @@ Authors: *Bastien Giordano, Cédric Lopez*
    2. [Entity coreference](#entity-coreference)
    3. [Possessive anaphora](#possessive-anaphora)
 7. [Annotation cheatsheet](#annotation-cheatsheet)
-   1. [Relations and values](#relations-and-values)
-   2. [Complete example](#complete-example)
+   1. [How to INCEpTION: a practical guide](#how-to-inception-a-practical-guide) 
+      1. [Make use of the asterisks](#make-use-of-the-asterisks)
+      2. [Annotating entities](#annotating-entities)
+      3. [Annotating predicates](#annotating-predicates)
+      4. [Annotating implicit elements](#annotating-implicit-elements)
+      5. [Annotating stative events](#annotating-stative-events)
+      6. [Annotating relations](#annotating-relations)
+      7. [Annotating attributes](#annotating-attributes)
+      8. [Annotating values](#annotating-values)
+      9. [Reifiying attribute nodes](#reifying-attribute-nodes)
+   2. [Relations and values](#relations-and-values)
+   3. [Complete example](#complete-example)
 
 --- 
 
@@ -127,6 +137,9 @@ John's arrestation by the police (...).
 MR4AP transposes these logical representations into graph representations using named relations to link events and their
 relative entities (see the [Relation types](#relation-types) section).
 
+Note: For practical guidelines regarding the annotation of dynamic events with the INCEpTION platform, refer to the 
+[Annotating predicates](#annotating-predicates) section.
+
 <[back to the table of contents](#table-of-contents)>
 #### Stative events
 
@@ -154,6 +167,9 @@ Had he worked smarter, John could have become a doctor.
 <:type> <:has_modality> "capacity"
 <:type> <:has_condition> <vn:work-73.2>
 ```
+
+Note: For practical guidelines regarding the annotation of stative events with the INCEpTION platform, refer to the 
+[Annotating stative events](#annotating-stative-events) section.
 
 <[back to the table of contents](#table-of-contents)>
 #### Factual annotation
@@ -304,11 +320,17 @@ John is sick and Mary is too.
 <:addition> <:has_addition> <:property$2> .
 ```
 
+Note: For practical guidelines regarding the annotation of implicit elements with the INCEpTION platform, refer to the 
+[Annotating implicit elements](#annotating-implicit-elements) section.
+
 <[back to the table of contents](#table-of-contents)>
 ### Relation types
 
 In its search for explicitness, MR4AP requires every relation to be named.  
 The different types of relations are described in the following sections.
+
+Note: For practical guidelines regarding the annotation of relations with the INCEpTION platform, refer to the 
+[Annotating relations](#annotating-relations) section.
 
 <[back to the table of contents](#table-of-contents)>
 #### Core and non-core relations
@@ -796,12 +818,18 @@ John is NOT able to cook.
 This is especially useful to be able to take scope into account (see the [Polarity](#polarity-and-scope) and 
 [Modality](#modality-and-scope) sections).
 
+Note: For practical guidelines regarding the annotation of attributes with the INCEpTION platform, refer to the 
+[Annotating attributes](#annotating-attributes) and [Reifying attribute nodes](#reifying-attribute-nodes) sections.
+
 <[back to the table of contents](#table-of-contents)>
 ### Semantic typing
 
 MR4AP exploits Emvista's ontology to semantically type every entity. These types are hierarchically organized:
 <!-- Insert link to Emvista's ontology? Just like UMR did here: 
 https://github.com/umr4nlp/umr-guidelines/blob/master/guidelines.md#part-3-1-2-named-entities --> 
+
+Note: For practical guidelines regarding the annotation of entities with the INCEpTION platform, refer to the 
+[Annotating attributes](#annotating-entities) section.
 
 | Level 0 | Level 1   | Level 2            | Level 3                       | Level 4          | Level 5              | Level 6               | 
 |---------|-----------|--------------------|-------------------------------|------------------|----------------------|-----------------------|
@@ -985,12 +1013,18 @@ Swimming is one of John's passions.
 "John" <:has_type> "masculine" .
 ```
 
+Note: For practical guidelines regarding the annotation of attributes with the INCEpTION platform, refer to the 
+[Annotating attributes](#annotating-attributes)
+
 <[back to the table of contents](#table-of-contents)>
 #### Question types
 
 Predicates in questions also receive a `Type` attribute. 
 Three values are possible: `question-closed`, `question-choice`, and `question-open`. 
 See the [Questions](#questions) section.
+
+Note: For practical guidelines regarding the annotation of attributes with the INCEpTION platform, refer to the 
+[Annotating attributes](#annotating-attributes)
 
 <[back to the table of contents](#table-of-contents)>
 ### Aspect
@@ -1002,6 +1036,9 @@ However, instead of using the very fine-grained lattice it offers, MR4AP only ke
 Those labels can be seen in the adapted lattice below and each of them are then described.
 
 ![Aspect Lattice (adapted from UMR)](img/aspect_.png)
+
+Note: For practical guidelines regarding the annotation of attributes with the INCEpTION platform, refer to the 
+[Annotating attributes](#annotating-attributes)
 
 <[back to the table of contents](#table-of-contents)>
 #### Event nominals
@@ -1166,6 +1203,9 @@ John cooked a wonderful meal.
 
 Quantification is used to assign a normalized numeric value to an entity.
 
+Note: For practical guidelines regarding the annotation of quantification with the INCEpTION platform, refer to the 
+[Annotating values](#annotating-values)
+
 <[back to the table of contents](#table-of-contents)>
 #### Usual cases
 
@@ -1231,10 +1271,10 @@ the relations `Ordinal` and `Value`.
 ```console
 She is the duke's fourth daughter and tenth child.
 
-"daughter" <:has_ordinal> <:ordinal$1>
-<:ordinal$1> <:has_value> "4"
-"child" <:has_ordinal> <:ordinal$2>
-<:ordinal$2> <:has_value> "10"
+"daughter" <:has_ordinal> <:ordinal$1> .
+<:ordinal$1> <:has_value> "4" .
+"child" <:has_ordinal> <:ordinal$2> . 
+<:ordinal$2> <:has_value> "10" .
 ```
 
 <!-- TODO: other cases -->
@@ -1310,6 +1350,9 @@ What John did was unfair.
 <pb:fair.01> <:has_polarity> "negative" .
 ```
 
+Note: For practical guidelines regarding the annotation of polarity with the INCEpTION platform, refer to the 
+[Annotating attributes](#annotating-attributes) and [Reifying attribute nodes](#reifying-attribute-nodes) sections.
+
 <[back to the table of contents](#table-of-contents)>
 ### Modality (and scope)
 
@@ -1322,6 +1365,9 @@ attributes should be considered as reified nodes by default. In fact, modality c
 acting as a relation (*i.e.*, `<:has_modality>`) or as the attribute node `<:modality>` with the `Argument{In,Out}` 
 relations. Doing so allows the annotator to address scope whenever needed (see the [Polarity (and scope)](#polarity-and-scope)
 section for such examples.
+
+Note: For practical guidelines regarding the annotation of modality with the INCEpTION platform, refer to the 
+[Annotating attributes](#annotating-attributes) and [Reifying attribute nodes](#reifying-attribute-nodes) sections.
 
 <[back to the table of contents](#table-of-contents)>
 #### Obligation
@@ -1395,6 +1441,9 @@ John cooks for us sometimes.
 
 The `Degree` attribute is used to scale a property that is modified.
 
+Note: For practical guidelines regarding the annotation of degree with the INCEpTION platform, refer to the 
+[Annotating attributes](#annotating-attributes) section.
+
 <[back to the table of contents](#table-of-contents)>
 #### Intensifiers and downtoners
 
@@ -1431,6 +1480,9 @@ The smell is so terrible, you want to throw up.
 ## Coreference and anaphora
 
 Coreference indicates that two or more expressions have the same referent, *i.e.*, they refer to the same entity or event.
+
+Note: For practical guidelines regarding the annotation of coreference with the INCEpTION platform, refer to the 
+[Annotating relations](#annotating-relations) section.
 
 <[back to the table of contents](#table-of-contents)>
 ### Event coreference
@@ -1486,7 +1538,152 @@ John was apprehended by the police yesterday. His arrest lasted only a few minut
 <[back to the table of contents](#table-of-contents)>
 ## Annotation cheatsheet
 
-The following cheatsheet is provided in order to ease the annotation process.
+In this section, we provide a practical guide for INCEpTION as well as a cheatsheet to ease the annotation process.
+
+<[back to the table of contents](#table-of-contents)>
+### How to INCEpTION: a practical guide
+
+INCEpTION is an annotation platform developed by Klie et al. (2018). It was convenient enough to allow us to annotate
+texts for MR4AP. INCEpTION is organised in annotation layers and tagsets. We provide all the necessary resources 
+[here](url). <!-- TODO: une partie du repo doit être dédiée au setup d'INCEpTION et fournir le nécessaire --> We 
+extensively describe how to get started with INCEpTION [there](url) (importing layers, tagsets, and texts). 
+
+This section is dedicated to how to annotate the different elements we described throughout the guidelines.
+
+<[back to the table of contents](#table-of-contents)>
+#### Make use of the asterisks
+
+Each text goes with some asterisks at the end. These are used in a number of cases:
+* To annotate stative events when no lexical item can be annotated (see the [Annotating stative events](#annotating-stative-events) section),
+* To annotate implicit arguments and predicates (see the [Annotating implicit elements](#annotating-implicit-elements))
+* To annotate reified attribute nodes (see the [Reifying attribute nodes](#reifying-attribute-nodes) section),
+* To annotate implicit values (see the [Annotating values](#annotating-values) section),
+* To create a `Document Creation Time` node to temporally anchor predicates.
+
+<[back to the table of contents](#table-of-contents)>
+#### Annotating entities
+
+Annotating entities is as simple as it gets:
+* Select the `Entities` layer (top right corner),
+* Highlight the span of text you wish to annotate,
+* Give the annotation a tag from the [ontology](#semantic-typing) (beginning to fill the `Tag` field offers suggestions),
+* You can edit your annotation anytime.
+
+![Annotating entities](img/annotating_entities.gif)
+
+To speed up the process, key bindings for the most frequent tags exist.  
+We recommend annotating entities before anything else. 
+
+<[back to the table of contents](#table-of-contents)>
+#### Annotating predicates
+
+Annotating predicates works the same as annotating entities with a twist:
+* Select the `Entities` layer (top right corner),
+* Highlight the span of text you wish to annotate,
+* Assign the annotation a semantic class from any resource; you can use the 
+  [Unified Verb Index (UVI)](https://uvi.colorado.edu/uvi_search) to find relevant predicate classes (beginning to fill 
+  the `Tag` field offers suggestions),
+* You can edit your annotation anytime.
+
+![Annotating predicates](img/annotating_predicates.gif)
+
+We recommend annotating predicates early during the annotation process.
+
+<[back to the table of contents](#table-of-contents)>
+#### Annotating implicit elements
+
+Entities and predicates can be implicit. In such cases, the annotator should make use of the asterisks at the end of the
+document to instantiate the implicit element. Typically, in languages for which subjects are embedded in the conjugated
+verb (such as Italian, Spanish, or Arabic), nodes might need to be instantiated. 
+
+Take for instance the segment "Lavorerai domani" and compare it with its English translation: "You will work tomorrow".
+In both cases, we need to have the triple `<:work> <:has_agent> "you"` annotated somehow. To do so (in Italian):
+* Annotate an asterisk at the end of the document with a `Human` entity,
+* Link the `Work` event node to the newly created `Human` entity with an `Agent` relation.
+
+![Annotating implicit elements](img/annotating_implicit_elements.gif)
+
+The same goes for any implicit element the annotator wishes to represent.
+
+<[back to the table of contents](#table-of-contents)>
+#### Annotating stative events
+
+[Stative events](#stative-events) do not denote actions and are not verbal. As such, there might not be tokens on which
+an annotation can be added. For instance, copulae may not be present in nominal sentences in Arabic. Take this segment: "جون مهندس"
+("ǧūn muhandis", "John is an engineer", lit. "John engineer"). No visible copula is present to link both elements with a
+`Type` node, hence the need to annotate such cases like this:
+* Annotate "John" as a `Human` entity,
+* Annotate "engineer" as a `Function` entity,
+* Annotate an asterisk at the end of the document as a `Type` predicate,
+* Link the `Human` entity as the `Experiencer`,
+* Link the `Function` entity as the `Attribute`.
+
+![Annotating stative events](img/annotating_stative_events.gif)
+
+The same goes for every stative event when no surface tokens can be used.
+
+<[back to the table of contents](#table-of-contents)>
+#### Annotating relations
+
+Annotating relations works once entities and predicates exist in your document:
+* Click on an annotation and hold,
+* Drag the mouse to another annotation,
+* In the `Relation` field, choose one from the list,
+* You can edit your annotation anytime.
+
+![Annotating relations](img/annotating_relations.gif)
+
+**Relations are to be taken into account at both the sentence and the document levels.**  
+To speed up the process, key bindings for the most frequent tags exist.  
+We recommend annotating relations after all entities and predicates have been identified. 
+
+<[back to the table of contents](#table-of-contents)>
+#### Annotating attributes
+
+Attributes are usually superimposed on predicates and entities annotations:
+* Select the `Attributes` layer (top right corner),
+* Highlight the span of text you wish to annotate,
+* Assign the annotation an attribute in the `Attribute` field (beginning to fill the `Tag` field offers suggestions),
+* You can edit your annotation anytime.
+
+![Annotating attributes](img/annotating_attributes.gif)
+
+To speed up the process, key bindings for the most frequent attributes exist.  
+We recommend annotating attributes after everything else. 
+
+<[back to the table of contents](#table-of-contents)>
+#### Annotating values
+
+Some annotations necessitate to have values assigned to them. This is the case for quantification.
+Take for instance the segment "John ate apples before dinner". The correct way to annotate the number associated to
+'apples' is the following triple: `"apples" <:has_measuremin> "2"`. To do so with INCEpTION:
+* Annotate the `Ingredient` entity "apples",
+* Annotate an asterisk at the end of the document as a `Measure` entity,
+* Create a `MeasureMin`relation starting from the `Ingredient` entity to the `Measure` entity,
+* Select the `Values` layer (top right corner),
+* Annotate the asterisk bearing the `Measure` tag with a value annotation,
+* Set the correct value using the `Value` field.
+
+![Annotating values](img/annotating_values.gif)
+
+<[back to the table of contents](#table-of-contents)>
+#### Reifying attribute nodes
+
+As explained in [this section](#attribute-nodes-and-argumentinout-relations), attributes may give way to reifications.
+Whenever needed, the annotator should make use of the asterisks at the end of the text. Take for instance the segment
+"John does not have to cook Mary dinner". The negation concerns the deontic modal value expressed with "have to", but 
+does not concern the verb "cook" (compare with "John has to not cook Mary dinner"). Attributes superimposed on
+predicates can't be the endpoints of relations. Thus, the correct way to annotate the triples 
+`<:cook> <:has_modality> "obligation">` and `<:modality> <:has_polarity> "negative">` is:
+* Annotate the cooking event with the `Cook` predicate class,
+* Annotate an asterisk with a `Modality` entity node,
+* Assign an attribute `modality:obligation` to said `Modality` node,
+* Assign an attribute `polarity:negative` to said `Modality` node,
+* Link the `Modality` node to the `Cook` node with an `ArgumentIn` relation.
+
+![Reifying attribute nodes](img/reifying_attribute_nodes.gif)
+
+This method can be extended to any attribute node.
 
 <[back to the table of contents](#table-of-contents)>
 ### Relations and values
@@ -1615,6 +1812,9 @@ Luke and John are singing songs. As a result, Mary cannot sleep. She will reprim
 
 The corresponding visual graph from 
 [MR4AP: Meaning Representation for Application Purposes](../paper/mr4ap_giordano_lopez_dmr2023.pdf)'s paper: 
-<!-- Insert link to final version of paper (to upload to Git) -->
 
-![Example from DMR's paper)](img/fig1_0106.png)
+![Example from DMR's paper](img/fig1_0106.png)
+
+The corresponding annotated document on the INCEpTION platform:
+
+![Example from DMR's paper on INCEpTION](img/fig1_inception.JPG)
