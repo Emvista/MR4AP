@@ -1,0 +1,5 @@
+{
+    "id": "00052",
+    "text": "Nous nous sommes accordés sur le projet.",
+    "rdf": ":mr4ap/kb/100000578 a owl:NamedIndividual;\n  rdfs:label \"2023-03-22T10:47:14.896015415\" .\n\n:mr4ap/kb/1360911820 a owl:NamedIndividual, :mr4ap/ontology/Organization,\n    :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"Nous\" .\n\n:mr4ap/ontology/Organization a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/kb/684839835 a owl:NamedIndividual, :mr4ap/ontology/Abstract,\n    :Httpwwww3org200207owlNamedIndividual;\n  :has_theme \"1\";\n  rdfs:label \"Projet\", \"projet\" .\n\n:mr4ap/ontology/Abstract a owl:NamedIndividual .\n\n:mr4ap/kb/821319523 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Settle;\n  :has_agent :mr4ap/kb/1360911820;\n  :has_purpose :mr4ap/kb/684839835;\n  :has_timemax :mr4ap/kb/100000578;\n  :has_aspect \"performance\";\n  :has_polarity \"Pos\";\n  rdfs:label \"accordés\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Settle a owl:NamedIndividual ."
+}

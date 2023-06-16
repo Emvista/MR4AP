@@ -1,0 +1,5 @@
+{
+    "id": "00056",
+    "text": "Il a écrit une lettre.",
+    "rdf": ":mr4ap/kb/100000626 a owl:NamedIndividual;\n  rdfs:label \"2023-03-22T10:47:52.002109890\" .\n\n:mr4ap/kb/106348914 a owl:NamedIndividual, :mr4ap/ontology/100000625,\n    :mr4ap/ontology/Human, :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"Il\" .\n\n:mr4ap/ontology/100000625 a owl:NamedIndividual;\n  rdfs:label \"Masculine\" .\n\n:mr4ap/ontology/Human a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/kb/650133070 a owl:NamedIndividual, :mr4ap/ontology/Build,\n    :mr4ap/ontology/Event;\n  :has_agent :mr4ap/kb/106348914;\n  :has_product :mr4ap/kb/662134624;\n  :has_timemax :mr4ap/kb/100000626;\n  :has_aspect \"performance\";\n  :has_polarity \"Pos\";\n  rdfs:label \"écrit\" .\n\n:mr4ap/kb/662134624 a owl:NamedIndividual, :mr4ap/ontology/Archive,\n    :Httpwwww3org200207owlNamedIndividual;\n  :has_measureexact \"1\";\n  rdfs:label \"Lettre\", \"lettre\" .\n\n:mr4ap/ontology/Build a owl:NamedIndividual .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Archive a owl:NamedIndividual ."
+}

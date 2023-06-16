@@ -1,0 +1,5 @@
+{
+    "id": "00057",
+    "text": "J'ai lu une lettre.",
+    "rdf": ":mr4ap/kb/100000635 a owl:NamedIndividual;\n  rdfs:label \"2023-03-22T10:48:00.887195239\" .\n\n:mr4ap/kb/1195002477 a owl:NamedIndividual, :mr4ap/ontology/Archive,\n    :Httpwwww3org200207owlNamedIndividual;\n  :has_measureexact \"1\";\n  rdfs:label \"Lettre\", \"lettre\" .\n\n:mr4ap/ontology/Archive a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/kb/1884836612 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Learn;\n  :has_agent :mr4ap/kb/846369918;\n  :has_timemax :mr4ap/kb/100000635;\n  :has_topic :mr4ap/kb/1195002477;\n  :has_aspect \"performance\";\n  :has_polarity \"Pos\";\n  rdfs:label \"lu\" .\n\n:mr4ap/kb/846369918 a owl:NamedIndividual, :mr4ap/ontology/Human,\n    :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"J'\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Learn a owl:NamedIndividual .\n\n:mr4ap/ontology/Human a owl:NamedIndividual ."
+}

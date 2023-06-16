@@ -1,0 +1,5 @@
+{
+    "id": "00001",
+    "text": "Je me présenterai à la réunion.",
+    "rdf": ":mr4ap/kb/100000002 a owl:NamedIndividual;\n  rdfs:label \"2023-03-22T10:40:36.101773793\" .\n\n:mr4ap/kb/2031276809 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/attend;\n  :has_agent :mr4ap/kb/795881168;\n  :has_event :mr4ap/kb/295129016;\n  :has_timemin :mr4ap/kb/100000002;\n  :has_aspect \"performance\";\n  :has_polarity \"Pos\";\n  rdfs:label \"présenterai\" .\n\n:mr4ap/kb/795881168 a owl:NamedIndividual, :mr4ap/ontology/Human,\n    :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"Je\" .\n\n:mr4ap/kb/295129016 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Meet, :Httpwwww3org200207owlNamedIndividual;\n  :has_aspect \"process\";\n  :has_theme \"1\";\n  rdfs:label \"Réunion\", \"réunion\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/attend a owl:NamedIndividual .\n\n:mr4ap/ontology/Meet a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/ontology/Human a owl:NamedIndividual ."
+}

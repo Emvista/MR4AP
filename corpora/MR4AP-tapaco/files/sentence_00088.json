@@ -1,0 +1,5 @@
+{
+    "id": "00088",
+    "text": "Ils organisèrent une rencontre.",
+    "rdf": ":mr4ap/kb/1255590179 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Meet, :Httpwwww3org200207owlNamedIndividual;\n  :has_aspect \"process\";\n  :has_measureexact \"1\";\n  rdfs:label \"Rencontre\", \"rencontre\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Meet a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/kb/1385643662 a owl:NamedIndividual, :mr4ap/ontology/Livingbeing,\n    :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"Ils\" .\n\n:mr4ap/ontology/Livingbeing a owl:NamedIndividual .\n\n:mr4ap/kb/564307692 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/organise;\n  :has_agent :mr4ap/kb/1385643662;\n  :has_event :mr4ap/kb/1255590179;\n  :has_aspect \"performance\";\n  :has_polarity \"Pos\";\n  rdfs:label \"organisèrent\" .\n\n:mr4ap/ontology/organise a owl:NamedIndividual ."
+}

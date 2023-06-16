@@ -1,0 +1,5 @@
+{
+    "id": "00051",
+    "text": "J'ai examiné le fichier.",
+    "rdf": ":mr4ap/kb/100000569 a owl:NamedIndividual;\n  rdfs:label \"2023-03-22T10:47:04.764557724\" .\n\n:mr4ap/kb/1099642314 a owl:NamedIndividual, :mr4ap/ontology/Assessment,\n    :mr4ap/ontology/Event;\n  :has_agent :mr4ap/kb/581314569;\n  :has_theme :mr4ap/kb/448045966;\n  :has_timemax :mr4ap/kb/100000569;\n  :has_aspect \"performance\";\n  :has_polarity \"Pos\";\n  rdfs:label \"examiné\" .\n\n:mr4ap/kb/581314569 a owl:NamedIndividual, :mr4ap/ontology/Human,\n    :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"J'\" .\n\n:mr4ap/kb/448045966 a owl:NamedIndividual, :mr4ap/ontology/Archive,\n    :Httpwwww3org200207owlNamedIndividual;\n  :has_theme \"1\";\n  rdfs:label \"Fichier\", \"fichier\" .\n\n:mr4ap/ontology/Assessment a owl:NamedIndividual .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Archive a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/ontology/Human a owl:NamedIndividual ."
+}

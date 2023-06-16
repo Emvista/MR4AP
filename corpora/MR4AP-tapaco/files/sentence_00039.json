@@ -1,0 +1,5 @@
+{
+    "id": "00039",
+    "text": "Thomas s'opposa au projet.",
+    "rdf": ":mr4ap/kb/1767156315 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/be_against;\n  :has_agent :mr4ap/kb/1932161145;\n  :has_theme :mr4ap/kb/633150640;\n  :has_aspect \"performance\";\n  :has_polarity \"Pos\";\n  rdfs:label \"opposa\" .\n\n:mr4ap/kb/1932161145 a owl:NamedIndividual, :mr4ap/ontology/100000430,\n    :mr4ap/ontology/Human, :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"Thomas\" .\n\n:mr4ap/kb/633150640 a owl:NamedIndividual, :mr4ap/ontology/Abstract,\n    :Httpwwww3org200207owlNamedIndividual;\n  :has_theme \"1\";\n  rdfs:label \"Projet\", \"projet\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/be_against a owl:NamedIndividual .\n\n:mr4ap/ontology/100000430 a owl:NamedIndividual;\n  rdfs:label \"Masculine\" .\n\n:mr4ap/ontology/Human a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/ontology/Abstract a owl:NamedIndividual ."
+}

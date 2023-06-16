@@ -1,0 +1,5 @@
+{
+    "id": "00043",
+    "text": "Le calendrier a été révisé.",
+    "rdf": ":mr4ap/kb/100000479 a owl:NamedIndividual;\n  rdfs:label \"2023-03-22T10:45:48.431297134\" .\n\n:mr4ap/kb/1110155273 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/enhance;\n  :has_theme :mr4ap/kb/78017316;\n  :has_timemax :mr4ap/kb/100000479;\n  :has_aspect \"state\";\n  :has_polarity \"Pos\";\n  rdfs:label \"révisé\" .\n\n:mr4ap/kb/78017316 a owl:NamedIndividual, :mr4ap/ontology/Product,\n    :Httpwwww3org200207owlNamedIndividual;\n  :has_theme \"1\";\n  rdfs:label \"Calendrier\", \"calendrier\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/enhance a owl:NamedIndividual .\n\n:mr4ap/ontology/Product a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual ."
+}

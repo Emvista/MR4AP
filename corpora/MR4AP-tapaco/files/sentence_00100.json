@@ -1,0 +1,5 @@
+{
+    "id": "00100",
+    "text": "La réunion aura lieu pendant le festival.",
+    "rdf": ":mr4ap/kb/424411204 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Meet, :Httpwwww3org200207owlNamedIndividual;\n  :has_timeduration :mr4ap/kb/732227436;\n  :has_aspect \"state\";\n  :has_polarity \"Pos\";\n  :has_theme \"1\";\n  rdfs:label \"réunion\" .\n\n:mr4ap/kb/732227436 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/celebration, :Httpwwww3org200207owlNamedIndividual;\n  :has_aspect \"process\";\n  :has_theme \"1\";\n  rdfs:label \"Festival\", \"festival\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Meet a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/ontology/celebration a owl:NamedIndividual ."
+}

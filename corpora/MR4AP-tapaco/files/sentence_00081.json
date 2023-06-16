@@ -1,0 +1,5 @@
+{
+    "id": "00081",
+    "text": "Je viens de vous envoyer un courriel.",
+    "rdf": ":mr4ap/kb/100000893 a owl:NamedIndividual;\n  rdfs:label \"2023-03-22T10:51:41.565510938\" .\n\n:mr4ap/kb/1019861480 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Give;\n  :has_agent :mr4ap/kb/1223649645;\n  :has_theme :mr4ap/kb/1129668233;\n  :has_timeexact :mr4ap/kb/100000893;\n  :has_aspect \"atelic_process\";\n  :has_polarity \"Pos\";\n  rdfs:label \"envoyer\" .\n\n:mr4ap/kb/1223649645 a owl:NamedIndividual, :mr4ap/ontology/Human,\n    :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"Je\" .\n\n:mr4ap/kb/1129668233 a owl:NamedIndividual, :mr4ap/ontology/Archive,\n    :Httpwwww3org200207owlNamedIndividual;\n  :has_measureexact \"1\";\n  rdfs:label \"Courriel\", \"courriel\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Give a owl:NamedIndividual .\n\n:mr4ap/ontology/Archive a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/ontology/Human a owl:NamedIndividual ."
+}

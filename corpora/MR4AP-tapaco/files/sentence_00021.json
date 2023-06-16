@@ -1,0 +1,5 @@
+{
+    "id": "00021",
+    "text": "La conférence est prévue à Tokyo.",
+    "rdf": ":mr4ap/kb/100000234 a owl:NamedIndividual;\n  rdfs:label \"2023-03-22T10:42:11.011936476\" .\n\n:mr4ap/kb/284181984 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Transfer_mesg, :Httpwwww3org200207owlNamedIndividual;\n  :has_aspect \"process\";\n  :has_theme \"1\";\n  rdfs:label \"Conférence\", \"conférence\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Transfer_mesg a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/kb/563397828 a owl:NamedIndividual, :mr4ap/ontology/Location,\n    :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"Tokyo\" .\n\n:mr4ap/ontology/Location a owl:NamedIndividual .\n\n:mr4ap/kb/706241865 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/organise;\n  :has_event :mr4ap/kb/284181984;\n  :has_location :mr4ap/kb/563397828;\n  :has_timemax :mr4ap/kb/100000234;\n  :has_aspect \"state\";\n  :has_polarity \"Pos\";\n  rdfs:label \"prévue\" .\n\n:mr4ap/ontology/organise a owl:NamedIndividual ."
+}

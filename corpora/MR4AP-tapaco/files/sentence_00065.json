@@ -1,0 +1,5 @@
+{
+    "id": "00065",
+    "text": "Les amoureux échangèrent de nombreuses lettres.",
+    "rdf": ":mr4ap/kb/1188763414 a owl:NamedIndividual, :mr4ap/ontology/Archive,\n    :Httpwwww3org200207owlNamedIndividual;\n  :has_theme \"nombreuses\";\n  rdfs:label \"Lettres\", \"lettres\" .\n\n:mr4ap/ontology/Archive a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/kb/1686108605 a owl:NamedIndividual;\n  :has_polarity \"Pos\";\n  rdfs:label \"nombreuses\" .\n\n:mr4ap/kb/27550784 a owl:NamedIndividual, :mr4ap/ontology/Livingbeing,\n    :Httpwwww3org200207owlNamedIndividual;\n  :has_theme \"1\";\n  rdfs:label \"Amoureux\", \"amoureux\" .\n\n:mr4ap/ontology/Livingbeing a owl:NamedIndividual .\n\n:mr4ap/kb/71262723 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Exchange;\n  :has_agent :mr4ap/kb/27550784;\n  :has_theme :mr4ap/kb/1188763414;\n  :has_aspect \"performance\";\n  :has_polarity \"Pos\";\n  rdfs:label \"échangèrent\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Exchange a owl:NamedIndividual ."
+}

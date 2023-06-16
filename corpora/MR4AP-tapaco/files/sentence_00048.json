@@ -1,0 +1,5 @@
+{
+    "id": "00048",
+    "text": "Cette discussion est terminée.",
+    "rdf": ":mr4ap/kb/100000541 a owl:NamedIndividual;\n  rdfs:label \"2023-03-22T10:46:36.615245334\" .\n\n:mr4ap/kb/126359753 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Stop;\n  :has_theme :mr4ap/kb/1777030013;\n  :has_timemax :mr4ap/kb/100000541;\n  :has_aspect \"state\";\n  :has_polarity \"Pos\";\n  rdfs:label \"terminée\" .\n\n:mr4ap/kb/1777030013 a owl:NamedIndividual, :mr4ap/ontology/Abstract,\n    :mr4ap/ontology/Event, :mr4ap/ontology/Talk, :Httpwwww3org200207owlNamedIndividual;\n  :has_aspect \"process\";\n  :has_theme \"1\";\n  rdfs:label \"Discussion\", \"discussion\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Stop a owl:NamedIndividual .\n\n:mr4ap/ontology/Abstract a owl:NamedIndividual .\n\n:mr4ap/ontology/Talk a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual ."
+}

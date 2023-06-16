@@ -1,0 +1,5 @@
+{
+    "id": "00094",
+    "text": "Je t'enverrai le calendrier.",
+    "rdf": ":mr4ap/kb/100001027 a owl:NamedIndividual;\n  rdfs:label \"2023-03-22T10:53:45.772393782\" .\n\n:mr4ap/kb/112101424 a owl:NamedIndividual, :mr4ap/ontology/Human,\n    :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"Je\" .\n\n:mr4ap/ontology/Human a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/kb/1381960332 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Give;\n  :has_agent :mr4ap/kb/112101424;\n  :has_theme :mr4ap/kb/1707643451;\n  :has_timemin :mr4ap/kb/100001027;\n  :has_aspect \"performance\";\n  :has_polarity \"Pos\";\n  rdfs:label \"enverrai\" .\n\n:mr4ap/kb/1707643451 a owl:NamedIndividual, :mr4ap/ontology/Product,\n    :Httpwwww3org200207owlNamedIndividual;\n  :has_theme \"1\";\n  rdfs:label \"Calendrier\", \"calendrier\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Give a owl:NamedIndividual .\n\n:mr4ap/ontology/Product a owl:NamedIndividual ."
+}
