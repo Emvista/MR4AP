@@ -1,0 +1,5 @@
+{
+    "id": "00070",
+    "text": "La réunion a eu lieu jusqu'à midi.",
+    "rdf": ":mr4ap/kb/100000779 a owl:NamedIndividual, :mr4ap/ontology/TimeMax,\n    :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"12:00\" .\n\n:mr4ap/ontology/TimeMax a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/kb/8401744 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Meet, :Httpwwww3org200207owlNamedIndividual;\n  :has_timemax :mr4ap/kb/100000779;\n  :has_aspect \"state\";\n  :has_polarity \"Pos\";\n  :has_theme \"1\";\n  rdfs:label \"réunion\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Meet a owl:NamedIndividual ."
+}

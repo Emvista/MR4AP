@@ -1,0 +1,5 @@
+{
+    "id": "00055",
+    "text": "Tom quitta la réunion.",
+    "rdf": ":mr4ap/kb/141476533 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Leave;\n  :has_agent :mr4ap/kb/959651805;\n  :has_event :mr4ap/kb/1737570178;\n  :has_aspect \"performance\";\n  :has_polarity \"Pos\";\n  rdfs:label \"quitta\" .\n\n:mr4ap/kb/959651805 a owl:NamedIndividual, :mr4ap/ontology/100000611,\n    :mr4ap/ontology/Human, :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"Tom\" .\n\n:mr4ap/kb/1737570178 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Meet, :Httpwwww3org200207owlNamedIndividual;\n  :has_aspect \"process\";\n  :has_theme \"1\";\n  rdfs:label \"Réunion\", \"réunion\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Leave a owl:NamedIndividual .\n\n:mr4ap/ontology/Meet a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/ontology/100000611 a owl:NamedIndividual;\n  rdfs:label \"Masculine\" .\n\n:mr4ap/ontology/Human a owl:NamedIndividual ."
+}

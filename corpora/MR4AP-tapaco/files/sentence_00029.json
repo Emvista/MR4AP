@@ -1,0 +1,5 @@
+{
+    "id": "00029",
+    "text": "Tu annulais tes rendez-vous.",
+    "rdf": ":mr4ap/kb/100000314 a owl:NamedIndividual;\n  rdfs:label \"2023-03-22T10:43:26.953224970\" .\n\n:mr4ap/kb/1648894639 a owl:NamedIndividual, :mr4ap/ontology/Abstract,\n    :mr4ap/ontology/Event, :mr4ap/ontology/Meet, :Httpwwww3org200207owlNamedIndividual;\n  :has_aspect \"process\";\n  :has_measuremin \"2\";\n  rdfs:label \"Rendez-vous\", \"rendez-vous\" .\n\n:mr4ap/ontology/Abstract a owl:NamedIndividual .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Meet a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/kb/370297752 a owl:NamedIndividual, :mr4ap/ontology/Human,\n    :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"Tu\" .\n\n:mr4ap/ontology/Human a owl:NamedIndividual .\n\n:mr4ap/kb/591018451 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Void;\n  :has_agent :mr4ap/kb/370297752;\n  :has_patient :mr4ap/kb/1648894639;\n  :has_timemax :mr4ap/kb/100000314;\n  :has_aspect \"activity\";\n  :has_polarity \"Pos\";\n  rdfs:label \"annulais\" .\n\n:mr4ap/ontology/Void a owl:NamedIndividual ."
+}

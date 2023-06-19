@@ -1,0 +1,5 @@
+{
+    "id": "00068",
+    "text": "Je suis en train de lire une lettre.",
+    "rdf": ":mr4ap/kb/100000758 a owl:NamedIndividual;\n  rdfs:label \"2023-03-22T10:49:43.168256672\" .\n\n:mr4ap/kb/1826846209 a owl:NamedIndividual, :mr4ap/ontology/Archive,\n    :Httpwwww3org200207owlNamedIndividual;\n  :has_measureexact \"1\";\n  rdfs:label \"Lettre\", \"lettre\" .\n\n:mr4ap/ontology/Archive a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/kb/866119579 a owl:NamedIndividual, :mr4ap/ontology/Human,\n    :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"Je\" .\n\n:mr4ap/ontology/Human a owl:NamedIndividual .\n\n:mr4ap/kb/985789127 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Learn;\n  :has_agent :mr4ap/kb/866119579;\n  :has_timeexact :mr4ap/kb/100000758;\n  :has_topic :mr4ap/kb/1826846209;\n  :has_aspect \"activity\";\n  :has_polarity \"Pos\";\n  rdfs:label \"lire\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Learn a owl:NamedIndividual ."
+}

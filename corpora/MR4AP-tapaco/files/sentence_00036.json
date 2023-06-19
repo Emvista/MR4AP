@@ -1,0 +1,5 @@
+{
+    "id": "00036",
+    "text": "Ils rejetèrent le plan.",
+    "rdf": ":mr4ap/kb/1446177937 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Reject;\n  :has_agent :mr4ap/kb/50815609;\n  :has_theme :mr4ap/kb/1927611543;\n  :has_aspect \"performance\";\n  :has_polarity \"Pos\";\n  rdfs:label \"rejetèrent\" .\n\n:mr4ap/kb/50815609 a owl:NamedIndividual, :mr4ap/ontology/Animate,\n    :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"Ils\" .\n\n:mr4ap/kb/1927611543 a owl:NamedIndividual, :mr4ap/ontology/Abstract,\n    :Httpwwww3org200207owlNamedIndividual;\n  :has_theme \"1\";\n  rdfs:label \"Plan\", \"plan\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Reject a owl:NamedIndividual .\n\n:mr4ap/ontology/Abstract a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/ontology/Animate a owl:NamedIndividual ."
+}

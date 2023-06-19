@@ -1,0 +1,5 @@
+{
+    "id": "00098",
+    "text": "La réunion se tiendra vendredi.",
+    "rdf": ":mr4ap/kb/100001068 a owl:NamedIndividual, :mr4ap/ontology/TimeMax,\n    :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"2023-03-24T23:59\" .\n\n:mr4ap/ontology/TimeMax a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/kb/100001069 a owl:NamedIndividual, :mr4ap/ontology/TimeMin,\n    :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"2023-03-24T00:00\" .\n\n:mr4ap/ontology/TimeMin a owl:NamedIndividual .\n\n:mr4ap/kb/400462086 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Meet, :Httpwwww3org200207owlNamedIndividual;\n  :has_timemax :mr4ap/kb/100001068;\n  :has_timemin :mr4ap/kb/100001069;\n  :has_aspect \"performance\";\n  :has_polarity \"Pos\";\n  :has_theme \"1\";\n  rdfs:label \"réunion\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Meet a owl:NamedIndividual ."
+}

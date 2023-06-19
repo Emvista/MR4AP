@@ -1,0 +1,5 @@
+{
+    "id": "00020",
+    "text": "La réunion a été annulée.",
+    "rdf": ":mr4ap/kb/100000223 a owl:NamedIndividual;\n  rdfs:label \"2023-03-22T10:42:06.626971844\" .\n\n:mr4ap/kb/1005793924 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Void;\n  :has_patient :mr4ap/kb/793443331;\n  :has_timemax :mr4ap/kb/100000223;\n  :has_aspect \"state\";\n  :has_polarity \"Pos\";\n  rdfs:label \"annulée\" .\n\n:mr4ap/kb/793443331 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Meet, :Httpwwww3org200207owlNamedIndividual;\n  :has_aspect \"process\";\n  :has_theme \"1\";\n  rdfs:label \"Réunion\", \"réunion\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Void a owl:NamedIndividual .\n\n:mr4ap/ontology/Meet a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual ."
+}

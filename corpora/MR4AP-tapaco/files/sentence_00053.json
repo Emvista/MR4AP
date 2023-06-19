@@ -1,0 +1,5 @@
+{
+    "id": "00053",
+    "text": "Nous tombâmes d'accord sur le projet.",
+    "rdf": ":mr4ap/kb/1215200486 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/Settle;\n  :has_agent :mr4ap/kb/867155180;\n  :has_purpose :mr4ap/kb/848473744;\n  :has_aspect \"performance\";\n  :has_polarity \"Pos\";\n  rdfs:label \"tombâmes d'accord\" .\n\n:mr4ap/kb/867155180 a owl:NamedIndividual, :mr4ap/ontology/Organization,\n    :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"Nous\" .\n\n:mr4ap/kb/848473744 a owl:NamedIndividual, :mr4ap/ontology/Abstract,\n    :Httpwwww3org200207owlNamedIndividual;\n  :has_theme \"1\";\n  rdfs:label \"Projet\", \"projet\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Settle a owl:NamedIndividual .\n\n:mr4ap/ontology/Abstract a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/ontology/Organization a owl:NamedIndividual ."
+}

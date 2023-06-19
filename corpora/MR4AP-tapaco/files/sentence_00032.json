@@ -1,0 +1,5 @@
+{
+    "id": "00032",
+    "text": "La société a abandonné ce projet.",
+    "rdf": ":mr4ap/kb/100000351 a owl:NamedIndividual;\n  rdfs:label \"2023-03-22T10:43:55.936149323\" .\n\n:mr4ap/kb/1286514494 a owl:NamedIndividual, :mr4ap/ontology/Abstract,\n    :Httpwwww3org200207owlNamedIndividual;\n  :has_theme \"1\";\n  rdfs:label \"Projet\", \"projet\" .\n\n:mr4ap/ontology/Abstract a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/kb/1664466175 a owl:NamedIndividual, :mr4ap/ontology/Organization,\n    :Httpwwww3org200207owlNamedIndividual;\n  :has_theme \"1\";\n  rdfs:label \"Société\", \"société\" .\n\n:mr4ap/ontology/Organization a owl:NamedIndividual .\n\n:mr4ap/kb/552464884 a owl:NamedIndividual, :mr4ap/ontology/Event,\n    :mr4ap/ontology/give_up;\n  :has_agent :mr4ap/kb/1664466175;\n  :has_theme :mr4ap/kb/1286514494;\n  :has_timemax :mr4ap/kb/100000351;\n  :has_aspect \"performance\";\n  :has_polarity \"Pos\";\n  rdfs:label \"abandonné\" .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/give_up a owl:NamedIndividual ."
+}

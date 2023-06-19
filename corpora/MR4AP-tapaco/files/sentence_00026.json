@@ -1,0 +1,5 @@
+{
+    "id": "00026",
+    "text": "J'ai fait des projets.",
+    "rdf": ":mr4ap/kb/100000279 a owl:NamedIndividual;\n  rdfs:label \"2023-03-22T10:42:57.465493835\" .\n\n:mr4ap/kb/1500500901 a owl:NamedIndividual, :mr4ap/ontology/Complete,\n    :mr4ap/ontology/Event;\n  :has_agent :mr4ap/kb/240951306;\n  :has_theme :mr4ap/kb/1607590265;\n  :has_timemax :mr4ap/kb/100000279;\n  :has_aspect \"performance\";\n  :has_polarity \"Pos\";\n  rdfs:label \"fait\" .\n\n:mr4ap/kb/240951306 a owl:NamedIndividual, :mr4ap/ontology/Human,\n    :Httpwwww3org200207owlNamedIndividual;\n  rdfs:label \"J'\" .\n\n:mr4ap/kb/1607590265 a owl:NamedIndividual, :mr4ap/ontology/Concrete,\n    :Httpwwww3org200207owlNamedIndividual;\n  :has_measuremin \"2\";\n  rdfs:label \"Projets\", \"projets\" .\n\n:mr4ap/ontology/Complete a owl:NamedIndividual .\n\n:mr4ap/ontology/Event a owl:NamedIndividual .\n\n:mr4ap/ontology/Concrete a owl:NamedIndividual .\n\n:Httpwwww3org200207owlNamedIndividual a owl:NamedIndividual .\n\n:mr4ap/ontology/Human a owl:NamedIndividual ."
+}
