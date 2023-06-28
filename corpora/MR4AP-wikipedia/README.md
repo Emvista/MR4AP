@@ -63,10 +63,14 @@ see the corresponding folders.
 
 Below are some additional insights.
 
-![Semantic types in corpus](./img/semantic_types_full.jpg)
+![Semantic types in corpus](./img/semantic_types_full.jpg)  
+Fig.: Most frequent semantic types (k=15)
 
-![Relations in corpus](./img/relations_full.jpg)
+![Relations in corpus](./img/relations_full.jpg)  
+Fig.: Most frequent relation types (k=15)
 
-![Dynamic events in corpus](./img/dynamic_events_full.jpg)
+![Dynamic events in corpus](./img/dynamic_events_full.jpg)  
+Fig.: Most frequent dynamic event classes (k=15)
 
-![Stative events in corpus](./img/stative_events_full.jpg)
+![Stative events in corpus](./img/stative_events_full.jpg)  
+Fig.: Frequency for stative event classes
