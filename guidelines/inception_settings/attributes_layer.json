@@ -1,0 +1,116 @@
+[ {
+  "name" : "webanno.custom.Attributes",
+  "features" : [ {
+    "name" : "Attribute",
+    "tag_set" : {
+      "name" : "Attribute tags",
+      "description" : null,
+      "language" : null,
+      "tags" : [ {
+        "tag_name" : "aspect:activity",
+        "tag_description" : null
+      }, {
+        "tag_name" : "aspect:atelic_process",
+        "tag_description" : null
+      }, {
+        "tag_name" : "aspect:endeavor",
+        "tag_description" : null
+      }, {
+        "tag_name" : "aspect:habitual",
+        "tag_description" : null
+      }, {
+        "tag_name" : "aspect:performance",
+        "tag_description" : null
+      }, {
+        "tag_name" : "aspect:process",
+        "tag_description" : null
+      }, {
+        "tag_name" : "aspect:state",
+        "tag_description" : null
+      }, {
+        "tag_name" : "degree:downtoner",
+        "tag_description" : null
+      }, {
+        "tag_name" : "degree:intensifier",
+        "tag_description" : null
+      }, {
+        "tag_name" : "modality:capacity",
+        "tag_description" : null
+      }, {
+        "tag_name" : "modality:obligation",
+        "tag_description" : null
+      }, {
+        "tag_name" : "modality:suggestion",
+        "tag_description" : null
+      }, {
+        "tag_name" : "modality:temporal",
+        "tag_description" : null
+      }, {
+        "tag_name" : "modality:uncertainty",
+        "tag_description" : null
+      }, {
+        "tag_name" : "modality:wish",
+        "tag_description" : null
+      }, {
+        "tag_name" : "polarity:negative",
+        "tag_description" : null
+      }, {
+        "tag_name" : "polarity:positive",
+        "tag_description" : null
+      }, {
+        "tag_name" : "type:feminine",
+        "tag_description" : null
+      }, {
+        "tag_name" : "type:masculine",
+        "tag_description" : null
+      }, {
+        "tag_name" : "type:question-choice",
+        "tag_description" : null
+      }, {
+        "tag_name" : "type:question-closed",
+        "tag_description" : null
+      }, {
+        "tag_name" : "type:question-open",
+        "tag_description" : null
+      } ],
+      "create_tag" : false
+    },
+    "uiName" : "Attribute",
+    "type" : "uima.cas.String",
+    "enabled" : true,
+    "visible" : true,
+    "include_in_hover" : false,
+    "required" : false,
+    "remember" : false,
+    "hideUnconstraintFeature" : false,
+    "description" : null,
+    "project_name" : "MR4AP-FR",
+    "multi_value_mode" : "NONE",
+    "link_mode" : "NONE",
+    "link_type_name" : null,
+    "link_type_role_feature_name" : null,
+    "link_type_target_feature_name" : null,
+    "traits" : "{\"multipleRows\":false,\"dynamicSize\":false,\"collapsedRows\":1,\"expandedRows\":1,\"editorType\":\"RADIOGROUP\",\"keyBindings\":[{\"keyCombo\":\"f\",\"value\":\"type:feminine\"},{\"keyCombo\":\"m\",\"value\":\"type:masculine\"},{\"keyCombo\":\"s\",\"value\":\"aspect:state\"},{\"keyCombo\":\"u\",\"value\":\"modality:uncertainty\"},{\"keyCombo\":\"n\",\"value\":\"polarity:negative\"},{\"keyCombo\":\"p\",\"value\":\"polarity:positive\"},{\"keyCombo\":\"t\",\"value\":\"modality:temporal\"}]}",
+    "curatable" : true
+  } ],
+  "uiName" : "Attributes",
+  "type" : "span",
+  "description" : "This layer is used to annotate attributes.",
+  "enabled" : true,
+  "built_in" : false,
+  "readonly" : false,
+  "attach_type" : null,
+  "attach_feature" : null,
+  "allow_stacking" : true,
+  "cross_sentence" : false,
+  "show_hover" : true,
+  "anchoring_mode" : "CHARACTERS",
+  "overlap_mode" : "ANY_OVERLAP",
+  "validation_mode" : "ALWAYS",
+  "lock_to_token_offset" : false,
+  "multiple_tokens" : false,
+  "project_name" : "MR4AP-FR",
+  "linked_list_behavior" : false,
+  "on_click_javascript_action" : null,
+  "traits" : null
+} ]

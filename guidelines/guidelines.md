@@ -1544,9 +1544,10 @@ In this section, we provide a practical guide for INCEpTION as well as a cheatsh
 ### How to INCEpTION: a practical guide
 
 INCEpTION is an annotation platform developed by Klie et al. (2018). It was convenient enough to allow us to annotate
-texts for MR4AP. INCEpTION is organised in annotation layers and tagsets. We provide all the necessary resources 
-[here](url). <!-- TODO: une partie du repo doit être dédiée au setup d'INCEpTION et fournir le nécessaire --> We 
-extensively describe how to get started with INCEpTION [there](url) (importing layers, tagsets, and texts). 
+texts for MR4AP. INCEpTION is organised in annotation layers and tagsets. **We provide all the necessary resources 
+[here](./inception_settings).** 
+We extensively describe how to get started with INCEpTION [there]() (importing layers, tagsets, and texts). 
+<!-- TODO: add the aforementioned part of the guidelines -->
 
 This section is dedicated to how to annotate the different elements we described throughout the guidelines.
 
@@ -1555,7 +1556,7 @@ This section is dedicated to how to annotate the different elements we described
 
 Each text goes with some asterisks at the end. These are used in a number of cases:
 * To annotate stative events when no lexical item can be annotated (see the [Annotating stative events](#annotating-stative-events) section),
-* To annotate implicit arguments and predicates (see the [Annotating implicit elements](#annotating-implicit-elements))
+* To annotate implicit arguments and predicates (see the [Annotating implicit elements](#annotating-implicit-elements)),
 * To annotate reified attribute nodes (see the [Reifying attribute nodes](#reifying-attribute-nodes) section),
 * To annotate implicit values (see the [Annotating values](#annotating-values) section),
 * To create a `Document Creation Time` node to temporally anchor predicates.
