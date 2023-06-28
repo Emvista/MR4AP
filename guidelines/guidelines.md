@@ -831,158 +831,178 @@ https://github.com/umr4nlp/umr-guidelines/blob/master/guidelines.md#part-3-1-2-n
 Note: For practical guidelines regarding the annotation of entities with the INCEpTION platform, refer to the 
 [Annotating attributes](#annotating-entities) section.
 
-| Level 0 | Level 1   | Level 2            | Level 3                       | Level 4          | Level 5              | Level 6               | 
-|---------|-----------|--------------------|-------------------------------|------------------|----------------------|-----------------------|
-| Thing   | Concrete  | Inanimate          | Material                      |                  |                      |                       |
-|         |           |                    | Ingredient                    |                  |                      |                       |
-|         |           |                    | Product                       | DrinkProduct     |                      |                       |
-|         |           |                    |                               | FoodProduct      |                      |                       |
-|         |           |                    |                               | Clothing         |                      |                       |
-|         |           |                    |                               | ChemicalAndDrugs | MedicationAndVaccine |                       |
-|         |           |                    |                               | Equipment        | MedicalEquipment     |                       |
-|         |           |                    |                               |                  | MusicalEquipment     | MusicalInstrument     |
-|         |           |                    |                               |                  | MilitaryEquipment    | Ammunition            |
-|         |           |                    |                               |                  |                      | Weapon                |
-|         |           |                    |                               | Machine          | Vehicle              | Aircraft              |
-|         |           |                    |                               |                  |                      | RailwayRollingVehicle |
-|         |           |                    |                               |                  |                      | Car                   |
-|         |           |                    |                               |                  |                      | Boat                  |
-|         |           |                    |                               | Archive          |                      |                       |
-|         |           |                    |                               | Facility         | BusinessFacility     |                       |
-|         |           |                    |                               |                  | CultureFacility      |                       |
-|         |           |                    |                               |                  | EducationFacility    |                       |
-|         |           |                    |                               |                  | HealthFacility       |                       |
-|         |           |                    |                               |                  | MilitaryFacility     |                       |
-|         |           |                    |                               |                  | PoliticsFacility     |                       |
-|         |           |                    |                               |                  | ReligionFacility     |                       |
-|         |           |                    |                               |                  | SportsFacility       |                       |
-|         |           |                    |                               | Artwork          | Sculpture            |                       |
-|         |           |                    |                               |                  | Book                 |                       |
-|         |           |                    |                               |                  | Painting             |                       |
-|         |           |                    |                               |                  | Jewel                |                       |
-|         |           | Product            | Machine                       |                  |                      |                       |
-|         |           | Animate            | AnatomicalStructure           |                  |                      |                       |
-|         |           |                    | Product                       | Machine          |                      |                       |
-|         |           |                    | Livingbeing                   | Vegetal          |                      |                       |
-|         |           |                    |                               | Animal           |                      |                       |
-|         |           |                    |                               | Human            | Engineer             |                       |
-|         |           |                    |                               |                  | Scientist            |                       |
-|         |           |                    |                               |                  | Cleric               |                       |
-|         |           |                    |                               |                  | Artist               | Musician              |
-|         |           |                    |                               |                  | Politician           | HeadOfGov             |
-|         |           |                    |                               |                  |                      | HeadOfState           |
-|         |           |                    |                               |                  | SportsActor          | SportsManager         |
-|         |           |                    |                               |                  |                      | Footballer            |
-|         | Abstract  | Symptom            |                               |                  |                      |                       |
-|         |           | Deity              |                               |                  |                      |                       |
-|         |           | Technology         |                               |                  |                      |                       |
-|         |           | MedicalDisorder    |                               |                  |                      |                       |
-|         |           | Location           | TransportLine                 |                  |                      |                       |
-|         |           |                    | Place                         |                  |                      |                       |
-|         |           |                    | City                          |                  |                      |                       |
-|         |           |                    | Continent                     |                  |                      |                       |
-|         |           |                    | Country                       |                  |                      |                       |
-|         |           |                    | Region                        |                  |                      |                       |
-|         |           |                    | Street                        |                  |                      |                       |
-|         |           |                    | CelestialLoc                  |                  |                      |                       |
-|         |           |                    | District                      |                  |                      |                       |
-|         |           |                    | WaterBody                     |                  |                      |                       |
-|         |           |                    | StateOrProvince               |                  |                      |                       |
-|         |           |                    | Island                        |                  |                      |                       |
-|         |           |                    | Mountain                      |                  |                      |                       |
-|         |           | Organization       | Company                       | CarManufacturer  |                      |                       | 
-|         |           |                    | Media                         |                  |                      |                       |
-|         |           |                    | MusicBand                     |                  |                      |                       |
-|         |           |                    | CriminalOrganization          |                  |                      |                       |
-|         |           |                    | EducationalOrganization       |                  |                      |                       |
-|         |           |                    | GovernmentalOrganization      |                  |                      |                       |
-|         |           |                    | HealthOrganization            |                  |                      |                       |
-|         |           |                    | IntergovernmentalOrganization |                  |                      |                       |
-|         |           |                    | JusticeOrganization           |                  |                      |                       |
-|         |           |                    | NonGovernmentalOrganization   |                  |                      |                       |
-|         |           |                    | OrganizedArmedGroup           |                  |                      |                       |
-|         |           |                    | Ethnicity                     |                  |                      |                       |
-|         |           |                    | PoliticalParty                |                  |                      |                       |
-|         |           |                    | ReligionOrganization          |                  |                      |                       |
-|         |           |                    | SportsOrganization            | SportsTeam       |                      |                       |
-|         |           | Brand              |                               |                  |                      |                       |
-|         |           | Shape              | Elongated                     |                  |                      |                       |
-|         |           |                    | Pointed                       |                  |                      |                       |
-|         |           | URL                |                               |                  |                      |                       |
-|         |           | Email              |                               |                  |                      |                       |
-|         |           | Format             |                               |                  |                      |                       |
-|         |           | Disease            |                               |                  |                      |                       |
-|         |           | Unit               | Money                         |                  |                      |                       |
-|         |           |                    | Volume                        |                  |                      |                       |
-|         |           |                    | Length                        |                  |                      |                       |
-|         |           |                    | Geometry                      |                  |                      |                       |
-|         |           |                    | Mass                          |                  |                      |                       |
-|         |           |                    | Area                          |                  |                      |                       |
-|         |           |                    | Speed                         |                  |                      |                       |
-|         |           |                    | Acceleration                  |                  |                      |                       |
-|         |           |                    | Energy                        |                  |                      |                       |
-|         |           |                    | Power                         |                  |                      |                       |
-|         |           |                    | Frequency                     |                  |                      |                       |
-|         |           |                    | Temperature                   |                  |                      |                       | 
-|         |           |                    | Score                         |                  |                      |                       |
-|         |           |                    | Liquid                        |                  |                      |                       |
-|         |           |                    | Astronomy                     |                  |                      |                       |
-|         |           |                    | TimeUnit                      | Century          |                      |                       |
-|         |           |                    |                               | Hour             |                      |                       |
-|         |           |                    |                               | Day              |                      |                       |
-|         |           |                    |                               | Minute           |                      |                       |
-|         |           |                    |                               | Second           |                      |                       |
-|         |           |                    |                               | Week             |                      |                       |
-|         |           |                    |                               | Month            |                      |                       |
-|         |           |                    |                               | Year             |                      |                       |
-|         |           | FictionalCharacter |                               |                  |                      |                       |
-|         |           | Function           |                               |                  |                      |                       |
-|         |           | Sport              |                               |                  |                      |                       |
-|         |           | Event              | PoliticsEvent                 |                  |                      |                       |
-|         |           |                    | ReligiousEvent                |                  |                      |                       |
-|         |           |                    | NaturalEvent                  |                  |                      |                       |
-|         |           |                    | SportEvent                    |                  |                      |                       |
-|         |           |                    | HistoricalEvent               |                  |                      |                       |
-|         |           |                    | Communication                 |                  |                      |                       |
-|         |           | Idea               |                               |                  |                      |                       |
-|         |           | Measure            | MeasureMin                    |                  |                      |                       |
-|         |           |                    | MeasureMax                    |                  |                      |                       |
-|         |           |                    | MeasureExact                  |                  |                      |                       |
-|         |           |                    | MeasureFuzzy                  |                  |                      |                       |
-|         |           |                    | TimeDuration                  |                  |                      |                       |
-|         |           | Orientation        |                               |                  |                      |                       |
-|         |           | PhoneNumber        |                               |                  |                      |                       |
-|         |           | State              |                               |                  |                      |                       |
-|         |           | Method             | MedicalMethod                 |                  |                      |                       |
-|         |           | Reward             |                               |                  |                      |                       |
-|         |           | DocumentElement    |                               |                  |                      |                       |
-|         |           | Reference          | ReferenceAlphanumeric         |                  |                      |                       |
-|         |           |                    | ReferenceDocument             |                  |                      |                       |
-|         |           |                    | ReferenceVehicle              |                  |                      |                       |
-|         |           |                    | ReferencePostal               |                  |                      |                       |
-|         |           |                    | Cedex                         |                  |                      |                       |
-|         |           |                    | CS                            |                  |                      |                       |
-|         |           |                    | PostalCode                    |                  |                      |                       |
-|         |           |                    | ReferenceUser                 |                  |                      |                       |
-|         |           |                    | ReferenceDocumentElement      |                  |                      |                       |
-|         |           | Color              |                               |                  |                      |                       |
-|         |           | Product            | Archive                       |                  |                      |                       |
-|         |           |                    | TVShow                        |                  |                      |                       |
-|         |           |                    | Software                      |                  |                      |                       |
-|         |           |                    | Artwork                       | Theatre          |                      |                       |
-|         |           |                    |                               | Movie            |                      |                       |
-|         |           |                    |                               | Music            |                      |                       |
-|         |           |                    |                               | Poem             |                      |                       |
-|         |           | Time               | Urgency                       |                  |                      |                       |
-|         |           |                    | TimeMin                       |                  |                      |                       |
-|         |           |                    | TimeMax                       |                  |                      |                       |
-|         |           |                    | TimeExact                     |                  |                      |                       |
-|         |           |                    | TimeFuzzy                     |                  |                      |                       |
-|         |           | Language           |                               |                  |                      |                       |
-|         |           | Religion           |                               |                  |                      |                       |
-|         |           | Nationality        |                               |                  |                      |                       |
-|         | Archive   |                    |                               |                  |                      |                       |
-|         | Product   |                    |                               |                  |                      |                       |
+| Level 0 | Level 1  | Level 2            | Level 3                       | Level 4               | Level 5              | Level 6               | Level 7       |
+|---------|----------|--------------------|-------------------------------|-----------------------|----------------------|-----------------------|---------------|
+| Thing   | Concrete | Inanimate          | Material                      |                       |                      |                       |               |
+|         |          |                    | Ingredient                    |                       |                      |                       |               |
+|         |          |                    | Product                       | DrinkProduct          |                      |                       |               |
+|         |          |                    |                               | FoodProduct           |                      |                       |               |
+|         |          |                    |                               | Clothing              |                      |                       |               |
+|         |          |                    |                               | Building              | Apartment            |                       |               |
+|         |          |                    |                               |                       | House                |                       |               |
+|         |          |                    |                               |                       | Tower                |                       |               |
+|         |          |                    |                               | ChemicalAndDrugs      | MedicationAndVaccine |                       |               |
+|         |          |                    |                               | Equipment             | MedicalEquipment     |                       |               |
+|         |          |                    |                               |                       | MusicalEquipment     | MusicalInstrument     |               |
+|         |          |                    |                               |                       | MilitaryEquipment    | Ammunition            |               |
+|         |          |                    |                               |                       |                      | Weapon                |               |
+|         |          |                    |                               | Machine               | Vehicle              | Aircraft              |               |
+|         |          |                    |                               |                       |                      | RailwayRollingVehicle |               |
+|         |          |                    |                               |                       |                      | Car                   |               |
+|         |          |                    |                               |                       |                      | Boat                  |               |
+|         |          |                    |                               | Archive               |                      |                       |               |
+|         |          |                    |                               | Facility              | BusinessFacility     |                       |               |
+|         |          |                    |                               |                       | CultureFacility      |                       |               |
+|         |          |                    |                               |                       | EducationFacility    |                       |               |
+|         |          |                    |                               |                       | HealthFacility       |                       |               |
+|         |          |                    |                               |                       | MilitaryFacility     |                       |               |
+|         |          |                    |                               |                       | PoliticsFacility     |                       |               |
+|         |          |                    |                               |                       | ReligionFacility     |                       |               |
+|         |          |                    |                               |                       | SportsFacility       |                       |               |
+|         |          |                    |                               | Artwork               | Sculpture            |                       |               |
+|         |          |                    |                               |                       | Book                 |                       |               |
+|         |          |                    |                               |                       | Painting             |                       |               |
+|         |          |                    |                               |                       | Jewel                |                       |               |
+|         |          | Product            | Machine                       |                       |                      |                       |               |
+|         |          | Animate            | AnatomicalStructure           |                       |                      |                       |               |
+|         |          |                    | Product                       | Machine               |                      |                       |               |
+|         |          |                    | Livingbeing                   | Vegetal               |                      |                       |               |
+|         |          |                    |                               | Animal                |                      |                       |               |
+|         |          |                    |                               | Human                 | Function             | Engineer              |               |
+|         |          |                    |                               |                       |                      | Scientist             |               |
+|         |          |                    |                               |                       |                      | Military              |               |
+|         |          |                    |                               |                       |                      | Cleric                |               |
+|         |          |                    |                               |                       |                      | Artist                | Musician      |
+|         |          |                    |                               |                       |                      |                       | Actor         |
+|         |          |                    |                               |                       |                      | Politician            | HeadOfGov     |
+|         |          |                    |                               |                       |                      |                       | HeadOfState   |
+|         |          |                    |                               |                       |                      | SportsActor           | SportsManager |
+|         |          |                    |                               |                       |                      |                       | Footballer    |
+|         | Abstract | Symptom            |                               |                       |                      |                       |               |
+|         |          | Deity              |                               |                       |                      |                       |               |
+|         |          | Technology         |                               |                       |                      |                       |               |
+|         |          | MedicalDisorder    |                               |                       |                      |                       |               |
+|         |          | Location           | TransportLine                 |                       |                      |                       |               |
+|         |          |                    | Place                         |                       |                      |                       |               |
+|         |          |                    | City                          |                       |                      |                       |               |
+|         |          |                    | Cliff                         |                       |                      |                       |               |
+|         |          |                    | Coast                         |                       |                      |                       |               |
+|         |          |                    | Continent                     |                       |                      |                       |               |
+|         |          |                    | Country                       |                       |                      |                       |               |
+|         |          |                    | Region                        |                       |                      |                       |               |
+|         |          |                    | Street                        |                       |                      |                       |               |
+|         |          |                    | CelestialLoc                  |                       |                      |                       |               |
+|         |          |                    | District                      |                       |                      |                       |               |
+|         |          |                    | WaterBody                     |                       |                      |                       |               |
+|         |          |                    | StateOrProvince               |                       |                      |                       |               |
+|         |          |                    | Island                        |                       |                      |                       |               |
+|         |          |                    | Mountain                      |                       |                      |                       |               |
+|         |          |                    | LocationExact                 |                       |                      |                       |               |
+|         |          |                    | LocationSource                |                       |                      |                       |               |
+|         |          |                    | LocationDestination           |                       |                      |                       |               |
+|         |          |                    | LocationSpan                  |                       |                      |                       |               |
+|         |          |                    | LocationFuzzy                 |                       |                      |                       |               |
+|         |          |                    | Sea                           |                       |                      |                       |               |
+|         |          |                    | WaterStream                   |                       |                      |                       |               |
+|         |          |                    | Waterbody                     |                       |                      |                       |               |
+|         |          | Organization       | Company                       | CarManufacturer       |                      |                       |               |
+|         |          |                    |                               | AerospaceManufacturer |                      |                       |               |
+|         |          |                    | Media                         |                       |                      |                       |               |
+|         |          |                    | MusicBand                     |                       |                      |                       |               |
+|         |          |                    | CriminalOrganization          |                       |                      |                       |               |
+|         |          |                    | EducationalOrganization       |                       |                      |                       |               |
+|         |          |                    | GovernmentalOrganization      | Army                  |                      |                       |               |
+|         |          |                    |                               | Regiment              |                      |                       |               |
+|         |          |                    | HealthOrganization            |                       |                      |                       |               |
+|         |          |                    | IntergovernmentalOrganization |                       |                      |                       |               |
+|         |          |                    | JusticeOrganization           |                       |                      |                       |               |
+|         |          |                    | NonGovernmentalOrganization   |                       |                      |                       |               |
+|         |          |                    | OrganizedArmedGroup           |                       |                      |                       |               |
+|         |          |                    | Ethnicity                     |                       |                      |                       |               |
+|         |          |                    | PoliticalParty                |                       |                      |                       |               |
+|         |          |                    | ReligionOrganization          |                       |                      |                       |               |
+|         |          |                    | SportsOrganization            | SportsTeam            |                      |                       |               |
+|         |          | Brand              |                               |                       |                      |                       |               |
+|         |          | Shape              | Elongated                     |                       |                      |                       |               |
+|         |          |                    | Pointed                       |                       |                      |                       |               |
+|         |          | URL                |                               |                       |                      |                       |               |
+|         |          | Email              |                               |                       |                      |                       |               |
+|         |          | Format             |                               |                       |                      |                       |               |
+|         |          | Disease            |                               |                       |                      |                       |               |
+|         |          | Unit               | Money                         |                       |                      |                       |               |
+|         |          |                    | Volume                        |                       |                      |                       |               |
+|         |          |                    | Length                        |                       |                      |                       |               |
+|         |          |                    | Geometry                      |                       |                      |                       |               |
+|         |          |                    | Mass                          |                       |                      |                       |               |
+|         |          |                    | Area                          |                       |                      |                       |               |
+|         |          |                    | Speed                         |                       |                      |                       |               |
+|         |          |                    | Acceleration                  |                       |                      |                       |               |
+|         |          |                    | Energy                        |                       |                      |                       |               |
+|         |          |                    | Power                         |                       |                      |                       |               |
+|         |          |                    | Frequency                     |                       |                      |                       |               |
+|         |          |                    | Temperature                   |                       |                      |                       |               |
+|         |          |                    | Score                         |                       |                      |                       |               |
+|         |          |                    | Liquid                        |                       |                      |                       |               |
+|         |          |                    | Astronomy                     |                       |                      |                       |               |
+|         |          |                    | TimeUnit                      | Century               |                      |                       |               |
+|         |          |                    |                               | Year                  |                      |                       |               |
+|         |          |                    |                               | Month                 |                      |                       |               |
+|         |          |                    |                               | Week                  |                      |                       |               |
+|         |          |                    |                               | Day                   |                      |                       |               |
+|         |          |                    |                               | Hour                  |                      |                       |               |
+|         |          |                    |                               | Minute                |                      |                       |               |
+|         |          |                    |                               | Second                |                      |                       |               |
+|         |          | FictionalCharacter |                               |                       |                      |                       |               |
+|         |          | Function           |                               |                       |                      |                       |               |
+|         |          | Sport              |                               |                       |                      |                       |               |
+|         |          | Event              | PoliticsEvent                 |                       |                      |                       |               |
+|         |          |                    | ReligiousEvent                |                       |                      |                       |               |
+|         |          |                    | NaturalEvent                  |                       |                      |                       |               |
+|         |          |                    | SportEvent                    |                       |                      |                       |               |
+|         |          |                    | HistoricalEvent               |                       |                      |                       |               |
+|         |          |                    | Communication                 |                       |                      |                       |               |
+|         |          |                    | Any semantic class            |                       |                      |                       |               |
+|         |          | Idea               |                               |                       |                      |                       |               |
+|         |          | Measure            | MeasureMin                    |                       |                      |                       |               |
+|         |          |                    | MeasureMax                    |                       |                      |                       |               |
+|         |          |                    | MeasureExact                  |                       |                      |                       |               |
+|         |          |                    | MeasureFuzzy                  |                       |                      |                       |               |
+|         |          |                    | TimeDuration                  |                       |                      |                       |               |
+|         |          | Orientation        |                               |                       |                      |                       |               |
+|         |          | PhoneNumber        |                               |                       |                      |                       |               |
+|         |          | State              |                               |                       |                      |                       |               |
+|         |          | Method             | MedicalMethod                 |                       |                      |                       |               |
+|         |          | Reward             |                               |                       |                      |                       |               |
+|         |          | DocumentElement    |                               |                       |                      |                       |               |
+|         |          | Reference          | ReferenceAlphanumeric         |                       |                      |                       |               |
+|         |          |                    | ReferenceDocument             |                       |                      |                       |               |
+|         |          |                    | ReferenceVehicle              |                       |                      |                       |               |
+|         |          |                    | ReferencePostal               | Cedex                 |                      |                       |               |
+|         |          |                    |                               | CS                    |                      |                       |               |
+|         |          |                    |                               | PostalCode            |                      |                       |               |
+|         |          |                    | ReferenceUser                 |                       |                      |                       |               |
+|         |          |                    | ReferenceDocumentElement      |                       |                      |                       |               |
+|         |          | Color              |                               |                       |                      |                       |               |
+|         |          | Product            | Archive                       |                       |                      |                       |               |
+|         |          |                    | TVShow                        |                       |                      |                       |               |
+|         |          |                    | Software                      |                       |                      |                       |               |
+|         |          |                    | SocialNetwork                 |                       |                      |                       |               |
+|         |          |                    | Press                         |                       |                      |                       |               |
+|         |          |                    | Game                          |                       |                      |                       |               |
+|         |          |                    | Artwork                       | Theatre               |                      |                       |               |
+|         |          |                    |                               | Movie                 |                      |                       |               |
+|         |          |                    |                               | Music                 |                      |                       |               |
+|         |          |                    |                               | Poem                  |                      |                       |               |
+|         |          | Time               | Urgency                       |                       |                      |                       |               |
+|         |          |                    | TimeMin                       |                       |                      |                       |               |
+|         |          |                    | TimeMax                       |                       |                      |                       |               |
+|         |          |                    | TimeExact                     |                       |                      |                       |               |
+|         |          |                    | TimeFuzzy                     |                       |                      |                       |               |
+|         |          | Language           |                               |                       |                      |                       |               |
+|         |          | Religion           |                               |                       |                      |                       |               |
+|         |          | Nationality        |                               |                       |                      |                       |               |
+|         | Archive  |                    |                               |                       |                      |                       |               |
+|         | Product  |                    |                               |                       |                      |                       |               |
 
 <[back to the table of contents](#table-of-contents)>
 #### Named Entities and Word Senses
