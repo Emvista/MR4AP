@@ -1,3 +1,8 @@
+# 0.5.0
+* [BG] Uploaded MR4AP-wikipedia corpus
+* [BG] Updated guidelines
+* [BG] Uploaded INCEpTION settings (layers and tagsets)
+
 # 0.4.1
 * [BG] Reuploaded MR4AP-tapaco files
 
