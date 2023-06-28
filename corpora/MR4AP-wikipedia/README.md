@@ -36,9 +36,9 @@ Here is an overview of the dataset's contents:
 | **Total** | **33**    | **99**    |
 
 The annotation effort must continue! If you want to try MR4AP out, you can find:
-* Extensive annotation guidelines [here](../../guidelines/guidelines.md).
+* Extensive annotation guidelines [here](../../guidelines/guidelines.md),
 * An INCEpTION practical guide [here](../../guidelines/guidelines.md#how-to-inception-a-practical-guide),
-* The INCEpTION layers and tagsets [here](),
+* The INCEpTION layers and tagsets [here]().
 
 Feel free to reach out if you need any more information.
 * bastien.giordano [at] emvista.com
