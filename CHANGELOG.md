@@ -1,3 +1,6 @@
+# 0.6.0
+* [BG] Uploaded official published paper and added a link to it
+
 # 0.5.0
 * [BG] Uploaded MR4AP-wikipedia corpus
 * [BG] Updated guidelines
