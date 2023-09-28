@@ -17,7 +17,6 @@ See the [MR4AP-wikipedia page](../../README.md) for information about the whole 
 | Avg dynamic events per document | 4.0    |
 | Avg stative events per document | 14.0   |
 | Relations                       | 52     |
-| Cross-sentence relations        | 2      |
 | Avg relations per document      | 40.5   |
 
 Below are some additional insights.
