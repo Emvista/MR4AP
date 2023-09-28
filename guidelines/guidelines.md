@@ -299,10 +299,10 @@ vn:get-13.5.1$1 :has_theme "apples"$1 .
 "apples"$1 :has_measureexact "3" .
 :property$1 :has_theme "apples"$1 .
 :property$1 :has_property pb:green.02 .
-<vn:get-13.5.1$1 :has_opposition> <vn:get-13.5.1$2 .
-<vn:get-13.5.1$2 :has_opposition> <vn:get-13.5.1$1 .
-<vn:get-13.5.1$2 :has_agent "Mary" .
-<vn:get-13.5.1$2 :has_theme "apples"$2 .
+vn:get-13.5.1$1 :has_opposition vn:get-13.5.1$2 .
+vn:get-13.5.1$2 :has_opposition vn:get-13.5.1$1 .
+vn:get-13.5.1$2 :has_agent "Mary" .
+vn:get-13.5.1$2 :has_theme "apples"$2 .
 "apples"$2 :has_measureexact "2" .
 :property$2 :has_theme "apples"$2 .
 :property$2 :has_property pb:red.02 .
@@ -1233,8 +1233,8 @@ Just like temporal relations (see the [Temporal relations](#temporal-relations))
 symbolized with a number of derivative labels, namely `Measure{Exact,Min,Max,Fuzzy}`.  
 Quantification can either be explicit or implicit.
 
-| Proto-relation | Relation       | Example                                            | Annotation                      |
-|----------------|----------------|----------------------------------------------------|---------------------------------|
+| Proto-relation | Relation       | Example                                            | Annotation                    |
+|----------------|----------------|----------------------------------------------------|-------------------------------|
 | `Measure`\*    | `MeasureExact` | John owns a car / is driving his car.              | `"car" :has_measureexact "1"` |
 |                | `MeasureMin`   | John owns cars / several cars / more than one car. | `"car" :has_measuremin "2"`   |
 |                | `MeasureMax`   | John owns fewer than three cars.                   | `"car" :has_measuremax "2"`   |
@@ -1260,8 +1260,8 @@ vn:get-13.5.1 :has_theme "flower" .
 "flower" :has_measuremin "2" .
 vn:get-13.5.1$implicit :has_agent "Mary" .
 vn:get-13.5.1$implicit :has_theme "flower$implicit" .
-"flower$implicit"> :has_measuremin> <:unknown .
-"2" :has_comparisonmin> <:unknown .
+"flower$implicit" :has_measuremin :unknown .
+"2" :has_comparisonmin :unknown .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1279,8 +1279,8 @@ vn:get-13.5.1 :has_theme "flower" .
 "flower" :has_measuremin "2" .
 vn:get-13.5.1$implicit :has_agent "implicit_argument" .
 vn:get-13.5.1$implicit :has_theme "flower$implicit" .
-"flower$implicit"> :has_measuremin> <:unknown .
-"2" :has_comparisonmin> <:unknown .
+"flower$implicit" :has_measuremin :unknown .
+"2" :has_comparisonmin :unknown .
 ```
 
 #### Other uses of quantification
@@ -1291,9 +1291,9 @@ the relations `Ordinal` and `Value`.
 ```console
 She is the duke's fourth daughter and tenth child.
 
-"daughter" :has_ordinal> <:ordinal$1 .
+"daughter" :has_ordinal :ordinal$1 .
 :ordinal$1 :has_value "4" .
-"child" :has_ordinal> <:ordinal$2 . 
+"child" :has_ordinal :ordinal$2 . 
 :ordinal$2 :has_value "10" .
 ```
 
@@ -1308,7 +1308,7 @@ Polarity can receive one of two values: `negative` or `positive`. **However, to 
 The scope of the negation must be taken into account, especially when interacting with modality. As explained in
 the [Attribute nodes and `Argument{In,Out}` relations](#attribute-nodes-and-argumentinout-relations) section,
 attributes should be considered as reified nodes by default. In fact, polarity can either be seen as the attribute 
-acting as a relation (*i.e.*, `:has_polarity>`) or as the attribute node `<:polarity` with the `Argument{In,Out}` 
+acting as a relation (*i.e.*, `:has_polarity`) or as the attribute node `:polarity` with the `Argument{In,Out}` 
 relations. Doing so allows the annotator to address scope whenever needed.
 
 The first two examples are demonstrations of cases where reifying seems pointless:
@@ -1382,7 +1382,7 @@ Modality can receive one of six values: `obligation`, `capacity`, `wish`, `sugge
 The scope of modals must be taken into account, especially when interacting with negation. As explained in
 the [Attribute nodes and `Argument{In,Out}` relations](#attribute-nodes-and-argumentinout-relations) section,
 attributes should be considered as reified nodes by default. In fact, modality can either be seen as the attribute 
-acting as a relation (*i.e.*, `:has_modality>`) or as the attribute node `<:modality` with the `Argument{In,Out}` 
+acting as a relation (*i.e.*, `:has_modality`) or as the attribute node `:modality` with the `Argument{In,Out}` 
 relations. Doing so allows the annotator to address scope whenever needed (see the [Polarity (and scope)](#polarity-and-scope)
 section for such examples.
 
@@ -1551,7 +1551,7 @@ Moreover, if the event nominal co-refers with a preceding mention, a `SameAs` re
 John was apprehended by the police yesterday. His arrest lasted only a few minutes.
 
 vn:prosecute-33.2$1 :has_patient "John" .
-vn:prosecute-33.2$2 :has_patient "John" (from "his")> .
+vn:prosecute-33.2$2 :has_patient "John" (from "his") .
 vn:prosecute-33.2$2 :is_sameas vn:prosecute-33.2$1 .
 ```
 
@@ -1570,6 +1570,20 @@ We extensively describe how to get started with INCEpTION [there]() (importing l
 <!-- TODO: add the aforementioned part of the guidelines -->
 
 This section is dedicated to how to annotate the different elements we described throughout the guidelines.
+
+#### Getting started
+
+To start annotating MR4APs using INCEpTION, you must first:
+* Download and setup [INCEpTION](https://inception-project.github.io/) on your computer,
+* Create a new project,
+* Download the necessary layers and tagsets [here](#),
+* Import them in your project and enable them,
+* Import the raw text data files you want to start annotating (remember to add asterisks to be able to annotate 
+  implicit elements, see [next section](#make-use-of-the-asterisks)),
+* You are ready to rumble!
+
+Once a text is finished, you can mark it as such clicking on the lock.
+Annotated data can be exported in a various range of formats.
 
 <[back to the table of contents](#table-of-contents)>
 #### Make use of the asterisks
@@ -1695,7 +1709,7 @@ Whenever needed, the annotator should make use of the asterisks at the end of th
 "John does not have to cook Mary dinner". The negation concerns the deontic modal value expressed with "have to", but 
 does not concern the verb "cook" (compare with "John has to not cook Mary dinner"). Attributes superimposed on
 predicates can't be the endpoints of relations. Thus, the correct way to annotate the triples 
-`:cook> :has_modality> "obligation">` and `<:modality :has_polarity "negative"` is:
+`vn:cooking-45.3 :has_modality "obligation"` and `:modality :has_polarity "negative"` is:
 * Annotate the cooking event with the `Cook` predicate class,
 * Annotate an asterisk with a `Modality` entity node,
 * Assign an attribute `modality:obligation` to said `Modality` node,
@@ -1821,8 +1835,8 @@ vn:snooze-40.4 :has_modality "capacity" .
 "capacity" :has_polarity "negative" .
 vn:snooze-40.4 :has_timeexact "DCT" .
 vn:snooze-40.4 :has_timemax vn:judgment-33 .
-vn:judgment-33 :has_agent "she"--> à tagger human/feminine aussi ? si oui revoir la figure dmr> .
-vn:judgment-33 :has_theme "them" --> à tagger human/masculine aussi ? si oui revoir la figure dmr> .
+vn:judgment-33 :has_agent "she" .
+vn:judgment-33 :has_theme "them" .
 vn:judgment-33 :has_timemin "DCT+1dayt06:00:00" .
 vn:judgment-33 :has_timemax "DCT+1dayt12:00:00" .
 vn:judgment-33 :has_polarity "positive" .
