@@ -1,4 +1,4 @@
-# MR4AP-wikipedia corpus (v0.1)
+# MR4AP-wikipedia corpus (v0.2)
 
 ## Disclaimer
 
@@ -6,7 +6,7 @@ This corpus is supposed to grow in size.
 
 ## Repository contents
 
-This repository hosts the **MR4AP-wikipedia** corpus v0.1. The `files` folder contains a subfolder per language. Each
+This repository hosts the **MR4AP-wikipedia** corpus v0.2. The `files` folder contains a subfolder per language. Each
 subfolder contains the available JSON files. Those files present three main fields:
 * `id`: the text id,
 * `text`: the plain text,
@@ -28,12 +28,12 @@ Here is an overview of the dataset's contents:
 
 | Language  | Documents | Sentences |
 |-----------|-----------|-----------|
-| French    | 20        | 60        |
+| French    | 45        | 135       |
 | English   | 4         | 12        |
 | Italian   | 4         | 12        |
 | MSA       | 4         | 12        |
 | Spanish   | 1         | 3         |
-| **Total** | **33**    | **99**    |
+| **Total** | **58**    | **174**   |
 
 The annotation effort must continue! If you want to try MR4AP out, you can find:
 * Extensive annotation guidelines [here](../../guidelines/guidelines.md),
@@ -51,26 +51,11 @@ see the corresponding folders.
 
 | Item                            | Number |
 |---------------------------------|--------|
-| Tokens                          | 2,299  |
-| Avg tokens per sentence         | 23.22  |
-| Nodes                           | 1,432  |
-| Avg entities per document       | 23.12  |
-| Avg dynamic events per document | 5.33   |
-| Avg stative events per document | 9.76   |
-| Relations                       | 1,377  |
-| Cross-sentence relations        | 76     |
-| Avg relations per document      | 41.73  |
-
-Below are some additional insights.
-
-![Semantic types in corpus](./img/semantic_types_full.jpg)  
-Fig.: Most frequent semantic types (k=15)
-
-![Relations in corpus](./img/relations_full.jpg)  
-Fig.: Most frequent relation types (k=15)
-
-![Dynamic events in corpus](./img/dynamic_events_full.jpg)  
-Fig.: Most frequent dynamic event classes (k=15)
-
-![Stative events in corpus](./img/stative_events_full.jpg)  
-Fig.: Frequency for stative event classes
+| Tokens                          | 4,851  |
+| Avg tokens per sentence         | 24.93  |
+| Nodes                           | 2,500  |
+| Avg entities per document       | 23.30  |
+| Avg dynamic events per document | 4.69   |
+| Avg stative events per document | 10.73  |
+| Relations                       | 2,438  |
+| Avg relations per document      | 54.18  |
