@@ -1,3 +1,6 @@
+# 0.7.0
+* [BG] Uploaded 25 new annotated files for MR4AP-wikipedia corpus (v0.2)
+
 # 0.6.0
 * [BG] Uploaded official published paper and added a link to it
 
