@@ -7,18 +7,17 @@ See the [MR4AP-wikipedia page](../../README.md) for information about the whole 
 ## Language-specific corpus statistics
 
 | Item                            | Number |
-|---------------------------------|--------|
-| Documents                       | 20     |
-| Sentences                       | 60     |
-| Tokens                          | 1,418  |
-| Avg tokens per sentence         | 23.63  |
-| Nodes                           | 859    |
-| Avg entities per document       | 23.7   |
-| Avg dynamic events per document | 5.9    |
-| Avg stative events per document | 9.25   |
-| Relations                       | 845    |
-| Cross-sentence relations        | 50     |
-| Avg relations per document      | 42.25  |
+|---------------------------------|-------|
+| Documents                       | 45    |
+| Sentences                       | 135   |
+| Tokens                          | 3,970 |
+| Avg tokens per sentence         | 45.98 |
+| Nodes                           | 1,927 |
+| Avg entities per document       | 25.51 |
+| Avg dynamic events per document | 6.64  |
+| Avg stative events per document | 8.91  |
+| Relations                       | 1,906 |
+| Avg relations per document      | 42.36 |
 
 Below are some additional insights.
 
