@@ -1,3 +1,8 @@
+# 0.8.0
+* [BG] Updated layers and tagsets for INCEpTION
+* [BG] Updated guidelines with specific annotation cases
+* [BG] Updated guideliens with more information regarding INCEpTION
+
 # 0.7.0
 * [BG] Uploaded 25 new annotated files for MR4AP-wikipedia corpus (v0.2)
 
