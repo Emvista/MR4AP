@@ -1,7 +1,7 @@
 Meaning Representation for Application Purposes - Annotation Guidelines
 =======================================================================
 
-**June 12, 2023**
+**October 02, 2023**
 
 Authors: *Bastien Giordano, Cédric Lopez*
 
@@ -14,15 +14,19 @@ Authors: *Bastien Giordano, Cédric Lopez*
       3. [Factual annotation](#factual-annotation)
       4. [Reified predicates](#reified-predicates)
       5. [Implicit predicates and arguments](#implicit-predicates-and-arguments)
+      6. [Anchorage and redundancy](#anchorage-and-redundancy)
    2. [Relation types](#relation-types)
       1. [Core and non-core relations](#core-and-non-core-relations)
       2. [Temporal relations](#temporal-relations)
+         1. [`TimeFrequency`: a special case](#timefrequency-a-special-case)
       3. [Discourse relations](#discourse-relations)
-      4. [`Comparison`: a special case](#comparison-a-special-case)
-         1. [Comparatives](#Comparatives)
-         2. [Superlatives](#Superlatives)
-         3. [Other constructions](#other-constructions)
-      5. [Coreference relations](#coreference-relations)
+         1. [`Comparison`: a special case](#comparison-a-special-case)
+            1. [Comparatives](#Comparatives)
+            2. [Superlatives](#Superlatives)
+            3. [Other constructions](#other-constructions)
+      4. [Coreference relations](#coreference-relations)
+      5. [Other relations](#other-relations)
+         1. [`Relative`: when one is not enough](#relative-when-one-is-not-enough)
 3. [Multiword expressions (MWEs)](#multiword-expressions-mwes)
    1. [Entities](#entities)
    2. [Light-verb constructions (LVCs)](#light-verb-constructions-lvcs)
@@ -49,6 +53,7 @@ Authors: *Bastien Giordano, Cédric Lopez*
       1. [Usual cases](#usual-cases)
       2. [Quantification in comparisons](#quantification-in-comparisons)
       3. [Quantification and superlatives](#quantification-and-superlatives)
+      4. [Other uses of quantification](#other-uses-of-quantification)
    5. [Polarity (and scope)](#polarity-and-scope)
    6. [Modality (and scope)](#modality-and-scope)
       1. [Obligation](#obligation)
@@ -66,15 +71,16 @@ Authors: *Bastien Giordano, Cédric Lopez*
    3. [Possessive anaphora](#possessive-anaphora)
 7. [Annotation cheatsheet](#annotation-cheatsheet)
    1. [How to INCEpTION: a practical guide](#how-to-inception-a-practical-guide) 
-      1. [Make use of the asterisks](#make-use-of-the-asterisks)
-      2. [Annotating entities](#annotating-entities)
-      3. [Annotating predicates](#annotating-predicates)
-      4. [Annotating implicit elements](#annotating-implicit-elements)
-      5. [Annotating stative events](#annotating-stative-events)
-      6. [Annotating relations](#annotating-relations)
-      7. [Annotating attributes](#annotating-attributes)
-      8. [Annotating values](#annotating-values)
-      9. [Reifiying attribute nodes](#reifying-attribute-nodes)
+      1. [Getting started](#getting-started)
+      2. [Make use of the asterisks](#make-use-of-the-asterisks)
+      3. [Annotating entities](#annotating-entities)
+      4. [Annotating predicates](#annotating-predicates)
+      5. [Annotating implicit elements](#annotating-implicit-elements)
+      6. [Annotating stative events](#annotating-stative-events)
+      7. [Annotating relations](#annotating-relations)
+      8. [Annotating attributes](#annotating-attributes)
+      9. [Annotating values](#annotating-values)
+      10. [Reifiying attribute nodes](#reifying-attribute-nodes)
    2. [Relations and values](#relations-and-values)
    3. [Complete example](#complete-example)
 
@@ -146,17 +152,17 @@ Note: For practical guidelines regarding the annotation of dynamic events with t
 Even though stative events are considered as events as well, they do not denote actions. 
 Stative events include the following:
 
-| Stative event type        | Example                       | Predicate/Relations                                                                            |
-|---------------------------|-------------------------------|------------------------------------------------------------------------------------------------|
-| Thetic possession         | John has two cats.            | `:own :has_pivot "possessor"`<br/>`:own :has_theme "possessum"`                                |
-| Predicational possession  | The two cats are John's.      | `:own :has_pivot "possessor"`<br/>`:own :has_theme "possessum"`                                |
-| Predicational location    | John's cats are on the table. | `:is_located :has_theme em:entity`<br/>`:is_located :has_location{exact,fuzzy,span} :location` |
-| State and change of state | John is a doctor.             | `:type :has_experiencer em:entity`<br/>`:type :has_attribute prefix:category`                  |
-| Predicational property    | John's cats are black.        | `:property :has_theme em:entity` <br/> `:property :has_property prefix:property`               |
-| Existential predication   | There was a cat.              | `:exist :has_experiencer em:entity`                                                            |
+| Stative event type        | Example                       | Predicate/Relations                                                                                  |
+|---------------------------|-------------------------------|------------------------------------------------------------------------------------------------------|
+| Thetic possession         | John has two cats.            | `:own :has_pivot "possessor"`<br/>`:own :has_theme "possessum"`                                      |
+| Predicational possession  | The two cats are John's.      | `:own :has_pivot "possessor"`<br/>`:own :has_theme "possessum"`                                      |
+| Predicational location    | John's cats are on the table. | `:is_located_at :has_theme em:entity`<br/>`:is_located_at :has_location{exact,fuzzy,span} :location` |
+| State and change of state | John is a doctor.             | `:type :has_experiencer em:entity`<br/>`:type :has_attribute prefix:category`                        |
+| Predicational property    | John's cats are black.        | `:property :has_theme em:entity` <br/> `:property :has_property prefix:property`                     |
+| Existential predication   | There was a cat.              | `:exist :has_experiencer em:entity`                                                                  |
 
 Creating such nodes is mandatory in order to specify potential attributes regarding temporality, modality, polarity, etc.  
-This also holds true when these nodes are linked to others (e.g., by discourse or temporal relations).
+This also holds true when these nodes are linked to others (*e.g.*, by discourse or temporal relations).
 
 ```console
 Had he worked smarter, John could have become a doctor.
@@ -299,10 +305,10 @@ vn:get-13.5.1$1 :has_theme "apples"$1 .
 "apples"$1 :has_measureexact "3" .
 :property$1 :has_theme "apples"$1 .
 :property$1 :has_property pb:green.02 .
-<vn:get-13.5.1$1 :has_opposition> <vn:get-13.5.1$2 .
-<vn:get-13.5.1$2 :has_opposition> <vn:get-13.5.1$1 .
-<vn:get-13.5.1$2 :has_agent "Mary" .
-<vn:get-13.5.1$2 :has_theme "apples"$2 .
+vn:get-13.5.1$1 :has_opposition vn:get-13.5.1$2 .
+vn:get-13.5.1$2 :has_opposition vn:get-13.5.1$1 .
+vn:get-13.5.1$2 :has_agent "Mary" .
+vn:get-13.5.1$2 :has_theme "apples"$2 .
 "apples"$2 :has_measureexact "2" .
 :property$2 :has_theme "apples"$2 .
 :property$2 :has_property pb:red.02 .
@@ -322,6 +328,32 @@ John is sick and Mary is too.
 
 Note: For practical guidelines regarding the annotation of implicit elements with the INCEpTION platform, refer to the 
 [Annotating implicit elements](#annotating-implicit-elements) section.
+
+<[back to the table of contents](#table-of-contents)>
+#### Anchorage and redundancy
+
+MR4AP is an anchored meaning representation of Flavor 1 according to the typology of 
+[Oepen et al. (2019)](https://aclanthology.org/K19-2001.pdf). 
+This means that direct correlations exist between the nodes produced in the graphs and the surface tokens. 
+However, not every token produces a node: some trigger relations (*e.g.*, discourse connectors) while others are simply
+dismissed.
+
+MR4AP aims at representing meaning, not surface form. As such, some tokens can easily be dropped from the 
+representation. This the case of light verbs in light-verb constructions (see the 
+[Light-verb constructions](#light-verb-constructions-lvcs) section).  
+Dropping tokens should also be done when redundant elements need not be annotated.
+
+```console
+The Sherani district is located in the Balochistan province.
+
+"Sherani" :has_type em:Thing/Abstract/Location/District . 
+"Balochistan" :has_type em:Thing/Abstract/Location/StateOrProvince .
+em:Thing/Abstract/Location/District :is_located_at em:Thing/Abstract/Location/StateOrProvince .
+```
+
+In this particular example, there is no use in typing "district" as an `em:Thing/Abstract/Location/District` as 
+"Sherani" already is. The same goes for "province", which does not need to be typed as 
+`em:Thing/Abstract/Location/StateOrProvince` since "Balochistan" already is.
 
 <[back to the table of contents](#table-of-contents)>
 ### Relation types
@@ -354,8 +386,8 @@ vn:eat-39.1 :has_instrument "fork" .
 ```
 
 Here is an exhaustive list of the core and non-core relations along with examples.  
-Those must be read from the underlined token to the bold one with the relation 
-(e.g., **John** <ins>ate</ins> an apple -> `vn:eat-39.1 :has_agent "John"`).
+Those must be read from the underlined token to the bold one with the corresponding relation 
+(*e.g.*, **John** <ins>ate</ins> an apple -> `vn:eat-39.1 :has_agent "John"`).
 
 | Relation        | Example                                                                     |
 |-----------------|-----------------------------------------------------------------------------|
@@ -385,10 +417,13 @@ Those must be read from the underlined token to the bold one with the relation
 | `Asset`         | John <ins>billed</ins> Mary for 100 **euros**.                              |
 | `Event`         | John <ins>attended</ins> the **meeting**.                                   |
 | `Unknown`       | \**                                                                         |
+| `Relative` \*** | John dances five <ins>meters</ins> from the **table**.                      |
 
 \* `LocationSpan` includes at least two elements. As specified earlier, conjunctions are modelized using `addition` nodes 
 (see the [Reified predicates](#reified-predicates) section), hence the bold "and".  
-\** `Unknown` is only used to mark polar and alternative questions (see the [Questions](#questions) section).
+\** `Unknown` is only used to mark polar and alternative questions (see the [Questions](#questions) section).  
+\*** `Relative` is used when a predicate is expressed in relation with another one through a pivot 
+(see the [`Relative`: when one is not enough](#relative-when-one-is-not-enough) section).
 
 <[back to the table of contents](#table-of-contents)>
 #### Temporal relations
@@ -435,19 +470,40 @@ before the DCT allows to deduce a chronology:
 * Therefore the chronology is: `vn:wink-40.3.1`> `vn:leave-51.2-1`> DCT.
 
 Here is an exhaustive list of temporal relations with examples.  
-Those must be read from the underlined token to the bold one with the relation 
-(e.g., Before Mary **entered** the room, John <ins>left</ins> -> `vn:leave-51.2-1 :has_timemax vn:vn:escape-51.1-1-2`).
+Those must be read from the underlined token to the bold one with the corresponding relation 
+(*e.g.*, Before Mary **entered** the room, John <ins>left</ins> -> `vn:leave-51.2-1 :has_timemax vn:vn:escape-51.1-1-2`).
 
-| Proto-relation | Relation       | Example                                                          |
-|----------------|----------------|------------------------------------------------------------------|
-| `Time`\*       | `TimeExact`    | As soon as Mary **entered** the room, John <ins>left</ins>.      |
-|                | `TimeMin`      | After Mary **entered** the room, John <ins>left</ins>.           |
-|                | `TimeMax`      | Before Mary **entered** the room, John <ins>left</ins>.          |
-|                | `TimeFuzzy`    | Around the time Mary **entered** the room, John <ins>left</ins>. |
-|                | `TimeDuration` | As Mary **entered** the room, John <ins>left</ins>.              |
+| Proto-relation | Relation             | Example                                                          |
+|----------------|----------------------|------------------------------------------------------------------|
+| `Time`\*       | `TimeExact`          | As soon as Mary **entered** the room, John <ins>left</ins>.      |
+|                | `TimeMin`            | After Mary **entered** the room, John <ins>left</ins>.           |
+|                | `TimeMax`            | Before Mary **entered** the room, John <ins>left</ins>.          |
+|                | `TimeFuzzy`          | Around the time Mary **entered** the room, John <ins>left</ins>. |
+|                | `TimeDuration`       | As Mary **entered** the room, John <ins>left</ins>.              |
+|                | `TimeFrequency`\**   | John **trains** five <ins>times</ins> a week.                    |
 
 \* `Time` is the most coarse-grained temporal relation. This relation must be avoided as much as possible as the
 finer-grained relations are preferred. However, whenever the annotator is in doubt, they should fall back to this label.
+\** `TimeFrequency` is somewhat of a special case as it often works in conjunction with a `Measure` and with
+a `Relative` (see the [`TimeFrequency`: a special case](#timefrequency-a-special-case) section).
+
+<[back to the table of contents](#table-of-contents)>
+##### `TimeFrequency`: a special case
+
+The expression of frequency implies measuring the number of times something occurs. This measure can also be specified
+against a time period. Therefore, the `TimeFrequency` relation can only work in conjunction with other elements. Here
+are two examples and their respective representation.
+
+```console
+John trains five times a week.
+
+pb:train.01 :has_agent "John" .
+pb:train.01 :has_timefrequency em:Occurrence .
+em:Occurrence :has_measureexact "5" .
+em:Occurrence :has_relative em:Thing/Abstract/Unit/TimeUnit/Week . 
+em:Thing/Abstract/Unit/TimeUnit/Week :has_measureexact "1" .
+
+```
 
 <[back to the table of contents](#table-of-contents)>
 #### Discourse relations
@@ -469,38 +525,39 @@ vn:help-72.1-1 :has_consequence vn:work-73.2 .
 ```
 
 Here is an exhaustive list of discourse relations with examples.  
-Those must be read from the underlined token to the bold one with the relation 
-(e.g., If John wants to **leave**, he has to <ins>ask</ins> first 
+Those must be read from the underlined token to the bold one with the corresponding relation 
+(*e.g.*, If John wants to **leave**, he has to <ins>ask</ins> first 
 -> `vn:inquire-37.1.2 :has_condition vn:leave-51.2-1`). 
 
-| Relation        | Example                                                                                           |
-|-----------------|---------------------------------------------------------------------------------------------------|
-| `Cause`\*       | John **asked** first, so he <ins>left</ins>.                                                      |
-| `Consequence`   | John <ins>asked</ins> first, so he **left**.                                                      |
-| `Opposition`\** | John <ins>**asked**</ins> first, but he didn't <ins>**leave**</ins>.                              |
-| `Conclusion`    | John has been <ins>working</ins> with precision for years. In short, he **deserves** a promotion. |
-| `Comparison`    | John always <ins>works</ins> with precision. Conversely, Mary doesn't **do** much.                |
-| `Condition`     | If John wants to **leave**, he has to <ins>ask</ins> first.                                       |
-| `Explanation`   | Writing this report will <ins>take</ins> time, especially since John is not **working**.          |
-| `Illustration`  | John <ins>works</ins> with precision. For example, he **wrote** this excellent report.            |
-| `Purpose`       | John wants to <ins>leave</ins> to **attend** his medical appointment.                             |
-| `Restriction`   | John <ins>left</ins> even though he didn't **ask** first.                                         |
-| `Whatever`      | No matter that John **asked**, he can't <ins>leave</ins>.                                         |
+| Relation         | Example                                                                                           |
+|------------------|---------------------------------------------------------------------------------------------------|
+| `Cause`\*        | John **asked** first, so he <ins>left</ins>.                                                      |
+| `Consequence`    | John <ins>asked</ins> first, so he **left**.                                                      |
+| `Opposition`\**  | John <ins>**asked**</ins> first, but he didn't <ins>**leave**</ins>.                              |
+| `Conclusion`     | John has been <ins>working</ins> with precision for years. In short, he **deserves** a promotion. |
+| `Comparison`\*** | John always <ins>works</ins> with precision. Conversely, Mary doesn't **do** much.                |
+| `Condition`      | If John wants to **leave**, he has to <ins>ask</ins> first.                                       |
+| `Explanation`    | Writing this report will <ins>take</ins> time, especially since John is not **working**.          |
+| `Illustration`   | John <ins>works</ins> with precision. For example, he **wrote** this excellent report.            |
+| `Purpose`        | John wants to <ins>leave</ins> to **attend** his medical appointment.                             |
+| `Restriction`    | John <ins>left</ins> even though he didn't **ask** first.                                         |
+| `Whatever`       | No matter that John **asked**, he can't <ins>leave</ins>.                                         |
 
 \* `Cause` and `Consequence` go hand in hand when related to discourse (see the aforementioned example). 
-When `Cause` is a thematic role (see the [Core and non-core relations](#core-and-non-core-relations)) however, 
+When `Cause` is a thematic role (see the [Core and non-core relations](#core-and-non-core-relations) section) however, 
 the `Consequence` relation must not be annotated.  
 \** `Opposition` can be seen as a bi-directional relation. Whenever two elements are opposed in discourse, the relation
-must go from and to each element.
+must go from and to each element.  
+\*** `Comparison` comes with sub-relations (see the [Comparison: a special case](#comparison-a-special-case) section).
 
 <[back to the table of contents](#table-of-contents)>
-#### `Comparison`: a special case
+##### `Comparison`: a special case
 
 The `Comparison` relation has several derivative labels.
 Those derivative labels are introduced in order to represent comparatives and superlatives.
 
 <[back to the table of contents](#table-of-contents)>
-##### Comparatives
+###### Comparatives
 
 MR4AP remains consistent in the vocabulary used for derivative labels: `Comparison{Exact,Min,Max,Fuzzy}`. These 
 relations are two-way: one or both can be annotated.  
@@ -565,7 +622,7 @@ vn:work-73.2$implicit :has_comparisonmax vn:work-73.2 .
 ```
 
 <[back to the table of contents](#table-of-contents)>
-##### Superlatives
+###### Superlatives
 
 As for superlatives, there are two relevant relations: `Comparison{Min,Max}`.  
 Superlatives remain an expression of comparison, whether the compared element be explicit or implicit.
@@ -591,7 +648,7 @@ Superlatives remain an expression of comparison, whether the compared element be
 ```
 
 <[back to the table of contents](#table-of-contents)>
-##### Other constructions
+###### Other constructions
 
 As shown by Bonial et al. (2018), other constructions such as _The X-er, 
 the Y-er_ or degree-consequence constructions need to be addressed and be incorporated in meaning representations 
@@ -617,6 +674,28 @@ The faster, the better.
 
 Coreference relations are relations symbolizing coreference between entities or events.  
 MR4AP uses only one label for those: `SameAs`. See the [Coreference section](#coreference-and-anaphora).
+
+<[back to the table of contents](#table-of-contents)>
+#### Other relations
+
+Some relations which MR4AP makes use of do not fit into any aforementioned categories.
+
+<[back to the table of contents](#table-of-contents)>
+##### `Relative`: when one is not enough
+
+In some utterances, an entity has to be positioned relatively to another. MR4AP makes use of the `Relative` relation
+to be able to do so.
+
+```console
+John is five meters from the table.
+
+em:is_located_at :has_theme "John" .
+em:is_located_at :has_location "meters" .
+"meters" :has_measureexact "five" .
+"five" :has_value "5" .
+"meters" :has_relative "table" .
+
+```
 
 <[back to the table of contents](#table-of-contents)>
 ## Multiword Expressions (MWEs)
@@ -771,15 +850,15 @@ vn:obtain-13.5.2 :has_theme "book" .
 <[back to the table of contents](#table-of-contents)>
 ## MR4AP attributes
 
-MR4AP adopts of a fair number of attributes to gain more expressiveness. The following sections describe extensively
+MR4AP adopts a fair number of attributes to gain more expressiveness. The following sections describe extensively
 the use of each of them.
 
 ### Attribute nodes and `Argument{In,Out}` relations
 
-Attributes are by default **reified nodes**. Prototypically, attributes link a node to its value (e.g., a predicate may 
+Attributes are by default **reified nodes**. Prototypically, attributes link a node to its value (*e.g.*, a predicate may 
 have a negative polar value).
 As such, they could be simple relations in most cases. However, additional information may sometimes need to be attached
-to said relations (e.g., a negative polar value can itself have a negative polar value). To do that, these relations 
+to said relations (*e.g.*, a negative polar value can itself have a negative polar value). To do that, these relations 
 have to be reified. When reified, the relation (*i.e.*, the triple's predicate) becomes a linking node (and becomes the 
 subject for two triples). The two relations used to link the node to its value through such a reified node are the 
 generic and empty relations `Argument{In,Out}`. 
@@ -1233,8 +1312,8 @@ Just like temporal relations (see the [Temporal relations](#temporal-relations))
 symbolized with a number of derivative labels, namely `Measure{Exact,Min,Max,Fuzzy}`.  
 Quantification can either be explicit or implicit.
 
-| Proto-relation | Relation       | Example                                            | Annotation                      |
-|----------------|----------------|----------------------------------------------------|---------------------------------|
+| Proto-relation | Relation       | Example                                            | Annotation                    |
+|----------------|----------------|----------------------------------------------------|-------------------------------|
 | `Measure`\*    | `MeasureExact` | John owns a car / is driving his car.              | `"car" :has_measureexact "1"` |
 |                | `MeasureMin`   | John owns cars / several cars / more than one car. | `"car" :has_measuremin "2"`   |
 |                | `MeasureMax`   | John owns fewer than three cars.                   | `"car" :has_measuremax "2"`   |
@@ -1260,8 +1339,8 @@ vn:get-13.5.1 :has_theme "flower" .
 "flower" :has_measuremin "2" .
 vn:get-13.5.1$implicit :has_agent "Mary" .
 vn:get-13.5.1$implicit :has_theme "flower$implicit" .
-"flower$implicit"> :has_measuremin> <:unknown .
-"2" :has_comparisonmin> <:unknown .
+"flower$implicit" :has_measuremin :unknown .
+"2" :has_comparisonmin :unknown .
 ```
 
 <[back to the table of contents](#table-of-contents)>
@@ -1279,8 +1358,8 @@ vn:get-13.5.1 :has_theme "flower" .
 "flower" :has_measuremin "2" .
 vn:get-13.5.1$implicit :has_agent "implicit_argument" .
 vn:get-13.5.1$implicit :has_theme "flower$implicit" .
-"flower$implicit"> :has_measuremin> <:unknown .
-"2" :has_comparisonmin> <:unknown .
+"flower$implicit" :has_measuremin :unknown .
+"2" :has_comparisonmin :unknown .
 ```
 
 #### Other uses of quantification
@@ -1291,13 +1370,26 @@ the relations `Ordinal` and `Value`.
 ```console
 She is the duke's fourth daughter and tenth child.
 
-"daughter" :has_ordinal> <:ordinal$1 .
+"daughter" :has_ordinal :ordinal$1 .
 :ordinal$1 :has_value "4" .
-"child" :has_ordinal> <:ordinal$2 . 
+"child" :has_ordinal :ordinal$2 . 
 :ordinal$2 :has_value "10" .
 ```
 
+Ordinal entities can appear in temporal expressions.
+
+```console
+The castle was built during the 12th century.
+
+vn:build-26.1-1 :has_product "castle" .
+vn:build-26.1-1 :has_timeduration "century" . 
+"century" :has_ordinal :ordinal . 
+:ordinal :has_value "12" .
+```
+
 <!-- TODO: other cases -->
+Frequency can also be considered as a quantification process. 
+See the [`TimeFrequency`: a special case](#timefrequency-a-special-case) section for more information.
 
 <[back to the table of contents](#table-of-contents)>
 ### Polarity (and scope)
@@ -1308,7 +1400,7 @@ Polarity can receive one of two values: `negative` or `positive`. **However, to 
 The scope of the negation must be taken into account, especially when interacting with modality. As explained in
 the [Attribute nodes and `Argument{In,Out}` relations](#attribute-nodes-and-argumentinout-relations) section,
 attributes should be considered as reified nodes by default. In fact, polarity can either be seen as the attribute 
-acting as a relation (*i.e.*, `:has_polarity>`) or as the attribute node `<:polarity` with the `Argument{In,Out}` 
+acting as a relation (*i.e.*, `:has_polarity`) or as the attribute node `:polarity` with the `Argument{In,Out}` 
 relations. Doing so allows the annotator to address scope whenever needed.
 
 The first two examples are demonstrations of cases where reifying seems pointless:
@@ -1382,7 +1474,7 @@ Modality can receive one of six values: `obligation`, `capacity`, `wish`, `sugge
 The scope of modals must be taken into account, especially when interacting with negation. As explained in
 the [Attribute nodes and `Argument{In,Out}` relations](#attribute-nodes-and-argumentinout-relations) section,
 attributes should be considered as reified nodes by default. In fact, modality can either be seen as the attribute 
-acting as a relation (*i.e.*, `:has_modality>`) or as the attribute node `<:modality` with the `Argument{In,Out}` 
+acting as a relation (*i.e.*, `:has_modality`) or as the attribute node `:modality` with the `Argument{In,Out}` 
 relations. Doing so allows the annotator to address scope whenever needed (see the [Polarity (and scope)](#polarity-and-scope)
 section for such examples.
 
@@ -1527,6 +1619,7 @@ John swam for hours. Then, he went straight back home.
 
 "he" :is_sameas "John" .
 ```
+
 <[back to the table of contents](#table-of-contents)>
 ### Possessive anaphora
 
@@ -1551,7 +1644,7 @@ Moreover, if the event nominal co-refers with a preceding mention, a `SameAs` re
 John was apprehended by the police yesterday. His arrest lasted only a few minutes.
 
 vn:prosecute-33.2$1 :has_patient "John" .
-vn:prosecute-33.2$2 :has_patient "John" (from "his")> .
+vn:prosecute-33.2$2 :has_patient "John" (from "his") .
 vn:prosecute-33.2$2 :is_sameas vn:prosecute-33.2$1 .
 ```
 
@@ -1566,10 +1659,25 @@ In this section, we provide a practical guide for INCEpTION as well as a cheatsh
 INCEpTION is an annotation platform developed by Klie et al. (2018). It was convenient enough to allow us to annotate
 texts for MR4AP. INCEpTION is organised in annotation layers and tagsets. **We provide all the necessary resources 
 [here](./inception_settings).** 
-We extensively describe how to get started with INCEpTION [there]() (importing layers, tagsets, and texts). 
+We describe how to get started with INCEpTION [there]() (importing layers, tagsets, and texts). 
 <!-- TODO: add the aforementioned part of the guidelines -->
 
 This section is dedicated to how to annotate the different elements we described throughout the guidelines.
+
+<[back to the table of contents](#table-of-contents)>
+#### Getting started
+
+To start annotating MR4APs using INCEpTION, you must first:
+* Download and setup [INCEpTION](https://inception-project.github.io/) on your computer,
+* Create a new project,
+* Download the necessary layers and tagsets [here](./inception_settings),
+* Import them in your project and enable them,
+* Import the raw text data files you want to start annotating (remember to add asterisks to be able to annotate 
+  implicit elements, see [next section](#make-use-of-the-asterisks)),
+* You are ready to rumble!
+
+Once a text is finished, you can mark it as such clicking on the lock.
+Annotated data can be exported in a various range of formats.
 
 <[back to the table of contents](#table-of-contents)>
 #### Make use of the asterisks
@@ -1695,7 +1803,7 @@ Whenever needed, the annotator should make use of the asterisks at the end of th
 "John does not have to cook Mary dinner". The negation concerns the deontic modal value expressed with "have to", but 
 does not concern the verb "cook" (compare with "John has to not cook Mary dinner"). Attributes superimposed on
 predicates can't be the endpoints of relations. Thus, the correct way to annotate the triples 
-`:cook> :has_modality> "obligation">` and `<:modality :has_polarity "negative"` is:
+`vn:cooking-45.3 :has_modality "obligation"` and `:modality :has_polarity "negative"` is:
 * Annotate the cooking event with the `Cook` predicate class,
 * Annotate an asterisk with a `Modality` entity node,
 * Assign an attribute `modality:obligation` to said `Modality` node,
@@ -1736,6 +1844,7 @@ This method can be extended to any attribute node.
 |                       | `Value`           | Entity                                                                                          |
 |                       | `Asset`           | Entity                                                                                          |
 |                       | `Event`           | Predicate                                                                                       |
+|                       | `Relative`        | Predicate or entity                                                                             |
 |                       | `Unknown`         | `unknown` (used to mark polar and alternative questions)                                        |
 | **Temporal**          | `Time`            | Predicate or DCT                                                                                |
 |                       | `TimeExact`       | Predicate or DCT                                                                                |
@@ -1743,6 +1852,7 @@ This method can be extended to any attribute node.
 |                       | `TimeMax`         | Predicate or DCT                                                                                |
 |                       | `TimeFuzzy`       | Predicate or DCT                                                                                |
 |                       | `TimeDuration`    | Predicate or DCT                                                                                |
+|                       | `TimeFrequency`   | Predicate                                                                                       |
 | **Discourse**         | `Cause`           | Predicate or entity                                                                             |
 |                       | `Consequence`     | Predicate                                                                                       |
 |                       | `Opposition`      | Predicate                                                                                       |
@@ -1787,7 +1897,9 @@ This method can be extended to any attribute node.
 |                       | `MeasureMin`      | Literal value                                                                                   |
 |                       | `MeasureMax`      | Literal value                                                                                   |
 |                       | `MeasureFuzzy`    | Literal value                                                                                   |
-|                       | `Property`        | Predicate or literal value                                                                      |
+|                       | `Ordinal`         | Literal value                                                                                   |
+| **Reified nodes**     | `ArgumentIn`      | The source node                                                                                 |
+|                       | `ArgumentOut`     | The target node                                                                                 |
 
 
 <[back to the table of contents](#table-of-contents)>
@@ -1821,8 +1933,8 @@ vn:snooze-40.4 :has_modality "capacity" .
 "capacity" :has_polarity "negative" .
 vn:snooze-40.4 :has_timeexact "DCT" .
 vn:snooze-40.4 :has_timemax vn:judgment-33 .
-vn:judgment-33 :has_agent "she"--> à tagger human/feminine aussi ? si oui revoir la figure dmr> .
-vn:judgment-33 :has_theme "them" --> à tagger human/masculine aussi ? si oui revoir la figure dmr> .
+vn:judgment-33 :has_agent "she" .
+vn:judgment-33 :has_theme "them" .
 vn:judgment-33 :has_timemin "DCT+1dayt06:00:00" .
 vn:judgment-33 :has_timemax "DCT+1dayt12:00:00" .
 vn:judgment-33 :has_polarity "positive" .
