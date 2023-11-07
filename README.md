@@ -19,6 +19,7 @@ The MR4AP original paper can be found [here](paper/mr4ap_giordano_lopez_dmr2023.
 
 For any reference to the article, please cite it:
 
-Bastien Giordano and Cédric Lopez. 2023. [MR4AP: Meaning Representation for Application Purposes](https://dmr2023.github.io/pdf/2023.dmr-1.11.pdf). 
-_In Proceedings of the Fourth International Workshop on Designing Meaning Representations_, pages 110-121, Nancy, France. 
-Association for Computational Linguistics.
+Bastien Giordano and Cédric Lopez. 2023. 
+[MR4AP: Meaning Representation for Application Purposes](https://aclanthology.org/2023.dmr-1.11). 
+In *Proceedings of the Fourth International Workshop on Designing Meaning Representations*, pages 110–121, 
+Nancy, France. Association for Computational Linguistics.
