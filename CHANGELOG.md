@@ -1,3 +1,6 @@
+# 0.9.0
+* [BG] Uploaded MR4AP-wikinews corpus
+
 # 0.8.0
 * [BG] Updated layers and tagsets for INCEpTION
 * [BG] Updated guidelines with specific annotation cases
