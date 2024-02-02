@@ -46,7 +46,7 @@ Feel free to reach out if you need any more information.
 
 ## Corpus statistics
 
-These statistics take into account every annotated text in every languages. For language-specific statistics, please
+These statistics take into account every annotated text in every language. For language-specific statistics, please
 see the corresponding folders.
 
 | Item                            | Number |
