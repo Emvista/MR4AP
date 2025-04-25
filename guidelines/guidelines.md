@@ -569,9 +569,9 @@ are duly mentioned (using the `$implicit` annotation) along with the following e
 John is as kind as Mary [ø = is kind].
 
 :property :has_theme "John" . 
-:property :has_property pb:wealthy.01 .
+:property :has_property pb:kind.01 .
 :property$implicit :has_theme "John" .
-:property$implicit :has_property pb:wealthy.01 . 
+:property$implicit :has_property pb:kind.01 . 
 :property :has_comparisonexact :property$implicit . 
 :property$implicit :has_comparisonexact :property . 
 
