@@ -479,6 +479,7 @@ Those must be read from the underlined token to the bold one with the correspond
 |                | `TimeMin`            | After Mary **entered** the room, John <ins>left</ins>.           |
 |                | `TimeMax`            | Before Mary **entered** the room, John <ins>left</ins>.          |
 |                | `TimeFuzzy`          | Around the time Mary **entered** the room, John <ins>left</ins>. |
+|                | `TimeSpan`           | The attacks took place <ins>two minutes</ins> apart. |
 |                | `TimeDuration`       | As Mary **entered** the room, John <ins>left</ins>.              |
 |                | `TimeFrequency`\**   | John **trains** five <ins>times</ins> a week.                    |
 
